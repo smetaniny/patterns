@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 
-class ExampleDesignPatterns extends Controller
+class DesignPatterns extends Controller
 {
     protected PropertyContainer $propertyContainer;
 

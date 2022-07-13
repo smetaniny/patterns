@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\DesignPatterns\ExampleDesignPatterns::class, 'renderOutput']);
+//Route::get('/', [\App\Http\Controllers\DesignPatterns\DesignPatterns::class, 'renderOutput']);
+Route::get('/', [\App\Http\Controllers\DesignPatterns\Delegation::class, 'renderOutput']);
