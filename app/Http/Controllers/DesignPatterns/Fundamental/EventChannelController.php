@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\DesignPatterns;
+namespace App\Http\Controllers\DesignPatterns\Fundamental;
 
 use App\DesignPatterns\Fundamental\EventChannel\EventChannelJob;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 
 /**
  * Запускаем канал событий
  */
-class EventChannel extends Controller
+class EventChannelController extends Controller
 {
 
-    public function eventChannel(): \Illuminate\Http\Response
+    public function eventChannel(): Response
     {
-        $name = "Канал событий (EventChannel)";
+        $name = "Канал событий (EventChannelController)";
         $description = EventChannelJob::getDescription();
 
         $item = new EventChannelJob();

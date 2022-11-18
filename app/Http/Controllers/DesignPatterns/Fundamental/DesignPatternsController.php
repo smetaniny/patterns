@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\DesignPatterns;
+namespace App\Http\Controllers\DesignPatterns\Fundamental;
 
 use App\DesignPatterns\Fundamental\PropertyContainer\PropertyContainer;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class DesignPatterns extends Controller
+class DesignPatternsController extends Controller
 {
     protected PropertyContainer $propertyContainer;
 
@@ -20,7 +21,7 @@ class DesignPatterns extends Controller
     /**
      * @throws Exception
      */
-    function renderOutput(Request $request): \Illuminate\Http\Response
+    function renderOutput(Request $request): Response
     {
         $this->propertyContainer->addProperty("designPatterns", ["welcome" => 1]);
 

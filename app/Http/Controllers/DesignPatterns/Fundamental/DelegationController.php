@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\DesignPatterns;
+namespace App\Http\Controllers\DesignPatterns\Fundamental;
 
 use App\Http\Controllers\Controller;
 use App\DesignPatterns\Fundamental\Delegation\AppMessenger;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 use DebugBar\DebugBar;
 
-class Delegation extends Controller
+class DelegationController extends Controller
 {
     protected AppMessenger $appMessenger;
 
@@ -19,7 +19,7 @@ class Delegation extends Controller
 
     function renderOutput(Request $request): \Illuminate\Http\Response
     {
-        $name = "Делегирование (Delegation)";
+        $name = "Делегирование (DelegationController)";
 
         $this->appMessenger->setSender("setSender@yandex.ru")
             ->setRecipient("setRecipient@yandex.ru")
