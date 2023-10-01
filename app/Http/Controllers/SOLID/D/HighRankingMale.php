@@ -16,7 +16,7 @@ use JetBrains\PhpStorm\Pure;
  * нижних уровней. Оба типа модулей должны зависеть от абстракций. Абстракции не должны зависеть от деталей. Детали
  * должны зависеть от абстракций.
  * ИЛИ
- * Зависимости должны строится относительно абстракций, а не деталей
+ * Зависимости должны строится относительно абстракций, а не классов
  */
 
 
@@ -25,7 +25,7 @@ use JetBrains\PhpStorm\Pure;
  */
 class HighRankingMale
 {
-    //Переменная провайдера еду
+    //Переменная провайдера еды
     private IFoodProvider $foodProvider;
 
     /**
@@ -46,42 +46,41 @@ class HighRankingMale
 }
 
 
-
 /**
  * Низко ранговый мужчина - так сделает новичок
  */
-//class lowRankingMale
-//{
-//    //метод кушать
-//    #[Pure] public function eat()
-//    {
-//        //Класс жена
-//        $wife = new Wife();
-//        //С помощью жены получаем еду
-//        $food = $wife->getFood();
-//        //... eat
-//    }
-//}
+class lowRankingMale
+{
+    //метод кушать
+    #[Pure] public function eat()
+    {
+        //Класс жена
+        $wife = new Wife();
+        //С помощью жены получаем еду
+        $food = $wife->getFood();
+        //... eat
+    }
+}
 
 
 /**
  * Средне ранговый мужчина - так сделает середнячок
  */
-//class averageRankingMale
-//{
-//    private Wife $wife;
-//
-//    public function __construct(Wife $wife)
-//    {
-//        $this->wife = $wife;
-//    }
-//
-//    #[Pure] public function eat()
-//    {
-//        $food = $this->wife->getFood();
-//        //... eat
-//    }
-//}
+class averageRankingMale
+{
+    private Wife $wife;
+
+    public function __construct(Wife $wife)
+    {
+        $this->wife = $wife;
+    }
+
+    #[Pure] public function eat()
+    {
+        $food = $this->wife->getFood();
+        //... eat
+    }
+}
 
 
 

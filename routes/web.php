@@ -4,6 +4,8 @@
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
+use App\Http\Controllers\SOLID\D\Example2\OrderController;
+use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Делегирование
-//Route::get('/', [DelegationController::class, 'renderOutput']);
+Route::get('/delegationController', [DelegationController::class, 'renderOutput']);
 //Паттерн проектирования
-//Route::get('/', [DesignPatternsController::class, 'renderOutput']);
+Route::get('/designPatternsController', [DesignPatternsController::class, 'renderOutput']);
 //Канал событий
-//Route::get('/', [EventChannelController::class, 'eventChannel']);
+Route::get('/eventChannelController', [EventChannelController::class, 'eventChannel']);
 
 
 //Это для теста делал проектировщик задач
@@ -30,3 +32,6 @@ use Illuminate\Support\Facades\Route;
     App\Jobs\SendMessage::dispatch("TEST");
     return view('welcome');
 });*/
+
+Route::get('/slid_O', [ContactInfoStrategyController::class, 'index']);
+Route::get('/slid_D', [OrderController::class, 'placeOnlineOrder']);
