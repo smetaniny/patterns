@@ -1,9 +1,10 @@
 <?php
+namespace App\Http\Controllers\LavrikOOP\Lesson3;
 
 class Article{
-	protected int $id; 
-	public string $title; 
-	public string $content; 
+	protected int $id;
+	public string $title;
+	public string $content;
 	protected IStorage $storage;
 
 	public function __construct(IStorage $storage){
