@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SOLID\D\Example2;
+namespace App\Services;
 
 use App\Contracts\OrderService;
 

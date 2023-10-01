@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\DelegationFactorySolid\DelegationFactorySolidController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
@@ -19,12 +19,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Делегирование
+Route::get('/', function () {
+    return 'Патерны!';
+});
+
+
+// Делегирование
 Route::get('/delegationController', [DelegationController::class, 'renderOutput']);
-//Паттерн проектирования
+
+// Паттерн проектирования
 Route::get('/designPatternsController', [DesignPatternsController::class, 'renderOutput']);
-//Канал событий
+
+// Канал событий
 Route::get('/eventChannelController', [EventChannelController::class, 'eventChannel']);
+
+// Принципы ООП (SOLID) и паттерны проектирования (Делегирование и Фабрика)
+Route::get('/delegationFactorySolid', [DelegationFactorySolidController::class, 'index']);
 
 
 //Это для теста делал проектировщик задач

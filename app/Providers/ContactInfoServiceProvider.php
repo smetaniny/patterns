@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\SOLID\O\example2\KostromaContactInfoStrategy;
-use App\Http\Controllers\SOLID\O\example2\MoscowContactInfoStrategy;
-use Illuminate\Support\ServiceProvider;
 use App\Contracts\ContactInfoStrategy;
+use App\Services\KostromaContactInfoStrategy;
+use App\Services\MoscowContactInfoStrategy;
+use Illuminate\Support\ServiceProvider;
 
 class ContactInfoServiceProvider extends ServiceProvider
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SOLID\O\example2;
+namespace App\Services;
 
 
 use App\Contracts\ContactInfoStrategy;

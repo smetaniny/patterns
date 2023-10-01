@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\SOLID\D\Example2\OnlineOrderService;
-use App\Http\Controllers\SOLID\D\Example2\PhoneOrderService;
-use Illuminate\Support\ServiceProvider;
 use App\Contracts\OrderService;
+use App\Services\PhoneOrderService;
+use Illuminate\Support\ServiceProvider;
 
 class OrderServiceProvider extends ServiceProvider
 {
