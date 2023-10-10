@@ -7,6 +7,7 @@ use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
+use PlatinaKostroma\ImageProcessor\Contracts\ImageProcessorInterface;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return 'Патерны!';
+Route::get('/', function (ImageProcessorInterface $imageProcessor) {
+    $imageProcessor->sanitizeFileName();
 });
-
 
 // Делегирование
 Route::get('/delegationController', [DelegationController::class, 'renderOutput']);
@@ -35,7 +35,6 @@ Route::get('/eventChannelController', [EventChannelController::class, 'eventChan
 
 // Принципы ООП (SOLID) и паттерны проектирования (Делегирование и Фабрика)
 Route::get('/delegationFactorySolid', [DelegationFactorySolidController::class, 'index']);
-
 
 //Это для теста делал проектировщик задач
 /*Route::get('/job', function () {
