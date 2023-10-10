@@ -38,6 +38,7 @@ class ImageProcessorServiceProvider extends ServiceProvider
         // Register the binding for the ImageProcessorInterface
         $this->app->bind(ImageProcessorInterface::class, ImageProcessor::class);
 
+
         // Register the service the package provides.
         $this->app->singleton('image-processor', function ($app) {
             return new \PlatinaKostroma\ImageProcessor\ImageProcessor();
