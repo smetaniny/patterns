@@ -8,7 +8,12 @@ use App\Http\Controllers\PHP8\Employee_308\CluedUp;
 use App\Http\Controllers\PHP8\Employee_308\Employee;
 use App\Http\Controllers\PHP8\Employee_308\Minion;
 use App\Http\Controllers\PHP8\Employee_308\NastyBoss;
+use App\Http\Controllers\PHP8\FactoryMethod319\BloggsCommsManager;
+use App\Http\Controllers\PHP8\FactoryMethod319\CommsManager;
+use App\Http\Controllers\PHP8\FactoryMethod319\MegaApptCommsManager;
+use App\Http\Controllers\PHP8\FactoryMethod319\MegaApptEncoder;
 use App\Http\Controllers\PHP8\Notifier299\RegistrationMgr;
+use App\Http\Controllers\PHP8\Singleton_313\Preferences;
 use App\Http\Controllers\PHP8\Strategy292\FixedCostStrategy;
 use App\Http\Controllers\PHP8\Strategy292\Lecture;
 use App\Http\Controllers\PHP8\Strategy292\Seminar;
@@ -54,7 +59,7 @@ Route::get('/job', function () {
 Route::get('/slid_O', [ContactInfoStrategyController::class, 'index']);
 Route::get('/slid_D', [OrderController::class, 'placeOnlineOrder']);
 
-Route::get('/Strategy292', function () {
+Route::get('/PHP8/Strategy292', function () {
     $lessons[] = new Seminar(4, new TimedCostStrategy(), "Цветы");
     $lessons[] = new Lecture(7, new FixedCostStrategy(), "Фамин Иван Иваныч");
     foreach ($lessons as $lesson) {
@@ -74,7 +79,7 @@ Route::get('/Strategy292', function () {
     }
 });
 
-Route::get('/Notifier299', function () {
+Route::get('/PHP8/Notifier299', function () {
     $lessons1 = new Seminar(4, new TimedCostStrategy(), "Физика в действии");
     $lessons2 = new Lecture(7, new FixedCostStrategy(), "Карпов Станислав Викторович");
     $mgr = new RegistrationMgr();
@@ -82,7 +87,7 @@ Route::get('/Notifier299', function () {
     $mgr->register($lessons2);
 });
 
-Route::get('/Employee_308', function () {
+Route::get('/PHP8/Employee308', function () {
     $boss = new NastyBoss();
     $boss->addEmployee(Employee::recruit("Игорь"));
     $boss->addEmployee(Employee::recruit("Владимир"));
@@ -90,4 +95,26 @@ Route::get('/Employee_308', function () {
     $boss->projectFails();
     $boss->projectFails();
     $boss->projectFails();
+});
+
+Route::get('/PHP8/Singleton313', function () {
+    $pref = Preferences::getInstance();
+    $pref->setProperty("name", "Серега");
+    unset($pref); // Удаление ссылки
+
+    // Демонстрация, что значение не потеряно:
+    $pref2 = Preferences::getInstance();
+    print $pref2->getProperty("name") . "<br />";
+});
+
+Route::get('/PHP8/FactoryMethod319', function () {
+    $mgr = new BloggsCommsManager();
+    print $mgr->getHeaderText();
+    print $mgr->getApptEncoder()->encode();
+    print $mgr->getFooterText();
+
+    $megaAppt = new MegaApptCommsManager();
+    print $megaAppt->getHeaderText();
+    print $megaAppt->getApptEncoder()->encode();
+    print $megaAppt->getFooterText();
 });
