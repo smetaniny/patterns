@@ -4,6 +4,10 @@ use App\Http\Controllers\DelegationFactorySolid\DelegationFactorySolidController
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
+use App\Http\Controllers\PHP8\Employee_308\CluedUp;
+use App\Http\Controllers\PHP8\Employee_308\Employee;
+use App\Http\Controllers\PHP8\Employee_308\Minion;
+use App\Http\Controllers\PHP8\Employee_308\NastyBoss;
 use App\Http\Controllers\PHP8\Notifier299\RegistrationMgr;
 use App\Http\Controllers\PHP8\Strategy292\FixedCostStrategy;
 use App\Http\Controllers\PHP8\Strategy292\Lecture;
@@ -71,9 +75,19 @@ Route::get('/Strategy292', function () {
 });
 
 Route::get('/Notifier299', function () {
-    $lessons1 =  new Seminar(4, new TimedCostStrategy(), "Физика в действии");
+    $lessons1 = new Seminar(4, new TimedCostStrategy(), "Физика в действии");
     $lessons2 = new Lecture(7, new FixedCostStrategy(), "Карпов Станислав Викторович");
     $mgr = new RegistrationMgr();
     $mgr->register($lessons1);
     $mgr->register($lessons2);
+});
+
+Route::get('/Employee_308', function () {
+    $boss = new NastyBoss();
+    $boss->addEmployee(Employee::recruit("Игорь"));
+    $boss->addEmployee(Employee::recruit("Владимир"));
+    $boss->addEmployee(Employee::recruit("Мария"));
+    $boss->projectFails();
+    $boss->projectFails();
+    $boss->projectFails();
 });
