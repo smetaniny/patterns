@@ -4,6 +4,9 @@ use App\Http\Controllers\DelegationFactorySolid\DelegationFactorySolidController
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
+use App\Http\Controllers\PHP8\UML290\Lecture;
+use App\Http\Controllers\PHP8\UML290\Lesson;
+use App\Http\Controllers\PHP8\UML290\Seminar;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +23,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'Патерны!';
+    // UML290
+    $lecture = new Lecture(5, Lesson::FIXED);
+    print "{$lecture->cost()} ({$lecture->chargeType()})\n";
+    $seminar = new Seminar(3, Lesson::TIMED);
+    print "{$seminar->cost()} ({$seminar->chargeType()})\n";
+    // End UML290
 });
 
 
