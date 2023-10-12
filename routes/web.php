@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+});
+
+Route::get('/UML290', function () {
     // UML290
     $lecture = new Lecture(5, Lesson::FIXED);
     print "{$lecture->cost()} ({$lecture->chargeType()})\n";
