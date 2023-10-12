@@ -1,8 +1,7 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace app\Http\Controllers\PHP8\AbstractExample;
 
-// №1 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Абстрактный класс ParamHandler, от которого наследуются XmlParamHandler и TextParamHandler.
 abstract class ParamHandler
 {
@@ -41,41 +40,3 @@ abstract class ParamHandler
 
     abstract public function read(): void;
 }
-
-// Класс XmlParamHandler, наследуется от ParamHandler.
-class XmlParamHandler extends ParamHandler
-{
-    // Реализация метода write для записи данных в формате XML.
-    public function write(): void
-    {
-        // Запись XML
-        // с использованием $this->params
-    }
-
-    // Реализация метода read для чтения данных из формата XML.
-    public function read(): void
-    {
-        // Чтение XML
-        // и заполнение $this->params
-    }
-}
-
-// Класс TextParamHandler, наследуется от ParamHandler.
-class TextParamHandler extends ParamHandler
-{
-    // Реализация метода write для записи данных в текстовом формате.
-    public function write(): void
-    {
-        // Запись текста
-        // с использованием $this->params
-    }
-
-    // Реализация метода read для чтения данных из текстового формата.
-    public function read(): void
-    {
-        // Чтение текста
-        // и заполнение $this->params
-    }
-}
-
-// №1 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
