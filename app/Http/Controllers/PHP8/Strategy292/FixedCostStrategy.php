@@ -8,7 +8,7 @@ class FixedCostStrategy extends CostStrategy
     // Реализация метода cost для расчета стоимости урока с фиксированной ставкой.
     public function cost(Lesson $lesson): int
     {
-        return 30;
+        return 30000;
     }
 
     // Реализация метода chargeType для определения типа оплаты (фиксированная ставка).

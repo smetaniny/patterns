@@ -10,7 +10,7 @@ class TimedCostStrategy extends CostStrategy
     // Реализация метода cost для расчета стоимости урока с почасовой оплатой.
     #[Pure] public function cost(Lesson $lesson): int
     {
-        return ($lesson->getDuration() * 5);
+        return ($lesson->getDuration() * 50);
     }
 
     // Реализация метода chargeType для определения типа оплаты (почасовая оплата).
