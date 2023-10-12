@@ -195,7 +195,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ContactInfoServiceProvider::class,
-        App\Providers\OrderServiceProvider::class
+        App\Providers\OrderServiceProvider::class,
 
     ],
 
