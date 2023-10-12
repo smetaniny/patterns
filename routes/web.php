@@ -26,16 +26,6 @@ Route::get('/', function () {
 
 });
 
-Route::get('/UML290', function () {
-    // UML290
-    $lecture = new Lecture(5, Lesson::FIXED);
-    print "{$lecture->cost()} ({$lecture->chargeType()})\n";
-    $seminar = new Seminar(3, Lesson::TIMED);
-    print "{$seminar->cost()} ({$seminar->chargeType()})\n";
-    // End UML290
-});
-
-
 // Делегирование
 Route::get('/delegationController', [DelegationController::class, 'renderOutput']);
 
