@@ -4,15 +4,15 @@ use App\Http\Controllers\DelegationFactorySolid\DelegationFactorySolidController
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
-use App\Http\Controllers\PHP8\Employee_308\CluedUp;
 use App\Http\Controllers\PHP8\Employee_308\Employee;
-use App\Http\Controllers\PHP8\Employee_308\Minion;
 use App\Http\Controllers\PHP8\Employee_308\NastyBoss;
 use App\Http\Controllers\PHP8\FactoryMethod319\BloggsCommsManager;
-use App\Http\Controllers\PHP8\FactoryMethod319\CommsManager;
 use App\Http\Controllers\PHP8\FactoryMethod319\MegaApptCommsManager;
-use App\Http\Controllers\PHP8\FactoryMethod319\MegaApptEncoder;
 use App\Http\Controllers\PHP8\Notifier299\RegistrationMgr;
+use App\Http\Controllers\PHP8\P333Prototype\EarthForest;
+use App\Http\Controllers\PHP8\P333Prototype\EarthPlains;
+use App\Http\Controllers\PHP8\P333Prototype\EarthSea;
+use App\Http\Controllers\PHP8\P333Prototype\TerrainFactory;
 use App\Http\Controllers\PHP8\Singleton_313\Preferences;
 use App\Http\Controllers\PHP8\Strategy292\FixedCostStrategy;
 use App\Http\Controllers\PHP8\Strategy292\Lecture;
@@ -59,7 +59,7 @@ Route::get('/job', function () {
 Route::get('/slid_O', [ContactInfoStrategyController::class, 'index']);
 Route::get('/slid_D', [OrderController::class, 'placeOnlineOrder']);
 
-Route::get('/PHP8/Strategy292', function () {
+Route::get('/PHP8/P292Strategy', function () {
     $lessons[] = new Seminar(4, new TimedCostStrategy(), "Цветы");
     $lessons[] = new Lecture(7, new FixedCostStrategy(), "Фамин Иван Иваныч");
     foreach ($lessons as $lesson) {
@@ -79,7 +79,7 @@ Route::get('/PHP8/Strategy292', function () {
     }
 });
 
-Route::get('/PHP8/Notifier299', function () {
+Route::get('/PHP8/P299Notifier', function () {
     $lessons1 = new Seminar(4, new TimedCostStrategy(), "Физика в действии");
     $lessons2 = new Lecture(7, new FixedCostStrategy(), "Карпов Станислав Викторович");
     $mgr = new RegistrationMgr();
@@ -87,7 +87,7 @@ Route::get('/PHP8/Notifier299', function () {
     $mgr->register($lessons2);
 });
 
-Route::get('/PHP8/Employee308', function () {
+Route::get('/PHP8/P308Employee', function () {
     $boss = new NastyBoss();
     $boss->addEmployee(Employee::recruit("Игорь"));
     $boss->addEmployee(Employee::recruit("Владимир"));
@@ -97,7 +97,7 @@ Route::get('/PHP8/Employee308', function () {
     $boss->projectFails();
 });
 
-Route::get('/PHP8/Singleton313', function () {
+Route::get('/PHP8/P313Singleton', function () {
     $pref = Preferences::getInstance();
     $pref->setProperty("name", "Серега");
     unset($pref); // Удаление ссылки
@@ -107,7 +107,7 @@ Route::get('/PHP8/Singleton313', function () {
     print $pref2->getProperty("name") . "<br />";
 });
 
-Route::get('/PHP8/FactoryMethod319', function () {
+Route::get('/PHP8/P319FactoryMethod', function () {
     $mgr = new BloggsCommsManager();
     print $mgr->getHeaderText();
     print $mgr->getApptEncoder()->encode();
@@ -117,4 +117,20 @@ Route::get('/PHP8/FactoryMethod319', function () {
     print $megaAppt->getHeaderText();
     print $megaAppt->getApptEncoder()->encode();
     print $megaAppt->getFooterText();
+});
+
+Route::get('/PHP8/P326AbstractFactory', function () {
+    $mgr = new \App\Http\Controllers\PHP8\AbstractFactory326\BloggsCommsManager();
+    print $mgr->make(1)->encode();
+});
+
+Route::get('/PHP8/P333Prototype', function () {
+    $factory = new TerrainFactory(
+        new EarthSea(-1),
+        new EarthPlains(),
+        new EarthForest()
+    );
+    print_r($factory->getSea());
+    print_r($factory->getPlains());
+    print_r($factory->getForest());
 });

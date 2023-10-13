@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\PHP8\AbstractExample;
+namespace app\Http\Controllers\PHP8\P244AbstractExample;
 
 // Абстрактный класс ParamHandler, от которого наследуются XmlParamHandler и TextParamHandler.
 abstract class ParamHandler

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\PHP8\AbstractExample;
+namespace app\Http\Controllers\PHP8\P244AbstractExample;
 
 // Класс XmlParamHandler, наследуется от ParamHandler.
 class XmlParamHandler extends ParamHandler

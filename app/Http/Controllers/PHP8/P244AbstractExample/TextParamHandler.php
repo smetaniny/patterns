@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\PHP8\AbstractExample;
+namespace app\Http\Controllers\PHP8\P244AbstractExample;
 
 // Класс TextParamHandler, наследуется от ParamHandler.
 class TextParamHandler extends ParamHandler
