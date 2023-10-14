@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Notifier299;
+namespace App\Http\Controllers\PHP8\P299Notifier;
 
 // Конкретный класс "Уведомитель текстом" с реализацией метода inform() для отправки уведомления текстовым сообщением.
 class TextNotifier extends Notifier

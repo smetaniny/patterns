@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Strategy292;
+namespace App\Http\Controllers\PHP8\P292Strategy;
 
 // Класс Seminar, наследующий абстрактный класс Lesson.
 use JetBrains\PhpStorm\Pure;

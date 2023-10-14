@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\FactoryMethod319;
+namespace App\Http\Controllers\PHP8\P319FactoryMethod;
 
 // Класс BloggsCommsManager, наследующий абстрактный класс CommsManager
 class BloggsCommsManager extends CommsManager
@@ -21,5 +21,3 @@ class BloggsCommsManager extends CommsManager
         return "Нижний колонтитул BloggsCal <br />";
     }
 }
-
-// Класс BloggsCommsManager, наследующий абстрактный класс CommsManager

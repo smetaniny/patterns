@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\AbstractFactory326;
+namespace App\Http\Controllers\PHP8\P326AbstractFactory;
 
 // Конкретный класс BloggsApptEncoder, который наследует абстрактный класс ApptEncoder
-class BloggsApptEncoder implements Encoder
+class BloggsEncoder implements Encoder
 {
     public function encode(): string
     {

@@ -4,20 +4,21 @@ use App\Http\Controllers\DelegationFactorySolid\DelegationFactorySolidController
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
-use App\Http\Controllers\PHP8\Employee_308\Employee;
-use App\Http\Controllers\PHP8\Employee_308\NastyBoss;
-use App\Http\Controllers\PHP8\FactoryMethod319\BloggsCommsManager;
-use App\Http\Controllers\PHP8\FactoryMethod319\MegaApptCommsManager;
-use App\Http\Controllers\PHP8\Notifier299\RegistrationMgr;
+use App\Http\Controllers\PHP8\P292Strategy\FixedCostStrategy;
+use App\Http\Controllers\PHP8\P292Strategy\Lecture;
+use App\Http\Controllers\PHP8\P292Strategy\Seminar;
+use App\Http\Controllers\PHP8\P292Strategy\TimedCostStrategy;
+use App\Http\Controllers\PHP8\P299Notifier\RegistrationMgr;
+use App\Http\Controllers\PHP8\P308Employee\Employee;
+use App\Http\Controllers\PHP8\P308Employee\NastyBoss;
+use App\Http\Controllers\PHP8\P313Singleton\Preferences;
+use App\Http\Controllers\PHP8\P319FactoryMethod\BloggsCommsManager;
+use App\Http\Controllers\PHP8\P319FactoryMethod\MegaCommsManager;
 use App\Http\Controllers\PHP8\P333Prototype\EarthForest;
 use App\Http\Controllers\PHP8\P333Prototype\EarthPlains;
 use App\Http\Controllers\PHP8\P333Prototype\EarthSea;
 use App\Http\Controllers\PHP8\P333Prototype\TerrainFactory;
-use App\Http\Controllers\PHP8\Singleton_313\Preferences;
-use App\Http\Controllers\PHP8\Strategy292\FixedCostStrategy;
-use App\Http\Controllers\PHP8\Strategy292\Lecture;
-use App\Http\Controllers\PHP8\Strategy292\Seminar;
-use App\Http\Controllers\PHP8\Strategy292\TimedCostStrategy;
+use App\Http\Controllers\PHP8\P339ServiceLocator\AppConfig;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
@@ -113,14 +114,14 @@ Route::get('/PHP8/P319FactoryMethod', function () {
     print $mgr->getApptEncoder()->encode();
     print $mgr->getFooterText();
 
-    $megaAppt = new MegaApptCommsManager();
+    $megaAppt = new MegaCommsManager();
     print $megaAppt->getHeaderText();
     print $megaAppt->getApptEncoder()->encode();
     print $megaAppt->getFooterText();
 });
 
 Route::get('/PHP8/P326AbstractFactory', function () {
-    $mgr = new \App\Http\Controllers\PHP8\AbstractFactory326\BloggsCommsManager();
+    $mgr = new \App\Http\Controllers\PHP8\P326AbstractFactory\BloggsCommsManager();
     print $mgr->make(1)->encode();
 });
 
@@ -133,4 +134,10 @@ Route::get('/PHP8/P333Prototype', function () {
     print_r($factory->getSea());
     print_r($factory->getPlains());
     print_r($factory->getForest());
+});
+
+    Route::get('/PHP8/P339ServiceLocator', function () {
+    $commsMgr = AppConfig::getlnstance()->getCommsManager();
+    print $commsMgr->getApptEncoder()->encode();
+
 });

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Notifier299;
+namespace App\Http\Controllers\PHP8\P299Notifier;
 
 // Этот класс представляет менеджера регистрации уроков.
-use App\Http\Controllers\PHP8\Strategy292\Lesson;
+use App\Http\Controllers\PHP8\P292Strategy\Lesson;
 
 class RegistrationMgr
 {

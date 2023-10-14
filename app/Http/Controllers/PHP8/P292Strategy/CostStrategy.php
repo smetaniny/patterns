@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Strategy292;
+namespace App\Http\Controllers\PHP8\P292Strategy;
 
 // Абстрактный класс CostStrategy, представляющий стратегию расчета стоимости.
 abstract class CostStrategy

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\AbstractFactory326;
+namespace App\Http\Controllers\PHP8\P326AbstractFactory;
 
 // Абстрактный класс CommsManager, определяющий интерфейс для всех менеджеров связи
 abstract class CommsManager

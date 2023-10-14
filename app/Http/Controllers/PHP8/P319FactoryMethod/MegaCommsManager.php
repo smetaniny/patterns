@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\FactoryMethod319;
+namespace App\Http\Controllers\PHP8\P319FactoryMethod;
 
-class MegaApptCommsManager extends CommsManager
+class MegaCommsManager extends CommsManager
 {
     // Методы для получения верхнего и нижнего колонтитула и объекта ApptEncoder
     public function getHeaderText(): string

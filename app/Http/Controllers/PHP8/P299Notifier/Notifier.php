@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Notifier299;
+namespace App\Http\Controllers\PHP8\P299Notifier;
 
 // Абстрактный класс "Уведомитель" с фабричным методом getNotifier().
 abstract class Notifier

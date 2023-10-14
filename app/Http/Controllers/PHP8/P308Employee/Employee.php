@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Employee_308;
+namespace App\Http\Controllers\PHP8\P308Employee;
 
 // Объявление абстрактного класса Employee
 abstract class Employee

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Singleton_313;
+namespace App\Http\Controllers\PHP8\P313Singleton;
 
 class Preferences
 {

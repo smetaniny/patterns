@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\FactoryMethod319;
+namespace App\Http\Controllers\PHP8\P319FactoryMethod;
 
 class MegaApptEncoder extends ApptEncoder
 {

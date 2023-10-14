@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Strategy292;
+namespace App\Http\Controllers\PHP8\P292Strategy;
 
 use JetBrains\PhpStorm\Pure;
 

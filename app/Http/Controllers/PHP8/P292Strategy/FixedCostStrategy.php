@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Strategy292;
+namespace App\Http\Controllers\PHP8\P292Strategy;
 
 // Класс FixedCostStrategy, который наследует абстрактный класс CostStrategy.
 class FixedCostStrategy extends CostStrategy

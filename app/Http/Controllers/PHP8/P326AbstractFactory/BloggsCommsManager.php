@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\AbstractFactory326;
+namespace App\Http\Controllers\PHP8\P326AbstractFactory;
 
 // Класс BloggsCommsManager, наследующий абстрактный класс CommsManager
 
@@ -15,9 +15,9 @@ class BloggsCommsManager extends CommsManager
     {
         switch ($flag) {
             case self::APPT:
-                return new BloggsApptEncoder();
+                return new BloggsEncoder();
             default :
-                return new BloggsApptEncoder();
+                return new BloggsEncoder();
         }
     }
 

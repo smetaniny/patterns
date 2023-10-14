@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PHP8\Employee_308;
+namespace App\Http\Controllers\PHP8\P308Employee;
 
 // Класс Minion, который наследуется от Employee
 class Minion extends Employee
