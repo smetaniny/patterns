@@ -26,7 +26,15 @@ use App\Http\Controllers\PHP8\P365Composite\Archer;
 use App\Http\Controllers\PHP8\P365Composite\Army;
 use App\Http\Controllers\PHP8\P365Composite\LaserCannonUnit;
 use App\Http\Controllers\PHP8\P365Composite\UnitException;
+use App\Http\Controllers\PHP8\P380Decorator\DiamondDecorator;
+use App\Http\Controllers\PHP8\P380Decorator\Plains;
 use App\Http\Controllers\PHP8\P380Decorator\PollutedPlains;
+use App\Http\Controllers\PHP8\P380Decorator\PollutionDecorator;
+use App\Http\Controllers\PHP8\P386Decorator\AuthenticateRequest;
+use App\Http\Controllers\PHP8\P386Decorator\LogRequest;
+use App\Http\Controllers\PHP8\P386Decorator\MainProcess;
+use App\Http\Controllers\PHP8\P386Decorator\RequestHelper;
+use App\Http\Controllers\PHP8\P386Decorator\StructureRequest;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
@@ -185,6 +193,31 @@ Route::get('/PHP8/P365Composite', function () {
 });
 
 Route::get('/PHP8/P380Decorator', function () {
-    $tile = new PollutedPlains();
-    print $tile->getWealthFactor();
+    $tile = new Plains();
+    print $tile->getWealthFactor() . '<br />';
+
+    $tile = new DiamondDecorator(new Plains());
+    print $tile->getWealthFactor() . '<br />';
+
+    $tile = new PollutionDecorator(new DiamondDecorator(new Plains()));
+    print $tile->getWealthFactor() . '<br />';
 });
+
+Route::get('/PHP8/P386Decorator', function () {
+    $requestData = [
+        'user' => 'example_user',
+        'action' => 'some_action',
+    ];
+
+    $process =
+        new AuthenticateRequest(
+            new StructureRequest(
+                new LogRequest(
+                    new MainProcess()
+                )
+            )
+        );
+
+    $process->process(new RequestHelper($requestData));
+});
+
