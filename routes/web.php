@@ -19,6 +19,13 @@ use App\Http\Controllers\PHP8\P333Prototype\EarthPlains;
 use App\Http\Controllers\PHP8\P333Prototype\EarthSea;
 use App\Http\Controllers\PHP8\P333Prototype\TerrainFactory;
 use App\Http\Controllers\PHP8\P339ServiceLocator\AppConfig;
+use App\Http\Controllers\PHP8\P342DependencyInjection\AppointmentMaker;
+use App\Http\Controllers\PHP8\P342DependencyInjection\ApptEncoder;
+use App\Http\Controllers\PHP8\P342DependencyInjection\ObjectAssembler;
+use App\Http\Controllers\PHP8\P365Composite\Archer;
+use App\Http\Controllers\PHP8\P365Composite\Army;
+use App\Http\Controllers\PHP8\P365Composite\LaserCannonUnit;
+use App\Http\Controllers\PHP8\P365Composite\UnitException;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
@@ -136,8 +143,42 @@ Route::get('/PHP8/P333Prototype', function () {
     print_r($factory->getForest());
 });
 
-    Route::get('/PHP8/P339ServiceLocator', function () {
+Route::get('/PHP8/P339ServiceLocator', function () {
     $commsMgr = AppConfig::getlnstance()->getCommsManager();
     print $commsMgr->getApptEncoder()->encode();
+});
 
+Route::get('/PHP8/P342DependencyInjection', function () {
+    $assembler = new ObjectAssembler(base_path("App/Http/Controllers/PHP8/P342DependencyInjection/objects.xml"));
+    $encoder = $assembler->getComponent(ApptEncoder::class);
+    $apptmaker = new AppointmentMaker($encoder);
+    $out = $apptmaker->makeAppointment();
+    print $out;
+
+    $apptmaker = $assembler->getComponent(AppointmentMaker::class);
+    $out = $apptmaker->makeAppointment();
+    print $out;
+});
+
+Route::get('/PHP8/P365Composite', function () {
+        // Создание армии
+        $main_army = new Army();
+
+        // Добавление юнитов
+        $main_army->addUnit(new Archer());
+        $main_army->addUnit(new LaserCannonUnit());
+
+        // Создание новой армии
+        $sub_army = new Army();
+
+        // Добавление юнитов
+        $sub_army->addUnit(new Archer());
+        $sub_army->addUnit(new Archer());
+        $sub_army->addUnit(new Archer());
+
+        // Добавление второй армии в первую
+        $main_army->addUnit($sub_army);
+
+        // Все вычисления выполняются "за кулисами"
+        print "Атака с силой: {$main_army->bombardStrength()} <br />";
 });

@@ -1,0 +1,28 @@
+<objects>
+    <!-- Определение класса ApptEncoder с указанием полного пути -->
+    <class name="App\Http\Controllers\PHP8\P342DependencyInjection\ApptEncoder">
+        <!-- Создание экземпляра ApptEncoder и указание его зависимости на BloggsApptEncoder -->
+        <instance inst="App\Http\Controllers\PHP8\P342DependencyInjection\BloggsApptEncoder"/>
+    </class>
+
+    <!-- Определение класса TerrainFactory с указанием полного пути -->
+    <class name="App\Http\Controllers\PHP8\P333Prototype\TerrainFactory">
+        <!-- Указание аргументов конструктора класса TerrainFactory -->
+        <arg num="0" inst="App\Http\Controllers\PHP8\EarthSea"/> <!-- 1-й аргумент: EarthSea -->
+        <arg num="1" inst="App\Http\Controllers\PHP8\MarsPlains"/> <!-- 2-й аргумент: MarsPlains -->
+        <arg num="2" inst="App\Http\Controllers\PHP8\Forest"/> <!-- 3-й аргумент: Forest -->
+    </class>
+
+    <!-- Определение класса Forest с указанием полного пути -->
+    <class name="App\Http\Controllers\PHP8\Forest">
+        <!-- Создание экземпляра Forest и указание его зависимости на EarthForest -->
+        <instance inst="App\Http\Controllers\PHP8\EarthForest"/>
+    </class>
+
+    <!-- Определение класса AppointmentMaker -->
+    <!-- Указание аргументов конструктора класса AppointmentMaker -->
+    <class name="App\Http\Controllers\PHP8\P342DependencyInjection\AppointmentMaker">
+        <!-- 1-й аргумент: BloggsApptEncoder -->
+        <arg num="0" inst="App\Http\Controllers\PHP8\P342DependencyInjection\BloggsApptEncoder"/>
+    </class>
+</objects>
