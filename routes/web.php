@@ -26,6 +26,7 @@ use App\Http\Controllers\PHP8\P365Composite\Archer;
 use App\Http\Controllers\PHP8\P365Composite\Army;
 use App\Http\Controllers\PHP8\P365Composite\LaserCannonUnit;
 use App\Http\Controllers\PHP8\P365Composite\UnitException;
+use App\Http\Controllers\PHP8\P380Decorator\PollutedPlains;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
@@ -161,24 +162,29 @@ Route::get('/PHP8/P342DependencyInjection', function () {
 });
 
 Route::get('/PHP8/P365Composite', function () {
-        // Создание армии
-        $main_army = new Army();
+    // Создание армии
+    $main_army = new Army();
 
-        // Добавление юнитов
-        $main_army->addUnit(new Archer());
-        $main_army->addUnit(new LaserCannonUnit());
+    // Добавление юнитов
+    $main_army->addUnit(new Archer());
+    $main_army->addUnit(new LaserCannonUnit());
 
-        // Создание новой армии
-        $sub_army = new Army();
+    // Создание новой армии
+    $sub_army = new Army();
 
-        // Добавление юнитов
-        $sub_army->addUnit(new Archer());
-        $sub_army->addUnit(new Archer());
-        $sub_army->addUnit(new Archer());
+    // Добавление юнитов
+    $sub_army->addUnit(new Archer());
+    $sub_army->addUnit(new Archer());
+    $sub_army->addUnit(new Archer());
 
-        // Добавление второй армии в первую
-        $main_army->addUnit($sub_army);
+    // Добавление второй армии в первую
+    $main_army->addUnit($sub_army);
 
-        // Все вычисления выполняются "за кулисами"
-        print "Атака с силой: {$main_army->bombardStrength()} <br />";
+    // Все вычисления выполняются "за кулисами"
+    print "Атака с силой: {$main_army->bombardStrength()} <br />";
+});
+
+Route::get('/PHP8/P380Decorator', function () {
+    $tile = new PollutedPlains();
+    print $tile->getWealthFactor();
 });
