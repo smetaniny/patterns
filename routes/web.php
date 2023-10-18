@@ -25,16 +25,20 @@ use App\Http\Controllers\PHP8\P342DependencyInjection\ObjectAssembler;
 use App\Http\Controllers\PHP8\P365Composite\Archer;
 use App\Http\Controllers\PHP8\P365Composite\Army;
 use App\Http\Controllers\PHP8\P365Composite\LaserCannonUnit;
-use App\Http\Controllers\PHP8\P365Composite\UnitException;
 use App\Http\Controllers\PHP8\P380Decorator\DiamondDecorator;
 use App\Http\Controllers\PHP8\P380Decorator\Plains;
-use App\Http\Controllers\PHP8\P380Decorator\PollutedPlains;
 use App\Http\Controllers\PHP8\P380Decorator\PollutionDecorator;
 use App\Http\Controllers\PHP8\P386Decorator\AuthenticateRequest;
 use App\Http\Controllers\PHP8\P386Decorator\LogRequest;
 use App\Http\Controllers\PHP8\P386Decorator\MainProcess;
 use App\Http\Controllers\PHP8\P386Decorator\RequestHelper;
 use App\Http\Controllers\PHP8\P386Decorator\StructureRequest;
+use App\Http\Controllers\PHP8\P389Facade\ProductFacade;
+use App\Http\Controllers\PHP8\P395Interpreter\BooleanEqualsExpression;
+use App\Http\Controllers\PHP8\P395Interpreter\BooleanOrExpression;
+use App\Http\Controllers\PHP8\P395Interpreter\InterpreterContext;
+use App\Http\Controllers\PHP8\P395Interpreter\LiteralExpression;
+use App\Http\Controllers\PHP8\P395Interpreter\VariableExpression;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
@@ -220,4 +224,71 @@ Route::get('/PHP8/P386Decorator', function () {
 
     $process->process(new RequestHelper($requestData));
 });
+
+Route::get('/PHP8/P389Facade', function () {
+    $facade = new ProductFacade(base_path("App/Http/Controllers/PHP8/P389Facade/facade.txt"));
+    $object = $facade->getProduct("234");
+    print_r($object);
+});
+
+Route::get('/PHP8/P395Interpreter', function () {
+    // Создаем контекст интерпретатора.
+    $context = new InterpreterContext();
+    // Создаем переменное выражение.
+    $input = new VariableExpression('input');
+
+    // Создаем операторное выражение, которое проверяет, равно ли значение input строке 'четыре' или числу 4.
+    $statement = new BooleanOrExpression(
+        new BooleanEqualsExpression(new LiteralExpression('четыре'), $input),
+        new BooleanEqualsExpression($input, new LiteralExpression(4))
+    );
+
+    // Перебираем массив значений.
+    foreach (["четыре", 4, "52"] as $val) {
+        // Устанавливаем значение переменной input.
+        $input->setValue($val);
+        print "$val:<br />";
+
+        // Интерпретируем операторное выражение и проверяем, верное ли условие.
+        $statement->interpret($context);
+
+        if ($context->lookup($statement)) {
+            print "Правильный ответ!<br />";
+        } else {
+            print "Вы ошиблись!<br />";
+        }
+    }
+});
+
+Route::get('/PHP8/Parser', function () {
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
