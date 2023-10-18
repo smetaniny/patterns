@@ -260,7 +260,7 @@ Route::get('/PHP8/P395Interpreter', function () {
     }
 });
 
-Route::get('/PHP8/Parser', function () {
+Route::get('/PHP8/ParserInterpreter', function () {
 });
 
 
