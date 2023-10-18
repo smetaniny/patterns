@@ -60,7 +60,7 @@ class ListPass extends CodeCleanerPass
             throw new ParseErrorException($msg, $node->expr->getLine());
         }
 
-        // Polyfill for PHP-Parser 2.x
+        // Polyfill for PHP-ParserInterpreter 2.x
         $items = isset($node->var->items) ? $node->var->items : $node->var->vars;
 
         if ($items === [] || $items === [null]) {
@@ -75,7 +75,7 @@ class ListPass extends CodeCleanerPass
 
             $itemFound = true;
 
-            // List_->$vars in PHP-Parser 2.x is Variable instead of ArrayItem.
+            // List_->$vars in PHP-ParserInterpreter 2.x is Variable instead of ArrayItem.
             if (!$this->atLeastPhp71 && $item instanceof ArrayItem && $item->key !== null) {
                 $msg = 'Syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting \',\' or \')\'';
                 throw new ParseErrorException($msg, $item->key->getLine());

@@ -482,7 +482,7 @@ class Inline
                         // nested sequence
                         $value = self::parseSequence($mapping, $flags, $i, $references);
                         // Spec: Keys MUST be unique; first one wins.
-                        // Parser cannot abort this mapping earlier, since lines
+                        // ParserInterpreter cannot abort this mapping earlier, since lines
                         // are processed sequentially.
                         // But overwriting is allowed when a merge node is used in current block.
                         if ('<<' === $key) {
@@ -503,7 +503,7 @@ class Inline
                         // nested mapping
                         $value = self::parseMapping($mapping, $flags, $i, $references);
                         // Spec: Keys MUST be unique; first one wins.
-                        // Parser cannot abort this mapping earlier, since lines
+                        // ParserInterpreter cannot abort this mapping earlier, since lines
                         // are processed sequentially.
                         // But overwriting is allowed when a merge node is used in current block.
                         if ('<<' === $key) {
@@ -521,7 +521,7 @@ class Inline
                     default:
                         $value = self::parseScalar($mapping, $flags, [',', '}', "\n"], $i, null === $tag, $references, $isValueQuoted);
                         // Spec: Keys MUST be unique; first one wins.
-                        // Parser cannot abort this mapping earlier, since lines
+                        // ParserInterpreter cannot abort this mapping earlier, since lines
                         // are processed sequentially.
                         // But overwriting is allowed when a merge node is used in current block.
                         if ('<<' === $key) {

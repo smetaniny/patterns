@@ -16,7 +16,7 @@ namespace League\CommonMark\Parser;
 use League\CommonMark\Node\Block\AbstractBlock;
 
 /**
- * Parser for inline content (text, links, emphasized text, etc).
+ * ParserInterpreter for inline content (text, links, emphasized text, etc).
  */
 interface InlineParserEngineInterface
 {

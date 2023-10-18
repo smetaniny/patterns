@@ -37,7 +37,7 @@ class RunkitReloader extends AbstractListener
     /**
      * Construct a Runkit Reloader.
      *
-     * @todo Pass in Parser Factory instance for dependency injection?
+     * @todo Pass in ParserInterpreter Factory instance for dependency injection?
      */
     public function __construct()
     {
@@ -124,7 +124,7 @@ class RunkitReloader extends AbstractListener
     /**
      * Should this file be re-imported?
      *
-     * Use PHP-Parser to ensure that the file is valid PHP.
+     * Use PHP-ParserInterpreter to ensure that the file is valid PHP.
      *
      * @param string $file
      */
