@@ -43,6 +43,7 @@ use App\Http\Controllers\PHP8\P415Observer\GeneralLogger;
 use App\Http\Controllers\PHP8\P415Observer\Login;
 use App\Http\Controllers\PHP8\P415Observer\PartnershipTool;
 use App\Http\Controllers\PHP8\P415Observer\SecurityMonitor;
+use App\Http\Controllers\PHP8\P426Visitor\TextDumpArmyVisitor;
 use App\Http\Controllers\PHP8\ParserInterpreter\Markers\MarkParse;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
@@ -280,6 +281,17 @@ Route::get('/PHP8/P415Observer', function () {
     $generalLogger->doUpdate($login);
     $partnershipTool = new PartnershipTool($login);
     $partnershipTool->doUpdate($login);
+});
+
+Route::get('/PHP8/P426Visitor', function () {
+    $main_army = new \App\Http\Controllers\PHP8\P426Visitor\Army();
+    $main_army->addUnit(new \App\Http\Controllers\PHP8\P426Visitor\Archer());
+    $main_army->addUnit(new \App\Http\Controllers\PHP8\P426Visitor\LaserCannonUnit());
+//    $main_army->addUnit(new Cavalry());
+    $textdump = new TextDumpArmyVisitor();
+    $main_army->accept($textdump);
+    print $textdump->getText();
+
 });
 
 
