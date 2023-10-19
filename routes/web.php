@@ -39,6 +39,7 @@ use App\Http\Controllers\PHP8\P395Interpreter\BooleanOrExpression;
 use App\Http\Controllers\PHP8\P395Interpreter\InterpreterContext;
 use App\Http\Controllers\PHP8\P395Interpreter\LiteralExpression;
 use App\Http\Controllers\PHP8\P395Interpreter\VariableExpression;
+use App\Http\Controllers\PHP8\ParserInterpreter\Markers\MarkParse;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use Illuminate\Support\Facades\Route;
@@ -261,6 +262,16 @@ Route::get('/PHP8/P395Interpreter', function () {
 });
 
 Route::get('/PHP8/ParserInterpreter', function () {
+    $input = 'five';
+    $statement = "( \$input equals 'five')";
+    $engine = new MarkParse($statement);
+    $result = $engine->evaluate($input);
+    print "Ввод: $input Вычисление: $statement\n";
+    if ($result) {
+        print "Истинно!\n";
+    } else {
+        print "Ложно!\n";
+    }
 });
 
 
