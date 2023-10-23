@@ -91,7 +91,7 @@ class ValidConstructorPass extends CodeCleanerPass
     private function validateConstructor(Node $constructor, Node $classNode)
     {
         if ($constructor->isStatic()) {
-            // For PHP Parser 4.x
+            // For PHP ParserInterpreter 4.x
             $className = $classNode->name instanceof Identifier ? $classNode->name->toString() : $classNode->name;
 
             $msg = \sprintf(
@@ -103,7 +103,7 @@ class ValidConstructorPass extends CodeCleanerPass
         }
 
         if (\method_exists($constructor, 'getReturnType') && $constructor->getReturnType()) {
-            // For PHP Parser 4.x
+            // For PHP ParserInterpreter 4.x
             $className = $classNode->name instanceof Identifier ? $classNode->name->toString() : $classNode->name;
 
             $msg = \sprintf(

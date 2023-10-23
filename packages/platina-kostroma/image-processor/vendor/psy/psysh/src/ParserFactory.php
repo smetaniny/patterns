@@ -15,7 +15,7 @@ use PhpParser\Parser;
 use PhpParser\ParserFactory as OriginalParserFactory;
 
 /**
- * Parser factory to abstract over PHP parser library versions.
+ * ParserInterpreter factory to abstract over PHP parser library versions.
  */
 class ParserFactory
 {

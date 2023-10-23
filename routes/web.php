@@ -44,6 +44,7 @@ use App\Http\Controllers\PHP8\P415Observer\Login;
 use App\Http\Controllers\PHP8\P415Observer\PartnershipTool;
 use App\Http\Controllers\PHP8\P415Observer\SecurityMonitor;
 use App\Http\Controllers\PHP8\P426Visitor\TextDumpArmyVisitor;
+use App\Http\Controllers\PHP8\P436Command\Controller;
 use App\Http\Controllers\PHP8\ParserInterpreter\Markers\MarkParse;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
@@ -292,6 +293,17 @@ Route::get('/PHP8/P426Visitor', function () {
     $main_army->accept($textdump);
     print $textdump->getText();
 
+});
+
+Route::get('/PHP8/P436Command', function () {
+    $controller = new Controller();
+    $context = $controller->getContext();
+    $context->addParam('action', 'login');
+    $context->addParam('username', 'Иван ');
+    $context->addParam('pass', 'tiddles');
+
+    $controller->process();
+    print $context->getError();
 });
 
 
