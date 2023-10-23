@@ -1,6 +1,10 @@
 package roofs;
 
+// Интерфейс Roof определяет контракт для компонентов, представляющих крышу дома.
 public interface Roof {
-	Roof cover();
-	void waterProtect();
+    // Метод cover() выполняет покрытие крыши определенным материалом (например, черепицей).
+    Roof cover();
+
+    // Метод waterProtect() обеспечивает защиту крыши от воды.
+    void waterProtect();
 }

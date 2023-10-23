@@ -2,18 +2,19 @@ package roofs;
 
 import static java.lang.System.out;
 
-public class WoodRoof implements Roof{
+// Класс WoodRoof представляет крышу с деревянной отделкой.
+public class WoodRoof implements Roof {
 
-	@Override
-	public Roof cover() {
-		out.println("������� ���������� �����");
-		return this;
-	}
+    // Метод cover() выполняет покрытие крыши деревянной отделкой.
+    @Override
+    public Roof cover() {
+        out.println("Покрытие крыши деревянной отделкой");
+        return this;
+    }
 
-	@Override
-	public void waterProtect() {
-		out.println("������� ������������� ���������� �����");
-		
-	}
-
+    // Метод waterProtect() обеспечивает защиту крыши от воды.
+    @Override
+    public void waterProtect() {
+        out.println("Защита крыши от воды");
+    }
 }

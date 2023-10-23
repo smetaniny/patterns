@@ -1,7 +1,7 @@
 package walls;
 
+// Интерфейс Wall определяет контракт для компонентов стен дома.
 public interface Wall {
-	
-	void build();
-
+    // Метод build() описывает процесс построения стены.
+    void build();
 }

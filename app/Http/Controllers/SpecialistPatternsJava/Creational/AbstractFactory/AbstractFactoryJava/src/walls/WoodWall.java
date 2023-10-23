@@ -1,11 +1,11 @@
 package walls;
 
+// Класс WoodWall представляет стену из дерева.
 public class WoodWall implements Wall {
 
-	@Override
-	public void build() {
-		System.out.println("������� ���������� �����");
-
-	}
-
+    // Метод build() выполняет построение стены из дерева.
+    @Override
+    public void build() {
+        System.out.println("Постройка стены из дерева");
+    }
 }
