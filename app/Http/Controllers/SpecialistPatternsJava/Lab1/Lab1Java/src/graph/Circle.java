@@ -7,6 +7,7 @@ public class Circle extends GraphObject {
 	public Circle(int x, int y, int r) {
 		this(x,y,r,DEFAULT_COLOR);
 	}
+
 	public Circle(int x, int y, int r, String color) {
 		super(color);
 		center = new Coords(x,y);
@@ -24,7 +25,6 @@ public class Circle extends GraphObject {
 	public void setR(int r) {
 		this.r = r;
 	}
-
 
 	public int getX() {
 		return center.getX();
@@ -52,7 +52,4 @@ public class Circle extends GraphObject {
 		System.out.printf("Circle (%d, %d) R: %d %s<br />", getX(), getY(), getR(), getColor());
 
 	}
-
-
-
 }
