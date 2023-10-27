@@ -42,7 +42,7 @@ class ObserverMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $type = 'Observer';
+    protected $type = 'ObserverInterface';
 
     /**
      * Build the class with the given name.
