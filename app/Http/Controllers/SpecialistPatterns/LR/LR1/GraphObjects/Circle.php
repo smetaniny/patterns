@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
+namespace App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects;
 
-// Класс окружности наследует абстрактный класс GraphObject и представляет собой графический объект в форме окружности.
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Interface\ObserverInterface;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Scenes\Scene;
 use JetBrains\PhpStorm\Pure;
 
-class Circle extends GraphObject implements Observer
+// Класс окружности наследует абстрактный класс GraphObject и представляет собой графический объект в форме окружности.
+class Circle extends GraphObject implements ObserverInterface
 {
     // Радиус окружности
     private int $radius;
@@ -35,5 +37,16 @@ class Circle extends GraphObject implements Observer
     public function update(GraphObject $object)
     {
         echo "Давление окружности<br />";
+    }
+
+
+    public function drawColor()
+    {
+        echo "Цветная окружность с центром в ($this->x, $this->y) и радиусом $this->radius<br />";
+    }
+
+    public function drawBlackAndWhite()
+    {
+        echo "Черно-белая окружность с центром в ($this->x, $this->y) и радиусом $this->radius<br />";
     }
 }

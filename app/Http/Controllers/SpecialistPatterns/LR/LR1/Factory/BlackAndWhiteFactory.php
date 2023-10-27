@@ -1,10 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
+namespace App\Http\Controllers\SpecialistPatterns\LR\LR1\Factory;
+
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects\Circle;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects\GraphObject;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects\Line;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects\Point;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Scenes\BlackAndWhiteScene;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Scenes\Scene;
+use JetBrains\PhpStorm\Pure;
 
 class BlackAndWhiteFactory extends AbstractFactory
 {
-    public function createScene(): Scene
+    #[Pure] public function createScene(): Scene
     {
         return new BlackAndWhiteScene();
     }

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
+namespace App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects;
 
-// Класс линии наследует абстрактный класс GraphObject и представляет собой графический объект в форме линии.
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Interface\ObserverInterface;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Scenes\Scene;
 use JetBrains\PhpStorm\Pure;
 
-class Line extends GraphObject implements Observer
+// Класс линии наследует абстрактный класс GraphObject и представляет собой графический объект в форме линии.
+class Line extends GraphObject implements ObserverInterface
 {
     // Координата X конечной точки линии
     private int $endX;
@@ -40,4 +42,15 @@ class Line extends GraphObject implements Observer
     {
         echo "Давление линии<br />";
     }
+
+    public function drawColor()
+    {
+        echo "Цветная линия от ($this->x, $this->y) до ($this->endX, $this->endY)<br />";
+    }
+
+    public function drawBlackAndWhite()
+    {
+        echo "Черно-белая линия от ($this->x, $this->y) до ($this->endX, $this->endY)<br />";
+    }
 }
+

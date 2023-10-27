@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
+namespace App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects;
 
 // Абстрактный класс графических элементов
 abstract class GraphObject

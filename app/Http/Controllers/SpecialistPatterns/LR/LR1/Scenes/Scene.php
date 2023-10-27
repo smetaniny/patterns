@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
+namespace App\Http\Controllers\SpecialistPatterns\LR\LR1\Scenes;
+
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects\GraphObject;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Interface\ObserverInterface;
 
 // Класс Scene представляет собой графическую сцену, на которой можно размещать различные графические объекты.
 class Scene {
-    private static ?Scene $instance = null; // Статическая переменная для хранения единственного экземпляра сцены
+    protected static ?Scene $instance = null; // Статическая переменная для хранения единственного экземпляра сцены
     protected array $objects = array(); // Массив для хранения графических объектов
-    private array $observers = array(); // Массив для хранения наблюдателей
-
-    // Приватный конструктор, чтобы предотвратить создание объектов снаружи
-    private function __construct() {
-    }
+    protected array $observers = array(); // Массив для хранения наблюдателей
 
     // Получение экземпляра класса Scene (реализация синглтона)
     public static function getInstance(): ?Scene
@@ -27,7 +26,7 @@ class Scene {
     }
 
     // Регистрация наблюдателя (графического объекта) для наблюдения за сценой
-    public function registerObserver(Observer $observer) {
+    public function registerObserver(ObserverInterface $observer) {
         $this->observers[] = $observer;
     }
 

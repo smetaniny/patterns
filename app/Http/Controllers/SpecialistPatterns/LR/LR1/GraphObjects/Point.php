@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
+namespace App\Http\Controllers\SpecialistPatterns\LR\LR1\GraphObjects;
+
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Interface\ObserverInterface;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Scenes\Scene;
 
 // Класс точки
-class Point extends GraphObject implements Observer
+class Point extends GraphObject implements ObserverInterface
 {
     // Метод для отображения точки.
     public function draw()
@@ -24,4 +27,15 @@ class Point extends GraphObject implements Observer
     {
         echo "Давление точки<br />";
     }
+
+    public function drawColor()
+    {
+        echo "Цветная точка с координатами ($this->x, $this->y)<br />";
+    }
+
+    public function drawBlackAndWhite()
+    {
+        echo "Черно-белая точка с координатами ($this->x, $this->y)<br />";
+    }
 }
+

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
+namespace App\Http\Controllers\SpecialistPatterns\LR\LR1\Scenes;
 
 
 class BlackAndWhiteScene extends Scene

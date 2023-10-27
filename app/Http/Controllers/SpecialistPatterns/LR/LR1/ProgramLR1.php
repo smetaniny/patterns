@@ -2,26 +2,29 @@
 
 namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
 
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Builder\MemoryCalculatorBuilder;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Builder\SceneBuilder;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Builder\TestSceneBuilder;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Factory\BlackAndWhiteFactory;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1\Factory\ColorFactory;
+
 class ProgramLR1
 {
     public function index()
     {
-        // Создание экземпляра сцены
-        $scene = Scene::getInstance();
+        // Создайте сцену с использованием SceneBuilder
+        $sceneBuilder = new SceneBuilder();
+        $scene = $sceneBuilder
+            ->addPoint(1, 2)
+            ->addLine(3, 4, 5, 6)
+            ->addCircle(7, 8, 9)
+            ->buildScene();
 
-        // Создание точки и автоматическое добавление в сцену
-        $point = Point::createAndAddToScene($scene, 1, 2);
-        $point->update($point);
+        // Рассчитайте занимаемую память сцены с использованием MemoryCalculatorBuilder
+        $memoryCalculatorBuilder = new MemoryCalculatorBuilder($scene);
+        $memoryCalculatorBuilder->calculateMemoryUsage();
 
-        // Создание линии и автоматическое добавление в сцену
-        $line = Line::createAndAddToScene($scene, 3, 4, 5, 6);
-        $line->update($line);
-
-        // Создание окружности и автоматическое добавление в сцену
-        $circle = Circle::createAndAddToScene($scene, 7, 8, 9);
-        $circle->update($circle);
-
-        // Отображение сцены
-        $scene->render();
+        $testSceneBuilder = new TestSceneBuilder();
+        $testScene = $testSceneBuilder->buildTestScene();
     }
 }
