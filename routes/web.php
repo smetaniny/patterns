@@ -27,6 +27,7 @@ use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use App\Http\Controllers\SpecialistPatterns\Builder\ProgramSpecialistBuilder;
 use app\Http\Controllers\SpecialistPatterns\Prototype\ProgramSpecialistPrototype;
+use App\Http\Controllers\SpecialistPatterns\Singleton\ProgramSpecialistSingleton;
 use Illuminate\Support\Facades\Route;
 use PlatinaKostroma\ImageProcessor\Contracts\ImageProcessorInterface;
 
@@ -78,6 +79,7 @@ Route::get('/PHP8/ParserInterpreter', [ProgramParserInterpreter::class, 'index']
  */
 Route::get('/specialistPatterns/prototype', [ProgramSpecialistPrototype::class, 'index']);
 Route::get('/specialistPatterns/builder', [ProgramSpecialistBuilder::class, 'index']);
+Route::get('/specialistPatterns/Singleton', [ProgramSpecialistSingleton::class, 'index']);
 
 
 
