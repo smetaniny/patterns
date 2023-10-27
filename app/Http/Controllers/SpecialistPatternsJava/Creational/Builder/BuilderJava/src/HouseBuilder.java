@@ -38,6 +38,7 @@ public class HouseBuilder implements Builder {
         house.setFinish(true);
     }
 
+    // Возвращаем  результат
     public House getResult() {
         return house;
     }

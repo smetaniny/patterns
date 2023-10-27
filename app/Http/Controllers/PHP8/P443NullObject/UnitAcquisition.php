@@ -19,7 +19,7 @@ class UnitAcquisition
         // Формируем массив $found, включая объекты LaserCannonUnit, NullUnit и Army
         $found = [
             new LaserCannonUnit(), // Объект LaserCannonUnit (Лазерная пушка)
-            new NullUnit(), // Пустой объект NullUnit (похоже, это паттерн "Null Object")
+            new NullUnit(), // Пустой объект NullUnit (паттерн "Null Object")
             $army // Объект Army (Армия)
         ];
 

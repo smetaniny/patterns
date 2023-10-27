@@ -2,23 +2,23 @@ import static java.lang.System.out;
 public class Program {
 
 	public static void main(String[] args) {
-		// не будет работать если сервис удаленный, или требует доп. операций
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		//WeatherService service = new RemoteRussianWeatherService();
-		
-		// поэтому используем прокси
-		try (RussianWeatherProxy service = new RussianWeatherProxy()) { 
-		
-			service.setPosition("Москва");
-			
-			System.out.println("Москва");
-			out.printf("Температура (C)          : %4.1f\n", 
+
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		try (RussianWeatherProxy service = new RussianWeatherProxy()) {
+
+			service.setPosition("пїЅпїЅпїЅпїЅпїЅпїЅ");
+
+			System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ");
+			out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (C)          : %4.1f<br />",
 					service.getTemperature());
-			out.printf("Скорость ветра (м/с)     : %4.1f\n", 
+			out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅ/пїЅ)     : %4.1f<br />",
 					service.getWind());
-			out.printf("Ощущаемая температура (C): %4.1f\n", 
+			out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (C): %4.1f<br />",
 					service.getFeelsLikeTemperature());
 		}
-		
+
 	}
 
 }

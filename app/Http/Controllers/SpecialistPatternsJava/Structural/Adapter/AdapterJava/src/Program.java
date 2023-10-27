@@ -3,33 +3,33 @@ public class Program {
 
 	public static void main(String[] args) {
 		WeatherService service = new RussianWeather();
-		service.setPosition("Москва");
-		//service.setPosition("Санкт-Петербург");
-		
-		System.out.println("Москва");
-		out.printf("Температура (C)          : %4.1f\n", 
+		service.setPosition("пїЅпїЅпїЅпїЅпїЅпїЅ");
+		//service.setPosition("пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+
+		System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ");
+		out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (C)          : %4.1f<br />",
 				service.getTemperature());
-		out.printf("Скорость ветра (м/с)     : %4.1f\n", 
+		out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅ/пїЅ)     : %4.1f<br />",
 				service.getWind());
-		out.printf("Ощущаемая температура (C): %4.1f\n", 
+		out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (C): %4.1f<br />",
 				service.getFeelsLikeTemperature());
-		
-		//не работает - не совместимы интерфейсы
+
+		//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		//service = new USWeatherService();
-		
-		// используем адаптер
+
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		service = new USWeatherAdapter(new USWeatherService());
-		service.setPosition("Нью-Йорк");
-		//service.setPosition("Вашингтон");
-		
-		System.out.println("Нью-Йорк");
-		out.printf("Температура (C)          : %4.1f\n", 
+		service.setPosition("пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ");
+		//service.setPosition("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+
+		System.out.println("пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ");
+		out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (C)          : %4.1f<br />",
 				service.getTemperature());
-		out.printf("Скорость ветра (м/с)     : %4.1f\n", 
+		out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅ/пїЅ)     : %4.1f<br />",
 				service.getWind());
-		out.printf("Ощущаемая температура (C): %4.1f\n", 
+		out.printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (C): %4.1f<br />",
 				service.getFeelsLikeTemperature());
-		
+
 
 	}
 

@@ -4,7 +4,7 @@ public class MySQLDB implements Database{
 
 	@Override
 	public boolean hasUser(String userName) {
-		System.out.printf("SELECT * FROM Users Where UserName='%s'\n", userName);
+		System.out.printf("SELECT * FROM Users Where UserName='%s'<br />", userName);
 		return true;
 	}
 

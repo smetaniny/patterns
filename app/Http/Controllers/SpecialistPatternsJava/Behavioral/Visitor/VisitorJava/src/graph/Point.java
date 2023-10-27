@@ -4,7 +4,7 @@ import exports.ExportVisitor;
 
 public class Point extends GraphObject {
 	private Coords coords;
-	
+
 	public Point(int x, int y) {
 		this(x,y,DEFAULT_COLOR);
 	}
@@ -12,7 +12,7 @@ public class Point extends GraphObject {
 		super(color);
 		coords = new Coords(x,y);
 	}
-	
+
 	public Point(Point p) {
 		this(p.getX(),p.getY(),p.getColor());
 	}
@@ -32,16 +32,16 @@ public class Point extends GraphObject {
 	public void setY(int y) {
 		coords.setY(y);
 	}
-	
+
 	@Override
 	public Point clone() {
 		return new Point(this);
 	}
-	
+
 	@Override
 	public void draw() {
-		System.out.printf("Point (%d, %d) %s\n", getX(), getY(), getColor());
-		
+		System.out.printf("Point (%d, %d) %s<br />", getX(), getY(), getColor());
+
 	}
 	@Override
 	public void accept(ExportVisitor v) {

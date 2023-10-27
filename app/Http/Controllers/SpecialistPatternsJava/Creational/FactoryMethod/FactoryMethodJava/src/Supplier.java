@@ -23,7 +23,7 @@ public class Supplier {
 	public Window install()
 	{
 		Window window = createWindow();
-		System.out.printf("����������� %s\n", window);
+		System.out.printf("����������� %s<br />", window);
 		onInstall(window); // hook
 		return window;
 	}

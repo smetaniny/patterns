@@ -5,9 +5,16 @@ namespace App\Http\Controllers\PHP8\P333Prototype;
 // Класс представляет фабрику (завод) для создания объектов, представляющих различные типы местности.
 class TerrainFactory
 {
+    private Sea $sea;
+    private Plains $plains;
+    private Forest $forest;
+
     // Конструктор класса TerrainFactory, который принимает объекты для морских, равнинных и лесных местностей.
-    public function __construct(private Sea $sea, private Plains $plains, private Forest $forest)
+    public function __construct($sea, $plains, $forest)
     {
+        $this->sea = $sea;
+        $this->plains = $plains;
+        $this->forest = $forest;
     }
 
     // Метод для получения объекта, представляющего морскую местность.

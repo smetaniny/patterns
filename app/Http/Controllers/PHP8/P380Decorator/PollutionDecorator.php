@@ -15,6 +15,6 @@ class PollutionDecorator extends TileDecorator
      */
     public function getWealthFactor(): int
     {
-        return $this->tile->getWealthFactor() - 4;
+        return $this->tile->getWealthFactor() - 3;
     }
 }

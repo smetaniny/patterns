@@ -58,10 +58,10 @@ public class Documentation {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Базовая документация : ").append(YN(isBase())).append('\n')
-          .append("Строительство : ").append(YN(isBuilding())).append('\n')
-          .append("Дополнительные линии обслуживания : ").append(YN(isServiceLines())).append('\n')
-          .append("Завершено : ").append(YN(isFinish())).append('\n');
+        sb.append("Базовая документация : ").append(YN(isBase())).append('<br />')
+          .append("Строительство : ").append(YN(isBuilding())).append('<br />')
+          .append("Дополнительные линии обслуживания : ").append(YN(isServiceLines())).append('<br />')
+          .append("Завершено : ").append(YN(isFinish())).append('<br />');
         return sb.toString();
     }
 }

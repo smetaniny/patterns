@@ -8,15 +8,15 @@ public class Button extends ContentControl implements CommandInvoker {
 	final static char BUTTON_FRAME = '*';
 
 	private Command pressCommand;
-	
+
 	public Button() {
 		super();
 	}
-	
+
 	public Button(String text) {
 		super(text);
 	}
-	
+
 	private void printBorder() {
 		for(int i = 0; i < getText().length(); i++)
 			out.print(BUTTON_FRAME);
@@ -37,9 +37,9 @@ public class Button extends ContentControl implements CommandInvoker {
 		}
 		return false;
 	}
-	
+
 	public void press() {
-		System.out.printf("Button %s pressed\n", getText());
+		System.out.printf("Button %s pressed<br />", getText());
 		executeCommand();
 	}
 
@@ -51,14 +51,14 @@ public class Button extends ContentControl implements CommandInvoker {
 	@Override
 	public void setCommand(Command command) {
 		pressCommand = command;
-		
+
 	}
 
 	@Override
 	public void executeCommand() {
 		if (pressCommand != null)
 			pressCommand.execute();
-		
+
 	}
 
 }

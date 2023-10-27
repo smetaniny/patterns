@@ -7,11 +7,11 @@ public class Button extends ContentControl {
 	public Button() {
 		super();
 	}
-	
+
 	public Button(String text) {
 		super(text);
 	}
-	
+
 	private void printBorder() {
 		for(int i = 0; i < getText().length(); i++)
 			out.print(BUTTON_FRAME);
@@ -35,7 +35,7 @@ public class Button extends ContentControl {
 	}
 
 	public void press() {
-		System.out.printf("Button %s pressed\n", getText());
+		System.out.printf("Button %s pressed<br />", getText());
 		getController().notify(this, getText());
 	}
 
