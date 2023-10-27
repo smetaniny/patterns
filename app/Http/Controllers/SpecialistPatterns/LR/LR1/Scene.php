@@ -5,7 +5,7 @@ namespace App\Http\Controllers\SpecialistPatterns\LR\LR1;
 // Класс Scene представляет собой графическую сцену, на которой можно размещать различные графические объекты.
 class Scene {
     private static ?Scene $instance = null; // Статическая переменная для хранения единственного экземпляра сцены
-    private array $objects = array(); // Массив для хранения графических объектов
+    protected array $objects = array(); // Массив для хранения графических объектов
     private array $observers = array(); // Массив для хранения наблюдателей
 
     // Приватный конструктор, чтобы предотвратить создание объектов снаружи
