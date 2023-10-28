@@ -27,6 +27,7 @@ use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use App\Http\Controllers\SpecialistPatterns\Builder\ProgramSpecialistBuilder;
 use App\Http\Controllers\SpecialistPatterns\LR\LR1\ProgramLR1;
+use App\Http\Controllers\SpecialistPatterns\LR\LR1SP\ProgramLR1SP;
 use app\Http\Controllers\SpecialistPatterns\Prototype\ProgramSpecialistPrototype;
 use App\Http\Controllers\SpecialistPatterns\Singleton\ProgramSpecialistSingleton;
 use Illuminate\Support\Facades\Route;
@@ -76,6 +77,7 @@ Route::get('/PHP8/P443NullObject', [ProgramP443NullObject::class, 'index']);
 Route::get('/PHP8/ParserInterpreter', [ProgramParserInterpreter::class, 'index']);
 
 Route::get('/PHP8/LR1', [ProgramLR1::class, 'index']);
+Route::get('/PHP8/LR1SP', [ProgramLR1SP::class, 'index']);
 
 /**
  * specialistPatterns
