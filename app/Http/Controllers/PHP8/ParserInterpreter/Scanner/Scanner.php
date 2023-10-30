@@ -351,12 +351,12 @@ class Scanner
      */
     private function isEolChar(string $char): bool
     {
-        $check = preg_match("/\n|\r/", $char);
+        $check = preg_match("/<br />|\r/", $char);
         return ($check === 1);
     }
 
     /**
-     * Поглощает символы \n, \r или \r\n и возвращает соответствующую строку.
+     * Поглощает символы <br />, \r или \r<br /> и возвращает соответствующую строку.
      *
      * @param string $char Символ для обработки.
      *
@@ -366,7 +366,7 @@ class Scanner
     {
         if ($char == "\r") {
             $next_char = $this->getChar();
-            if ($next_char == "\n") {
+            if ($next_char == "<br />") {
                 return "{$char}{$next_char}";
             } else {
                 $this->pushBackChar();

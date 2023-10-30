@@ -11,7 +11,7 @@ class Singleton3
     // Приватный конструктор для создания единственного экземпляра
     private function __construct()
     {
-        echo "Singleton 3 создан\n";
+        echo "Singleton 3 создан<br />";
     }
 
     // Статический метод для получения экземпляра Singleton3 с синхронизацией

@@ -11,7 +11,7 @@ class Singleton4
     // Приватный конструктор для создания экземпляра
     private function __construct()
     {
-        echo "Singleton 4 создан\n";
+        echo "Singleton 4 создан<br />";
     }
 
     // Статический метод для получения экземпляра Singleton4 с использованием "Double-Checked Locking"

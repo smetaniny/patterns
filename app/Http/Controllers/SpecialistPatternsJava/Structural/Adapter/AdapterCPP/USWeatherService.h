@@ -4,31 +4,31 @@
 class USWeatherService {
 	public:
 	/*
-	 * Возвращает температуру в градусах Фаренгейта
-	 * latitude - широта
-	 * longtitude - долгота
+	 * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С‚РµРјРїРµСЂР°С‚СѓСЂС‹
+	 * latitude - С€РёСЂРѕС‚Р°
+	 * longtitude - РґРѕР»РіРѕС‚Р°
 	 */
 	double getTemperature(double latitude, double longtitude) {
-		if (latitude == 38.53 && longtitude == 77.02) // Washington
+		if (latitude == 38.53 && longtitude == 77.02) // Р’Р°С€РёРЅРіС‚РѕРЅ
 			return 86;
 		else
-			if (latitude == 40.43 && longtitude == 73.59) // New York
+			if (latitude == 40.43 && longtitude == 73.59) // РќСЊСЋ-Р™РѕСЂРє
 				return 95;
 			else
 				return 80;
 	}
 
 	/**
-	 * Возвращает скорость ветра в ft/min
-	 * latitude - широта
-	 * longtitude - долгота
-	 * @return скорость ветра 
+	 * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃРєРѕСЂРѕСЃС‚Рё РІРµС‚СЂР° РІ ft/min (С„СѓС‚С‹ РІ РјРёРЅСѓС‚Сѓ)
+	 * latitude - С€РёСЂРѕС‚Р°
+	 * longtitude - РґРѕР»РіРѕС‚Р°
+	 * @return СЃРєРѕСЂРѕСЃС‚СЊ РІРµС‚СЂР°
 	 */
 	double getWind(double latitude, double longtitude) {
-		if (latitude == 38.53 && longtitude == 77.02) // Washington
+		if (latitude == 38.53 && longtitude == 77.02) // Р’Р°С€РёРЅРіС‚РѕРЅ
 			return 1000;
 		else
-			if (latitude == 40.43 && longtitude == 73.59) // New York
+			if (latitude == 40.43 && longtitude == 73.59) // РќСЊСЋ-Р™РѕСЂРє
 				return 2000;
 			else
 				return 1500;
@@ -36,4 +36,3 @@ class USWeatherService {
 };
 
 #endif
-

@@ -81,7 +81,7 @@ class MarkParse
         if (!$scanresult || $scanner->tokenType() != Scanner::EOF) {
             $msg = " строка: {$scanner->lineNo()} ";
             $msg .= " символ: {$scanner->charNo()}";
-            $msg .= " токен: {$scanner->token()}\n";
+            $msg .= " токен: {$scanner->token()}<br />";
             throw new Exception($msg);
         }
         $this->interpreter = $scanner->getContext()->popResult();

@@ -1,50 +1,52 @@
-
 public class RussianWeather implements WeatherService {
 
-	String city;
-	
-	/**
-	 * Возвращает температуру
-	 * @return температура в градусах Цельсия
-	 */
-	@Override
-	public double getTemperature() {
-		switch(city) {
-			case "Москва"  : return 25;
-			case "Санкт-Петербург" : return 18;
-			default : return 20;
-		}
-	}
+    String city; // РџРѕР»Рµ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ С‚РµРєСѓС‰РµРіРѕ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёСЏ
 
-	/**
-	 * Возвращает скорость ветра
-	 * @return скорость ветра в м/с
-	 */
-	@Override
-	public double getWind() {
-		switch(city) {
-			case "Москва"  : return 5;
-			case "Санкт-Петербург" : return 13;
-			default : return 1;
-		}
-	}
+    /**
+     * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С‚РµРјРїРµСЂР°С‚СѓСЂС‹
+     * @return РўРµРјРїРµСЂР°С‚СѓСЂР° РІ РіСЂР°РґСѓСЃР°С… Р¦РµР»СЊСЃРёСЏ
+     */
+    @Override
+    public double getTemperature() {
+        switch(city) {
+            case "РњРѕСЃРєРІР°"  : return 25;
+            case "РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі" : return 18;
+            default : return 20;
+        }
+    }
 
-	/**
-	 * Возвращает ощущаемую температуру
-	 * @return температура в градусах Цельсия
-	 */
-	@Override
-	public double getFeelsLikeTemperature() {
-		switch(city) {
-			case "Москва"  : return 23;
-			case "Санкт-Петербург" : return 16;
-			default : return 20;
-		}
-	}
+    /**
+     * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃРєРѕСЂРѕСЃС‚Рё РІРµС‚СЂР°
+     * @return РЎРєРѕСЂРѕСЃС‚СЊ РІРµС‚СЂР° РІ РјРµС‚СЂР°С… РІ СЃРµРєСѓРЅРґСѓ
+     */
+    @Override
+    public double getWind() {
+        switch(city) {
+            case "РњРѕСЃРєРІР°"  : return 5;
+            case "РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі" : return 13;
+            default : return 1;
+        }
+    }
 
-	@Override
-	public void setPosition(String city) {
-		this.city = city;
-	}
+    /**
+     * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РѕС‰СѓС‰Р°РµРјРѕР№ С‚РµРјРїРµСЂР°С‚СѓСЂС‹
+     * @return РћС‰СѓС‰Р°РµРјР°СЏ С‚РµРјРїРµСЂР°С‚СѓСЂР° РІ РіСЂР°РґСѓСЃР°С… Р¦РµР»СЊСЃРёСЏ
+     */
+    @Override
+    public double getFeelsLikeTemperature() {
+        switch(city) {
+            case "РњРѕСЃРєРІР°"  : return 23;
+            case "РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі" : return 16;
+            default : return 20;
+        }
+    }
 
+    /**
+     * РњРµС‚РѕРґ РґР»СЏ СѓСЃС‚Р°РЅРѕРІРєРё С‚РµРєСѓС‰РµРіРѕ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёСЏ
+     * @param city РќР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°, РґР»СЏ РєРѕС‚РѕСЂРѕРіРѕ РЅСѓР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ РїРѕРіРѕРґСѓ
+     */
+    @Override
+    public void setPosition(String city) {
+        this.city = city;
+    }
 }

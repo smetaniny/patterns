@@ -15,11 +15,11 @@ class ProgramParserInterpreter
         $statement = "( \$input equals 'five')";
         $engine = new MarkParse($statement);
         $result = $engine->evaluate($input);
-        print "Ввод: $input Вычисление: $statement\n";
+        print "Ввод: $input Вычисление: $statement<br />";
         if ($result) {
-            print "Истинно!\n";
+            print "Истинно!<br />";
         } else {
-            print "Ложно!\n";
+            print "Ложно!<br />";
         }
     }
 }

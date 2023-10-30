@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\PHP8\P333Prototype;
 
-use JetBrains\PhpStorm\NoReturn;
+use JetBrains\PhpStorm<br />oReturn;
 
 class ProgramP333Prototype
 {

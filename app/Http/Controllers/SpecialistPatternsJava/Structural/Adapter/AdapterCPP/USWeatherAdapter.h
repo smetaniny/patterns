@@ -4,48 +4,46 @@
 #include "USWeatherService.h"
 
 /**
- * Адаптер класса
+ * РђРґР°РїС‚РµСЂ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїРѕРіРѕРґС‹
  */
-class USWeatherAdapter : public WeatherService, private USWeatherService{
+class USWeatherAdapter : public WeatherService, private USWeatherService {
 	private:
 		double latitude;
 	 	double longtitude;
 	public:
 		/*
-		 * Возвращает температуру в градусах Цельсия
+		 * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С‚РµРјРїРµСЂР°С‚СѓСЂС‹
 		 */
 		double getTemperature() override {
 			double tf = USWeatherService::getTemperature(latitude, longtitude);
-			return (tf-32)*5/9; // F -> C
+			return (tf-32)*5/9; // РџРµСЂРµРІРѕРґ РёР· Р¤Р°СЂРµРЅРіРµР№С‚Р° РІ Р¦РµР»СЊСЃРёР№
 		}
 
 		/*
-		 * Возвращает скорость ветра в м/с
+		 * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃРєРѕСЂРѕСЃС‚Рё РІРµС‚СЂР° РІ Рј/СЃ
 		 */
-		double getWind() override{
+		double getWind() override {
 			double windFtMin = USWeatherService::getWind(latitude, longtitude);
-			return windFtMin / 196.85; // ft/min -> m/s
+			return windFtMin / 196.85; // РџРµСЂРµРІРѕРґ РёР· С„СѓС‚РѕРІ РІ РјРёРЅСѓС‚Сѓ РІ Рј/СЃ
 		}
 
 		/*
-		 * Возвращает ощущаемую температуру в градусах Цельсия
+		 * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РѕС‰СѓС‰Р°РµРјРѕР№ С‚РµРјРїРµСЂР°С‚СѓСЂС‹
 		 */
-		double getFeelsLikeTemperature() override{
-			return 1.04*getTemperature()-getWind()*0.65-0.9; // высокая влажность
+		double getFeelsLikeTemperature() override {
+			return 1.04 * getTemperature() - getWind() * 0.65 - 0.9; // Р Р°СЃС‡РµС‚ РѕС‰СѓС‰Р°РµРјРѕР№ С‚РµРјРїРµСЂР°С‚СѓСЂС‹
 		}
 
-		void setPosition(string city) override{
-			if (city == "Вашингтон") {
+		void setPosition(string city) override {
+			if (city == "Р’Р°С€РёРЅРіС‚РѕРЅ") {
 				latitude = 38.53;
 				longtitude = 77.02;
 			}
-			else
-				if (city == "Нью-Йорк") {
-					latitude = 40.43;
-					longtitude = 73.59;
-				}
+			else if (city == "РќСЊСЋ-Р™РѕСЂРє") {
+				latitude = 40.43;
+				longtitude = 73.59;
+			}
 		}
-
 };
-#endif
 
+#endif

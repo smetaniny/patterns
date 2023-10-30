@@ -6,7 +6,7 @@ namespace App\Http\Controllers\SpecialistPatterns\Singleton;
 class Singleton1 {
     // Приватный конструктор для создания экземпляра
     private function __construct() {
-        echo "Singleton 1 создан\n";
+        echo "Singleton 1 создан<br />";
     }
 
     // Статическое свойство для хранения единственного экземпляра

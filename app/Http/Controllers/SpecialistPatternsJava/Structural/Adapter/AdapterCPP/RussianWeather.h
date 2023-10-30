@@ -6,40 +6,38 @@
 class RussianWeather : public WeatherService {
 	private:
 		string city;
-	
+
 	public:
 		/*
-		 * Âîçâðàùàåò òåìïåðàòóðó â ãðàäóñàõ Öåëüñèÿ
+		 * ÐœÐµÑ‚Ð¾Ð´ Ð´Ð»Ñ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ñ‹
 		 */
 		double getTemperature() override {
-			if (city == "Ìîñêâà") return 25;
-			if (city == "Ñàíêò-Ïåòåðáóðã") return 18;
+			if (city == "ÐœÐ¾ÑÐºÐ²Ð°") return 25;
+			if (city == "Ð¡Ð°Ð½ÐºÑ‚-ÐŸÐµÑ‚ÐµÑ€Ð±ÑƒÑ€Ð³") return 18;
 			return 20;
 		}
 
 		/*
-		 * Âîçâðàùàåò ñêîðîñòü âåòðà â ì/ñ
+		 * ÐœÐµÑ‚Ð¾Ð´ Ð´Ð»Ñ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚Ð¸ Ð²ÐµÑ‚Ñ€Ð° Ð² Ð¼/Ñ
 		 */
-		double getWind() override{
-			if (city == "Ìîñêâà") return 5;
-			if (city == "Ñàíêò-Ïåòåðáóðã") return 13;
+		double getWind() override {
+			if (city == "ÐœÐ¾ÑÐºÐ²Ð°") return 5;
+			if (city == "Ð¡Ð°Ð½ÐºÑ‚-ÐŸÐµÑ‚ÐµÑ€Ð±ÑƒÑ€Ð³") return 13;
 			return 1;
 		}
 
 		/*
-		 * Âîçâðàùàåò îùóùàåìóþ òåìïåðàòóðó â ãðàäóñàõ Öåëüñèÿ
+		 * ÐœÐµÑ‚Ð¾Ð´ Ð´Ð»Ñ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ Ð¾Ñ‰ÑƒÑ‰Ð°ÐµÐ¼Ð¾Ð¹ Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ñ‹
 		 */
-		double getFeelsLikeTemperature() override{
-			if (city == "Ìîñêâà") return 23;
-			if (city == "Ñàíêò-Ïåòåðáóðã") return 16;
+		double getFeelsLikeTemperature() override {
+			if (city == "ÐœÐ¾ÑÐºÐ²Ð°") return 23;
+			if (city == "Ð¡Ð°Ð½ÐºÑ‚-ÐŸÐµÑ‚ÐµÑ€Ð±ÑƒÑ€Ð³") return 16;
 			return 20;
 		}
 
-		void setPosition(string city) override{
+		void setPosition(string city) override {
 			this->city = city;
 		}
-
 };
 
 #endif
-

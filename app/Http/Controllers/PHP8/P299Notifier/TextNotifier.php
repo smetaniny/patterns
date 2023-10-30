@@ -7,6 +7,6 @@ class TextNotifier extends Notifier
 {
     public function inform($message): void
     {
-        print "Уведомление текстом: {$message}\n";
+        print "Уведомление текстом: {$message}<br />";
     }
 }

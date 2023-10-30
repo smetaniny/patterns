@@ -26,6 +26,8 @@ use App\Http\Controllers\PHP8\ParserInterpreter\ProgramParserInterpreter;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use App\Http\Controllers\SpecialistPatterns\AbstractFactory\ProgramSpecialistAbstractFactory;
+use App\Http\Controllers\SpecialistPatterns\Adapter\AdapterClass\ProgramSpecialistAdapterClass;
+use App\Http\Controllers\SpecialistPatterns\Adapter\AdapterObject\ProgramSpecialistAdapterObject;
 use App\Http\Controllers\SpecialistPatterns\Builder\ProgramSpecialistBuilder;
 use App\Http\Controllers\SpecialistPatterns\LR\LR1\ProgramLR1;
 use App\Http\Controllers\SpecialistPatterns\LR\LR1SP\ProgramLR1SP;
@@ -86,7 +88,9 @@ Route::get('/PHP8/LR1SP', [ProgramLR1SP::class, 'index']);
 Route::get('/specialistPatterns/abstractFactory', [ProgramSpecialistAbstractFactory::class, 'index']);
 Route::get('/specialistPatterns/prototype', [ProgramSpecialistPrototype::class, 'index']);
 Route::get('/specialistPatterns/builder', [ProgramSpecialistBuilder::class, 'index']);
-Route::get('/specialistPatterns/Singleton', [ProgramSpecialistSingleton::class, 'index']);
+Route::get('/specialistPatterns/singleton', [ProgramSpecialistSingleton::class, 'index']);
+Route::get('/specialistPatterns/adapterClass', [ProgramSpecialistAdapterClass::class, 'index']);
+Route::get('/specialistPatterns/adapterObject', [ProgramSpecialistAdapterObject::class, 'index']);
 
 
 

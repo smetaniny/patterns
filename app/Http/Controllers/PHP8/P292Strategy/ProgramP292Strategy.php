@@ -20,7 +20,7 @@ class ProgramP292Strategy
             if ($lesson instanceof Lecture) {
                 echo "Лектор: {$lesson->getRector()} <br/>";
             }
-            echo "<hr/>\n";
+            echo "<hr/><br />";
         }
     }
 }
