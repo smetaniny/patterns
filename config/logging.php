@@ -52,70 +52,135 @@ return [
 
     'channels' => [
         'stack' => [
-            'driver' => 'stack',
-            'channels' => ['single'],
-            'ignore_exceptions' => false,
+            'driver' => 'stack', // Драйвер 'stack' для объединения нескольких каналов
+            'channels' => ['single'], // Использует канал 'single'
+            'ignore_exceptions' => false, // Не игнорировать исключения
+
+            // Пример вызова: пишет в laravel.log
+            // Log::stack(['single'])->info("Это лог с канала 'stack'");
         ],
 
         'single' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => env('LOG_LEVEL', 'debug'),
+            'driver' => 'single', // Драйвер 'single' для записи логов в один файл
+            'path' => storage_path('logs/laravel.log'), // Путь к файлу логов
+            'level' => env('LOG_LEVEL', 'debug'), // Уровень логирования
+
+            // Пример вызова: пишет в laravel.log
+            // Log::channel('single')->info("Это лог с канала 'single'");
         ],
 
         'daily' => [
-            'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => env('LOG_LEVEL', 'debug'),
-            'days' => 14,
+            'driver' => 'daily', // Драйвер 'daily' для записи логов в файлы по дням
+            'path' => storage_path('logs/laravel.log'), // Путь к файлу логов
+            'level' => env('LOG_LEVEL', 'debug'), // Уровень логирования
+            'days' => 14, // Хранить логи в течение 14 дней
+
+            // Пример вызова: пишет в laravel.log
+            // Log::channel('daily')->info("Это лог с канала 'daily'");
         ],
 
         'slack' => [
-            'driver' => 'slack',
-            'url' => env('LOG_SLACK_WEBHOOK_URL'),
-            'username' => 'Laravel Log',
-            'emoji' => ':boom:',
-            'level' => env('LOG_LEVEL', 'critical'),
+            'driver' => 'slack', // Драйвер 'slack' для отправки логов в Slack
+            'url' => env('LOG_SLACK_WEBHOOK_URL'), // URL вебхука Slack
+            'username' => 'Laravel Log', // Имя пользователя
+            'emoji' => ':boom:', // Эмоджи
+            'level' => env('LOG_LEVEL', 'critical'), // Уровень логирования
+
+            // Пример вызова: отправляет лог в Slack
+            // Log::channel('slack')->critical("Это критический лог в Slack");
         ],
 
         'papertrail' => [
-            'driver' => 'monolog',
-            'level' => env('LOG_LEVEL', 'debug'),
-            'handler' => env('LOG_PAPERTRAIL_HANDLER', SyslogUdpHandler::class),
+            'driver' => 'monolog', // Драйвер 'monolog' для записи логов через Monolog
+            'level' => env('LOG_LEVEL', 'debug'), // Уровень логирования
+            'handler' => env('LOG_PAPERTRAIL_HANDLER', SyslogUdpHandler::class), // Обработчик Monolog
             'handler_with' => [
-                'host' => env('PAPERTRAIL_URL'),
-                'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'host' => env('PAPERTRAIL_URL'), // Хост Papertrail
+                'port' => env('PAPERTRAIL_PORT'), // Порт Papertrail
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'), // Строка подключения
             ],
+
+            // Пример вызова: отправляет лог в Papertrail
+            // Log::channel('papertrail')->info("Это лог в Papertrail");
         ],
 
         'stderr' => [
-            'driver' => 'monolog',
-            'level' => env('LOG_LEVEL', 'debug'),
-            'handler' => StreamHandler::class,
-            'formatter' => env('LOG_STDERR_FORMATTER'),
+            'driver' => 'monolog', // Драйвер 'monolog' для записи логов в stderr
+            'level' => env('LOG_LEVEL', 'debug'), // Уровень логирования
+            'handler' => StreamHandler::class, // Обработчик Monolog
+            'formatter' => env('LOG_STDERR_FORMATTER'), // Форматирование stderr
             'with' => [
-                'stream' => 'php://stderr',
+                'stream' => 'php://stderr', // Поток stderr
             ],
+
+            // Пример вызова: записывает лог в stderr
+            // Log::channel('stderr')->info("Это лог в stderr");
         ],
 
         'syslog' => [
-            'driver' => 'syslog',
-            'level' => env('LOG_LEVEL', 'debug'),
+            'driver' => 'syslog', // Драйвер 'syslog' для записи логов в системный журнал
+            'level' => env('LOG_LEVEL', 'debug'), // Уровень логирования
+
+            // Пример вызова: записывает лог в системный журнал
+            // Log::channel('syslog')->info("Это лог в системный журнал");
         ],
 
         'errorlog' => [
-            'driver' => 'errorlog',
-            'level' => env('LOG_LEVEL', 'debug'),
+            'driver' => 'errorlog', // Драйвер 'errorlog' для записи ошибок в системный журнал
+            'level' => env('LOG_LEVEL', 'debug'), // Уровень логирования
+
+            // Пример вызова: запись ошибки в системный журнал
+            // Log::error("Это ошибка в канале 'errorlog'");
         ],
 
         'null' => [
-            'driver' => 'monolog',
-            'handler' => NullHandler::class,
+            'driver' => 'monolog', // Драйвер 'monolog' для нулевой записи
+            'handler' => NullHandler::class, // Обработчик Monolog
+
+            // Пример вызова: нулевая запись, логирование не выполняется
         ],
 
         'emergency' => [
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/laravel.log'), // Путь к файлу логов
+
+            // Пример вызова: запись экстренного сообщения логов в файл 'laravel.log' без указания канала
+            // Log::emergency("Это экстренное сообщение в файл 'laravel.log' без указания канала");
+        ],
+
+        'info' => [
+            'driver' => 'single', // Драйвер 'single' для записи логов информационного уровня
+            'path' => storage_path('logs/info.log'), // Путь к файлу логов
+            'level' => 'info', // Уровень логирования
+
+            // Пример вызова: пишет в info.log
+            // Log::channel('info')->info("Это лог с канала 'info'", [ 'user_id' => 9525,]);
+        ],
+
+        'warning' => [
+            'driver' => 'single', // Драйвер 'single' для записи логов предупреждений
+            'path' => storage_path('logs/warning.log'), // Путь к файлу логов
+            'level' => 'warning', // Уровень логирования
+
+            // Пример вызова: пишет в warning.log
+            // Log::channel('warning')->warning("Это лог с канала 'warning'", [ 'user_id' => 9525,]);
+        ],
+
+        'error' => [
+            'driver' => 'single', // Драйвер 'single' для записи логов ошибок
+            'path' => storage_path('logs/error.log'), // Путь к файлу логов
+            'level' => 'error', // Уровень логирования
+
+            // Пример вызова: пишет в error.log
+            // Log::channel('error')->error("Это лог с канала 'error'", [ 'user_id' => 9525,]);
+        ],
+
+        'debug' => [
+            'driver' => 'single', // Драйвер 'single' для записи логов отладки
+            'path' => storage_path('logs/debug.log'), // Путь к файлу логов
+            'level' => 'debug', // Уровень логирования
+
+            // Пример вызова: пишет в debug.log
+            // Log::channel('debug')->debug("Это лог с канала 'debug'", [ 'user_id' => 9525,]);
         ],
     ],
 
