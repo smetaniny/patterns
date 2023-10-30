@@ -71,7 +71,7 @@ class Laravel extends Preset
      */
     public function factoryPath()
     {
-        return $this->app->databasePath('factories');
+        return $this->app->databasePath('Factories');
     }
 
     /**

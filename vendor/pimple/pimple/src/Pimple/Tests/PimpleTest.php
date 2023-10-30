@@ -274,7 +274,7 @@ class PimpleTest extends TestCase
         $p->setAccessible(true);
         $this->assertEmpty($p->getValue($pimple));
 
-        $p = new \ReflectionProperty($pimple, 'factories');
+        $p = new \ReflectionProperty($pimple, 'Factories');
         $p->setAccessible(true);
         $this->assertCount(0, $p->getValue($pimple));
     }

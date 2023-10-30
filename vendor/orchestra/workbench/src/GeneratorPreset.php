@@ -74,7 +74,7 @@ class GeneratorPreset extends Preset
      */
     public function factoryPath()
     {
-        return rtrim(Workbench::path('database/factories'), DIRECTORY_SEPARATOR);
+        return rtrim(Workbench::path('database/Factories'), DIRECTORY_SEPARATOR);
     }
 
     /**

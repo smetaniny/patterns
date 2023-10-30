@@ -63,7 +63,7 @@ class InstallCommand extends Command
         ))->handle(
             Collection::make([
                 'app',
-                'database/factories',
+                'database/Factories',
                 'database/migrations',
                 'database/seeders',
             ])->map(static function ($directory) use ($workbenchWorkingPath) {
@@ -180,7 +180,7 @@ class InstallCommand extends Command
 
         $namespaces = [
             'Workbench\\App\\' => 'workbench/app/',
-            'Workbench\\Database\\Factories\\' => 'workbench/database/factories/',
+            'Workbench\\Database\\Factories2\\' => 'workbench/database/Factories/',
             'Workbench\\Database\\Seeders\\' => 'workbench/database/seeders/',
         ];
 

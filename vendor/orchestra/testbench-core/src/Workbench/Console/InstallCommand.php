@@ -75,7 +75,7 @@ class InstallCommand extends Command
         $workbenchWorkingPath = "{$workingPath}/workbench";
 
         $this->ensureDirectoryExists($filesystem, "{$workbenchWorkingPath}/app");
-        $this->ensureDirectoryExists($filesystem, "{$workbenchWorkingPath}/database/factories");
+        $this->ensureDirectoryExists($filesystem, "{$workbenchWorkingPath}/database/Factories");
         $this->ensureDirectoryExists($filesystem, "{$workbenchWorkingPath}/database/migrations");
         $this->ensureDirectoryExists($filesystem, "{$workbenchWorkingPath}/database/seeders");
 

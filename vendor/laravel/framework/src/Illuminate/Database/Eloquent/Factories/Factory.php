@@ -100,11 +100,11 @@ abstract class Factory
     protected $faker;
 
     /**
-     * The default namespace where factories reside.
+     * The default namespace where Factories reside.
      *
      * @var string
      */
-    protected static $namespace = 'Database\\Factories\\';
+    protected static $namespace = 'Database\\Factories2\\';
 
     /**
      * The default model name resolver.
@@ -798,7 +798,7 @@ abstract class Factory
     }
 
     /**
-     * Specify the default namespace that contains the application's model factories.
+     * Specify the default namespace that contains the application's model Factories.
      *
      * @param  string  $namespace
      * @return void
