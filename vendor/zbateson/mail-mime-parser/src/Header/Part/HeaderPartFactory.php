@@ -34,7 +34,7 @@ class HeaderPartFactory
 
     /**
      * Creates and returns a default IHeaderPart for this factory, allowing
-     * subclass Factories for specialized IHeaderParts.
+     * subclass factories for specialized IHeaderParts.
      *
      * The default implementation returns a new Token.
      *

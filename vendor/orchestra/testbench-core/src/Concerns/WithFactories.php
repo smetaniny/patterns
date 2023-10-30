@@ -6,10 +6,13 @@ use Exception;
 use Illuminate\Database\Eloquent\Factory as ModelFactory;
 use Orchestra\Testbench\Exceptions\ApplicationNotAvailableException;
 
+/**
+ * @deprecated
+ */
 trait WithFactories
 {
     /**
-     * Load model Factories from path.
+     * Load model factories from path.
      *
      * @param  string  $path
      * @return $this
@@ -26,7 +29,7 @@ trait WithFactories
     }
 
     /**
-     * Load model Factories from path using Application.
+     * Load model factories from path using Application.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @param  string  $path
@@ -38,7 +41,7 @@ trait WithFactories
     {
         if (! class_exists(ModelFactory::class)) {
             throw new Exception(<<<'requirement'
-Missing `laravel/legacy-Factories` in composer.json. Please refer to <https://packages.tools/testbench/troubleshooting.html#class-illuminate-database-eloquent-factory-not-found>
+Missing `laravel/legacy-factories` in composer.json. Please refer to <https://packages.tools/testbench/troubleshooting.html#class-illuminate-database-eloquent-factory-not-found>
 requirement);
         }
 

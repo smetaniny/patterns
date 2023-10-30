@@ -446,7 +446,7 @@ class Lexer
             'T_READONLY',
         ];
 
-        // PHP-ParserInterpreter might be used together with another library that also emulates some or all
+        // PHP-Parser might be used together with another library that also emulates some or all
         // of these tokens. Perform a sanity-check that all already defined tokens have been
         // assigned a unique ID.
         $usedTokenIds = [];
@@ -485,7 +485,7 @@ class Lexer
      * Creates the token map.
      *
      * The token map maps the PHP internal token identifiers
-     * to the identifiers used by the ParserInterpreter. Additionally it
+     * to the identifiers used by the Parser. Additionally it
      * maps T_OPEN_TAG_WITH_ECHO to T_ECHO and T_CLOSE_TAG to ';'.
      *
      * @return array The token map

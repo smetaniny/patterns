@@ -19,7 +19,7 @@ use League\CommonMark\Parser\Cursor;
 use League\CommonMark\Reference\ReferenceMapInterface;
 
 /**
- * ParserInterpreter implementation which ensures everything is added to the root-level Document
+ * Parser implementation which ensures everything is added to the root-level Document
  */
 final class DocumentBlockParser extends AbstractBlockContinueParser
 {

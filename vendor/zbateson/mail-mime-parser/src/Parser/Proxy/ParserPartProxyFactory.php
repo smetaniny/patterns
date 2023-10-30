@@ -11,7 +11,7 @@ use ZBateson\MailMimeParser\Parser\IParser;
 use ZBateson\MailMimeParser\Parser\PartBuilder;
 
 /**
- * Base class for Factories creating ParserPartProxy classes.
+ * Base class for factories creating ParserPartProxy classes.
  *
  * @author Zaahid Bateson
  */

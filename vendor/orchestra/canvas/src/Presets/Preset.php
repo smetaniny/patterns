@@ -76,7 +76,7 @@ abstract class Preset
         return sprintf(
             '%s/%s',
             $this->basePath(),
-            $this->config('factory.path', 'database/Factories')
+            $this->config('factory.path', 'database/factories')
         );
     }
 

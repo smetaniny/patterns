@@ -140,7 +140,7 @@ class CodeFormatter implements ReflectorFormatter
      * Tokenize via \token_get_all, then map these tokens to internal highlight types, combining
      * adjacent spans of the same highlight type.
      *
-     * @todo consider switching \token_get_all() out for PHP-ParserInterpreter-based formatting at some point.
+     * @todo consider switching \token_get_all() out for PHP-Parser-based formatting at some point.
      *
      * @param string $code
      *

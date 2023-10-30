@@ -82,7 +82,7 @@ class ImplicitReturnPass extends CodeCleanerPass
             ]);
             // @codeCoverageIgnoreEnd
         } elseif ($last instanceof Expression && !($last->expr instanceof Exit_)) {
-            // For PHP ParserInterpreter 4.x
+            // For PHP Parser 4.x
             $nodes[\count($nodes) - 1] = new Return_($last->expr, [
                 'startLine' => $last->getLine(),
                 'endLine'   => $last->getLine(),
@@ -111,7 +111,7 @@ class ImplicitReturnPass extends CodeCleanerPass
     /**
      * Check whether a given node is a non-expression statement.
      *
-     * As of PHP ParserInterpreter 4.x, Expressions are now instances of Stmt as well, so
+     * As of PHP Parser 4.x, Expressions are now instances of Stmt as well, so
      * we'll exclude them here.
      *
      * @param Node $node

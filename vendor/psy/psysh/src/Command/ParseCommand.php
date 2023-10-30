@@ -107,9 +107,9 @@ class ParseCommand extends Command implements ContextAware, PresenterAware
 Parse PHP code and show the abstract syntax tree.
 
 This command is used in the development of PsySH. Given a string of PHP code,
-it pretty-prints the PHP ParserInterpreter parse tree.
+it pretty-prints the PHP Parser parse tree.
 
-See https://github.com/nikic/PHP-ParserInterpreter
+See https://github.com/nikic/PHP-Parser
 
 It prolly won't be super useful for most of you, but it's here if you want to play.
 HELP
@@ -134,7 +134,7 @@ HELP
     }
 
     /**
-     * Get (or create) the ParserInterpreter instance.
+     * Get (or create) the Parser instance.
      *
      * @param string|null $kind One of Psy\ParserFactory constants (only for PHP parser 2.0 and above)
      */

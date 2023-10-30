@@ -13,7 +13,7 @@ use League\CommonMark\Parser\InlineParserContext;
 use League\CommonMark\Util\RegexHelper;
 
 /**
- * Delimiter parsing is implemented as an Inline ParserInterpreter with the lowest-possible priority
+ * Delimiter parsing is implemented as an Inline Parser with the lowest-possible priority
  *
  * @internal
  */

@@ -10,11 +10,11 @@ class ParserFactory
     const ONLY_PHP5 = 4;
 
     /**
-     * Creates a ParserInterpreter instance, according to the provided kind.
+     * Creates a Parser instance, according to the provided kind.
      *
      * @param int        $kind  One of ::PREFER_PHP7, ::PREFER_PHP5, ::ONLY_PHP7 or ::ONLY_PHP5
      * @param Lexer|null $lexer Lexer to use. Defaults to emulative lexer when not specified
-     * @param array      $parserOptions ParserInterpreter options. See ParserAbstract::__construct() argument
+     * @param array      $parserOptions Parser options. See ParserAbstract::__construct() argument
      *
      * @return Parser The parser instance
      */

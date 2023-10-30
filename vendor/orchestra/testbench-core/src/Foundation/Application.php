@@ -5,6 +5,8 @@ namespace Orchestra\Testbench\Foundation;
 use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
 use Illuminate\Support\Arr;
 use Orchestra\Testbench\Concerns\CreatesApplication;
+use Orchestra\Testbench\Contracts\Config as ConfigContract;
+use Orchestra\Testbench\Workbench\Workbench;
 
 /**
  * @phpstan-import-type TExtraConfig from \Orchestra\Testbench\Foundation\Config
@@ -71,6 +73,41 @@ class Application
     }
 
     /**
+     * Create new application resolver.
+     *
+     * @param  string|null  $basePath
+     * @param  (callable(\Illuminate\Foundation\Application):(void))|null  $resolvingCallback
+     * @param  array<string, mixed>  $options
+     * @return static
+     *
+     * @phpstan-param TConfig  $options
+     */
+    public static function make(?string $basePath = null, ?callable $resolvingCallback = null, array $options = [])
+    {
+        return (new static($basePath, $resolvingCallback))->configure($options);
+    }
+
+    /**
+     * Create new application resolver from configuration file.
+     *
+     * @param  \Orchestra\Testbench\Contracts\Config  $config
+     * @param  (callable(\Illuminate\Foundation\Application):(void))|null  $resolvingCallback
+     * @param  array<string, mixed>  $options
+     * @return static
+     *
+     * @phpstan-param TConfig  $options
+     */
+    public static function makeFromConfig(ConfigContract $config, ?callable $resolvingCallback = null, array $options = [])
+    {
+        $basePath = $config['laravel'] ?? static::applicationBasePath();
+
+        return (new static($config['laravel'], $resolvingCallback))->configure(array_merge($options, [
+            'load_environment_variables' => file_exists("{$basePath}/.env"),
+            'extra' => $config->getExtraAttributes(),
+        ]));
+    }
+
+    /**
      * Create symlink to vendor path via new application instance.
      *
      * @param  string|null  $basePath
@@ -93,20 +130,35 @@ class Application
      *
      * @param  string|null  $basePath
      * @param  (callable(\Illuminate\Foundation\Application):(void))|null  $resolvingCallback
-     * @param  array  $options
+     * @param  array<string, mixed>  $options
      * @return \Illuminate\Foundation\Application
      *
      * @phpstan-param TConfig  $options
      */
     public static function create(?string $basePath = null, ?callable $resolvingCallback = null, array $options = [])
     {
-        return (new static($basePath, $resolvingCallback))->configure($options)->createApplication();
+        return static::make($basePath, $resolvingCallback, $options)->createApplication();
+    }
+
+    /**
+     * Create new application instance from configuration file.
+     *
+     * @param  \Orchestra\Testbench\Contracts\Config  $config
+     * @param  (callable(\Illuminate\Foundation\Application):(void))|null  $resolvingCallback
+     * @param  array<string, mixed>  $options
+     * @return \Illuminate\Foundation\Application
+     *
+     * @phpstan-param TConfig  $options
+     */
+    public static function createFromConfig(ConfigContract $config, ?callable $resolvingCallback = null, array $options = [])
+    {
+        return static::makeFromConfig($config, $resolvingCallback, $options)->createApplication();
     }
 
     /**
      * Configure the application options.
      *
-     * @param  array  $options
+     * @param  array<string, mixed>  $options
      * @return $this
      *
      * @phpstan-param TConfig  $options
@@ -231,7 +283,7 @@ class Application
      */
     protected function resolveApplicationConsoleKernel($app)
     {
-        $kernel = 'Orchestra\Testbench\Console\Kernel';
+        $kernel = Workbench::applicationConsoleKernel() ?? 'Orchestra\Testbench\Console\Kernel';
 
         if (file_exists($app->basePath('app/Console/Kernel.php')) && class_exists('App\Console\Kernel')) {
             $kernel = 'App\Console\Kernel';
@@ -248,7 +300,7 @@ class Application
      */
     protected function resolveApplicationHttpKernel($app)
     {
-        $kernel = 'Orchestra\Testbench\Http\Kernel';
+        $kernel = Workbench::applicationHttpKernel() ?? 'Orchestra\Testbench\Http\Kernel';
 
         if (file_exists($app->basePath('app/Http/Kernel.php')) && class_exists('App\Http\Kernel')) {
             $kernel = 'App\Http\Kernel';

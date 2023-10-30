@@ -256,7 +256,7 @@ class ShowModelCommand extends DatabaseInspectionCommand
             return Str::startsWith($key, 'eloquent.') && Str::endsWith($key, $model::class);
         }, ARRAY_FILTER_USE_BOTH);
 
-        // Format listeners Eloquent verb => ObserverInterface methods...
+        // Format listeners Eloquent verb => Observer methods...
         $extractVerb = function ($key) {
             preg_match('/eloquent.([a-zA-Z]+)\: /', $key, $matches);
 

@@ -28,7 +28,7 @@ use PhpParser\NodeVisitorAbstract;
 use Psy\Sudo;
 
 /**
- * A PHP ParserInterpreter node visitor which rewrites property and method access to use
+ * A PHP Parser node visitor which rewrites property and method access to use
  * the Psy\Sudo visibility bypass methods.
  *
  * @todo handle assigning by reference

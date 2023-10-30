@@ -82,7 +82,7 @@ class FactoryMakeCommand extends GeneratorCommand
         $model = class_basename($namespaceModel);
 
         $namespace = $this->getNamespace(
-            Str::replaceFirst($this->rootNamespace(), 'Database\\Factories2\\', $this->qualifyClass($this->getNameInput()))
+            Str::replaceFirst($this->rootNamespace(), 'Database\\Factories\\', $this->qualifyClass($this->getNameInput()))
         );
 
         $replace = [
@@ -112,7 +112,7 @@ class FactoryMakeCommand extends GeneratorCommand
     {
         $name = (string) Str::of($name)->replaceFirst($this->rootNamespace(), '')->finish('Factory');
 
-        return $this->laravel->databasePath().'/Factories/'.str_replace('\\', '/', $name).'.php';
+        return $this->laravel->databasePath().'/factories/'.str_replace('\\', '/', $name).'.php';
     }
 
     /**

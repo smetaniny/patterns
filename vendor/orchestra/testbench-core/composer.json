@@ -27,7 +27,8 @@
         "psr-4": {
             "Orchestra\\Testbench\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/",
-            "Workbench\\Database\\": "workbench/database/"
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "bin": [
@@ -37,6 +38,7 @@
         "php": "^8.0"
     },
     "require-dev": {
+        "composer-runtime-api": "^2.2",
         "fakerphp/faker": "^1.21",
         "laravel/framework": "^9.52.9",
         "laravel/pint": "^1.4",
@@ -51,6 +53,7 @@
     "conflict": {
         "brianium/paratest": "<6.4.0 || >=7.0.0",
         "laravel/framework": "<9.52.9 || >=10.0.0",
+        "orchestra/workbench": "<1.0.0",
         "nunomaduro/collision": "<6.2.0 || >=7.0.0",
         "phpunit/phpunit": "<9.5.10 || >=10.0.0"
     },

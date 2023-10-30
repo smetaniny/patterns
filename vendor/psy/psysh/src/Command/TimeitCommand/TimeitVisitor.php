@@ -130,7 +130,7 @@ class TimeitVisitor extends NodeVisitorAbstract
     }
 
     /**
-     * Compatibility shim for PHP ParserInterpreter 3.x.
+     * Compatibility shim for PHP Parser 3.x.
      *
      * Wrap $expr in a PhpParser\Node\Stmt\Expression if the class exists.
      *

@@ -8,6 +8,10 @@ use Illuminate\Support\Collection;
 use Orchestra\Testbench\Foundation\Console\Actions\GeneratesFile;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+use function Laravel\Prompts\select;
+use function Orchestra\Testbench\laravel_version_compare;
+use function Orchestra\Testbench\package_path;
+
 #[AsCommand(name: 'workbench:devtool', description: 'Configure Workbench for package development')]
 class DevToolCommand extends Command
 {
@@ -19,21 +23,13 @@ class DevToolCommand extends Command
     protected $signature = 'workbench:devtool {--force : Overwrite any existing files}';
 
     /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Configure Workbench for package development';
-
-    /**
      * Execute the console command.
      *
      * @return int
      */
     public function handle(Filesystem $filesystem)
     {
-        /** @phpstan-ignore-next-line */
-        $workingPath = TESTBENCH_WORKING_PATH;
+        $workingPath = package_path();
 
         $this->copyTestbenchConfigurationFile($filesystem, $workingPath);
         $this->copyTestbenchDotEnvFile($filesystem, $workingPath);
@@ -86,10 +82,9 @@ class DevToolCommand extends Command
             return;
         }
 
-        $choice = $this->components->choice(
-            "Export '.env' file as?",
-            $choices,
-        );
+        $choice = laravel_version_compare('10.17', '>=')
+            ? select("Export '.env' file as?", $choices)
+            : $this->components->choice("Export '.env' file as?", $choices);
 
         if ($choice === 'Skip exporting .env') {
             return;
