@@ -1,8 +1,10 @@
 package graph;
 
-public abstract  class AbstractGOFactory {
-	public abstract Point createPoint();
+// Абстрактный класс AbstractGOFactory представляет собой фабрику для создания графических объектов.
+public abstract class AbstractGOFactory {
+    // Абстрактный метод для создания объекта класса Point.
+    public abstract Point createPoint();
 
-	//public abstract Line createLine();
-	public abstract Circle createCircle();
+    // Абстрактный метод для создания объекта класса Circle.
+    public abstract Circle createCircle();
 }
