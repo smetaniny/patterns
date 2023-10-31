@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\SpecialistPatterns\Adapter\AdapterObject;
 
+use App\Http\Controllers\SpecialistPatterns\Adapter\AdapterClass\RussianWeather;
+
 class ProgramSpecialistAdapterObject
 {
-    public static function index() {
+    public static function index()
+    {
         // Создаем объект WeatherService, который использует реализацию RussianWeather
         $service = new RussianWeather();
         // Устанавливаем местоположение для получения российской погоды

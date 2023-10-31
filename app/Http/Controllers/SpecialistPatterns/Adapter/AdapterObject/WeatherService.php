@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\SpecialistPatterns\Adapter\AdapterObject;
+
 interface WeatherService
 {
     /**

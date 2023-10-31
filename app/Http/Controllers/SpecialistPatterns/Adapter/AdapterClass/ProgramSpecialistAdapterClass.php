@@ -13,7 +13,8 @@ class ProgramSpecialistAdapterClass
 
         // Создание объекта RussianWeather, предоставляющего информацию о погоде в России
         $service = new RussianWeather();
-        $service->setPosition("Москва"); // Установка города (Москва)
+        // Установка города (Москва)
+        $service->setPosition("Москва");
         // $service->setPosition("Санкт-Петербург"); // Можно установить другой город
 
         echo "Москва<br />";

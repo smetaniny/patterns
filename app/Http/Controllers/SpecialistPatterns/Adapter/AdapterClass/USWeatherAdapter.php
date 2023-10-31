@@ -9,8 +9,8 @@ use JetBrains\PhpStorm\Pure;
  */
 class USWeatherAdapter implements WeatherService
 {
-    private $latitude;
-    private $longitude;
+    private float $latitude;
+    private float $longitude;
 
     /**
      * Метод для получения температуры
