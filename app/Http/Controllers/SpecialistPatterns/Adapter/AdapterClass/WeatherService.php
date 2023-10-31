@@ -6,6 +6,15 @@ namespace App\Http\Controllers\SpecialistPatterns\Adapter\AdapterClass;
 interface WeatherService
 {
     /**
+     * Виртуальный метод для установки местоположения (города)
+     *
+     * @param string $city - название города
+     *
+     * @return void
+     */
+    public function setPosition(string $city): void;
+
+    /**
      * Виртуальный метод для получения температуры
      *
      * @return float - температура
@@ -25,13 +34,4 @@ interface WeatherService
      * @return float - ощущаемая температура
      */
     public function getFeelsLikeTemperature(): float;
-
-    /**
-     * Виртуальный метод для установки местоположения (города)
-     *
-     * @param string $city - название города
-     *
-     * @return void
-     */
-    public function setPosition(string $city): void;
 }

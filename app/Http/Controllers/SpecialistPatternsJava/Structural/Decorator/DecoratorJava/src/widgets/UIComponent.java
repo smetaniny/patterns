@@ -1,8 +1,13 @@
 package widgets;
 
 public abstract class UIComponent {
-	public abstract boolean draw(int line);
-	public abstract int getHeight();
-	public abstract int getWidth();
 
+    // Абстрактный метод для отрисовки компонента на указанной строке
+    public abstract boolean draw(int line);
+
+    // Абстрактный метод для получения высоты компонента
+    public abstract int getHeight();
+
+    // Абстрактный метод для получения ширины компонента
+    public abstract int getWidth();
 }

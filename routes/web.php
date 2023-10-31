@@ -28,6 +28,7 @@ use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use App\Http\Controllers\SpecialistPatterns\AbstractFactory\ProgramSpecialistAbstractFactory;
 use App\Http\Controllers\SpecialistPatterns\Adapter\AdapterClass\ProgramSpecialistAdapterClass;
 use App\Http\Controllers\SpecialistPatterns\Adapter\AdapterObject\ProgramSpecialistAdapterObject;
+use App\Http\Controllers\SpecialistPatterns\Bridge\ProgramSpecialistBridge;
 use App\Http\Controllers\SpecialistPatterns\Builder\ProgramSpecialistBuilder;
 use App\Http\Controllers\SpecialistPatterns\LR\LR1\ProgramLR1;
 use App\Http\Controllers\SpecialistPatterns\LR\LR1SP\ProgramLR1SP;
@@ -91,6 +92,7 @@ Route::get('/specialistPatterns/builder', [ProgramSpecialistBuilder::class, 'ind
 Route::get('/specialistPatterns/singleton', [ProgramSpecialistSingleton::class, 'index']);
 Route::get('/specialistPatterns/adapterClass', [ProgramSpecialistAdapterClass::class, 'index']);
 Route::get('/specialistPatterns/adapterObject', [ProgramSpecialistAdapterObject::class, 'index']);
+Route::get('/specialistPatterns/bridge', [ProgramSpecialistBridge::class, 'index']);
 
 
 

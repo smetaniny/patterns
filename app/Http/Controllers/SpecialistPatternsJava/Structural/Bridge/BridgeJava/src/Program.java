@@ -6,45 +6,41 @@ import ui.UserInterface;
 
 public class Program {
 
-	
-	
-	public static void main(String[] args) {
-		/*	Создать программу работающую с базой данных
-		 *  Программа должна уметь работать с двумя (или более)
-		 *  видами баз данных (слои реализации - платформы) и
-		 *  иметь два (или более) пользовательских интерфейса 
-		 *  (административный и пользовательский) отображающих
-		 *  информацию из базы данных. 
-		 */
-		{
-			Database db = new MicrosoftSQLDB();
-			UserInterface ui = new UserInterface(db);
-			
-			ui.login("Sergey");
-			ui.drawInterface();
-		}
-		{
-			Database db = new MicrosoftSQLDB();
-			UserInterface ui = new AdminInterface(db);
-			
-			ui.login("Sergey");
-			ui.drawInterface();
-		}
-		{
-			Database db = new MySQLDB();
-			UserInterface ui = new UserInterface(db);
-			
-			ui.login("Sergey");
-			ui.drawInterface();
-		}
-		{
-			Database db = new MySQLDB();
-			UserInterface ui = new AdminInterface(db);
-			
-			ui.login("Sergey");
-			ui.drawInterface();
-		}
+    public static void main(String[] args) {
+        // РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° Р±Р°Р·С‹ РґР°РЅРЅС‹С… Microsoft SQL Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+        {
+            Database db = new MicrosoftSQLDB();
+            UserInterface ui = new UserInterface(db);
 
-	}
+            ui.login("Sergey"); // Р’С…РѕРґ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+            ui.drawInterface(); // РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+        }
 
+        // РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° Р±Р°Р·С‹ РґР°РЅРЅС‹С… Microsoft SQL Рё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+        {
+            Database db = new MicrosoftSQLDB();
+            UserInterface ui = new AdminInterface(db);
+
+            ui.login("Sergey"); // Р’С…РѕРґ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°
+            ui.drawInterface(); // РћС‚РѕР±СЂР°Р¶РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+        }
+
+        // РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° Р±Р°Р·С‹ РґР°РЅРЅС‹С… MySQL Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+        {
+            Database db = new MySQLDB();
+            UserInterface ui = new UserInterface(db);
+
+            ui.login("Sergey"); // Р’С…РѕРґ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+            ui.drawInterface(); // РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+        }
+
+        // РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° Р±Р°Р·С‹ РґР°РЅРЅС‹С… MySQL Рё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+        {
+            Database db = new MySQLDB();
+            UserInterface ui = new AdminInterface(db);
+
+            ui.login("Sergey"); // Р’С…РѕРґ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°
+            ui.drawInterface(); // РћС‚РѕР±СЂР°Р¶РµРЅРёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСЃРєРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР°
+        }
+    }
 }
