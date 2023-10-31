@@ -4,6 +4,7 @@ use App\Http\Controllers\DelegationFactorySolid\DelegationFactorySolidController
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
+use App\Http\Controllers\PHP8\P244Abstract\ProgramP244Abstract;
 use App\Http\Controllers\PHP8\P292Strategy\ProgramP292Strategy;
 use App\Http\Controllers\PHP8\P299Notifier\ProgramP299Notifier;
 use App\Http\Controllers\PHP8\P308Employee\ProgramP308Employee;
@@ -15,7 +16,7 @@ use App\Http\Controllers\PHP8\P339ServiceLocator\ProgramP339ServiceLocator;
 use App\Http\Controllers\PHP8\P342DependencyInjection\ProgramP342DependencyInjection;
 use App\Http\Controllers\PHP8\P365Composite\ProgramP365Composite;
 use App\Http\Controllers\PHP8\P380Decorator\ProgramP380Decorator;
-use App\Http\Controllers\PHP8\P386Decorator\ProgramP386Decorator;
+use App\Http\Controllers\PHP8\P386Decorator\ProgramP386Chain;
 use App\Http\Controllers\PHP8\P389Facade\ProgramP389Facade;
 use App\Http\Controllers\PHP8\P395Interpreter\ProgramP395Interpreter;
 use App\Http\Controllers\PHP8\P415Observer\ProgramP415Observer;
@@ -59,6 +60,7 @@ Route::get('/slid_D', [OrderController::class, 'placeOnlineOrder']);
 /**
  * PHP8
  */
+Route::get('/PHP8/P244Abstract', [ProgramP244Abstract::class, 'index']);
 Route::get('/PHP8/P292Strategy', [ProgramP292Strategy::class, 'index']);
 Route::get('/PHP8/P299Notifier', [ProgramP299Notifier::class, 'index']);
 Route::get('/PHP8/P308Employee', [ProgramP308Employee::class, 'index']);
@@ -70,7 +72,7 @@ Route::get('/PHP8/P339ServiceLocator', [ProgramP339ServiceLocator::class, 'index
 Route::get('/PHP8/P342DependencyInjection', [ProgramP342DependencyInjection::class, 'index']);
 Route::get('/PHP8/P365Composite', [ProgramP365Composite::class, 'index']);
 Route::get('/PHP8/P380Decorator', [ProgramP380Decorator::class, 'index']);
-Route::get('/PHP8/P386Decorator', [ProgramP386Decorator::class, 'index']);
+Route::get('/PHP8/P386Chain', [ProgramP386Chain::class, 'index']);
 Route::get('/PHP8/P389Facade', [ProgramP389Facade::class, 'index']);
 Route::get('/PHP8/P395Interpreter', [ProgramP395Interpreter::class, 'index']);
 Route::get('/PHP8/P415Observer', [ProgramP415Observer::class, 'index']);

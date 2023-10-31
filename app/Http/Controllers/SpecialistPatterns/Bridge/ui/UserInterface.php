@@ -5,9 +5,11 @@ namespace App\Http\Controllers\SpecialistPatterns\Bridge\ui;
 use App\Http\Controllers\SpecialistPatterns\Bridge\platforms\Database;
 
 // Создаем класс UserInterface
+// Это абстракция и она должна содержать ссылку на реализацию, которая она будет использовать Database $db
 class UserInterface
 {
-    private $db; // Поле для хранения объекта базы данных
+    // Поле для хранения объекта базы данных
+    private Database $db;
 
     /**
      * Конструктор класса UserInterface.

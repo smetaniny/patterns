@@ -3,6 +3,7 @@ import static java.lang.System.out;
 
 import platforms.Database;
 
+// Это абстракция
 public class UserInterface {
     private Database db; // Поле для хранения объекта базы данных
 

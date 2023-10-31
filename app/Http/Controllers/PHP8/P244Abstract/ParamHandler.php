@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\PHP8\P244AbstractExample;
+namespace App\Http\Controllers\PHP8\P244Abstract;
 
 // Абстрактный класс ParamHandler, от которого наследуются XmlParamHandler и TextParamHandler.
 abstract class ParamHandler
@@ -9,7 +9,7 @@ abstract class ParamHandler
     protected string $source;      // Свойство для хранения источника.
 
     // Конструктор класса, принимает строку (источник) и устанавливает свойство $source.
-    public function construct(string $source)
+    public function __construct(string $source)
     {
         $this->source = $source;
     }

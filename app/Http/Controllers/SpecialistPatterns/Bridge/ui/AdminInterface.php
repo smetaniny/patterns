@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\SpecialistPatterns\Bridge\ui;
 
 
-// Создаем класс AdminInterface, который наследуется от UserInterface
 use App\Http\Controllers\SpecialistPatterns\Bridge\platforms\Database;
 use JetBrains\PhpStorm\Pure;
 
+// Создаем класс AdminInterface, который наследуется от UserInterface
 class AdminInterface extends UserInterface
 {
     /**

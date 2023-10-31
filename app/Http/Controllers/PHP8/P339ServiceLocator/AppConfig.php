@@ -40,7 +40,7 @@ class AppConfig
      * Получает единственный экземпляр AppConfig (синглтон).
      * @return AppConfig
      */
-    public static function getlnstance(): AppConfig
+    public static function getInstance(): AppConfig
     {
         if (is_null(self::$instance));
 
