@@ -1,55 +1,61 @@
+/**
+ * Типы для определения структуры маршрутов
+ */
+
 type TRouterOptions = {
-    baseUrl: string,
-    routes: RouterRecord[]
+    baseUrl: string,    // Базовый URL для маршрутов
+    routes: RouterRecord[]  // Массив маршрутов
 }
 
 type TRouterBaseRecord = {
-    path: string,
-    name?: string
+    path: string,    // Путь маршрута
+    name?: string    // Необязательное имя маршрута
 }
 
 type RouterComponentRecord = TRouterBaseRecord & {
-    component: object,
-    children?: RouterRecord[],
-    redirect?: never
+    component: object,    // Компонент, связанный с маршрутом
+    children?: RouterRecord[],  // Дочерние маршруты
+    redirect?: never  // Отсутствие перенаправления
 }
 
 type RouterRedirectRecord = TRouterBaseRecord & {
-    redirect: string,
-    component?: never
+    redirect: string,   // Строка перенаправления
+    component?: never   // Отсутствие компонента
 }
 
-type RouterRecord = RouterComponentRecord | RouterRedirectRecord;
+type RouterRecord = RouterComponentRecord | RouterRedirectRecord;  // Объединение двух типов маршрутов
 
+// Класс для маршрутизации
 class Router {
-    baseUrl: string;
-    routes: object[];
+    baseUrl: string;    // Базовый URL для маршрутов
+    routes: object[];   // Массив маршрутов (в данном случае, недостаточно информации)
 
-    constructor(options: TRouterOptions) {
-        this.baseUrl = options.baseUrl;
-        this.routes = options.routes;
+    constructor(options: TRouterOptions) {  // Конструктор класса, который принимает настройки маршрутизатора
+        this.baseUrl = options.baseUrl;  // Установка базового URL из переданных настроек
+        this.routes = options.routes;    // Установка списка маршрутов из переданных настроек
     }
 }
 
-const router = new Router({
-    baseUrl: '/',
-    routes: [
+// Пример создания маршрутизатора
+const router = new Router({  // Создание экземпляра маршрутизатора с указанными настройками
+    baseUrl: '/',  // Базовый URL для маршрутов
+    routes: [  // Список маршрутов
         {
-            path: '',
-            name: 'root',
-            redirect: '/home'
+            path: '',  // Путь маршрута (корневой)
+            name: 'root',  // Имя маршрута
+            redirect: '/home'  // Перенаправление на /home
         },
         {
-            path: '/home',
-            name: 'home',
-            component: {}
+            path: '/home',  // Путь маршрута
+            name: 'home',  // Имя маршрута
+            component: {}  // Компонент, связанный с маршрутом (здесь пустой объект)
         },
         {
-            path: '/office',
-            name: 'office',
-            component: {},
-            children: [
-                {path: '/home', component: {}}
+            path: '/office',  // Путь маршрута
+            name: 'office',  // Имя маршрута
+            component: {},  // Компонент, связанный с маршрутом (здесь пустой объект)
+            children: [  // Дочерние маршруты
+                {path: '/home', component: {}}  // Путь и компонент для дочернего маршрута
             ]
         }
     ]
