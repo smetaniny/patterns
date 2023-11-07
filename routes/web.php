@@ -31,6 +31,7 @@ use App\Http\Controllers\SpecialistPatterns\Adapter\AdapterClass\ProgramSpeciali
 use App\Http\Controllers\SpecialistPatterns\Adapter\AdapterObject\ProgramSpecialistAdapterObject;
 use App\Http\Controllers\SpecialistPatterns\Bridge\ProgramSpecialistBridge;
 use App\Http\Controllers\SpecialistPatterns\Builder\ProgramSpecialistBuilder;
+use App\Http\Controllers\SpecialistPatterns\Flyweight\ProgramSpecialistFlyweight;
 use App\Http\Controllers\SpecialistPatterns\LR\LR1\ProgramLR1;
 use App\Http\Controllers\SpecialistPatterns\LR\LR1SP\ProgramLR1SP;
 use app\Http\Controllers\SpecialistPatterns\Prototype\ProgramSpecialistPrototype;
@@ -95,6 +96,8 @@ Route::get('/specialistPatterns/singleton', [ProgramSpecialistSingleton::class, 
 Route::get('/specialistPatterns/adapterClass', [ProgramSpecialistAdapterClass::class, 'index']);
 Route::get('/specialistPatterns/adapterObject', [ProgramSpecialistAdapterObject::class, 'index']);
 Route::get('/specialistPatterns/bridge', [ProgramSpecialistBridge::class, 'index']);
+Route::get('/specialistPatterns/flyweight', [ProgramSpecialistFlyweight::class, 'index']);
+Route::get('/specialistPatterns/proxy', [ProgramSpecialistProxy::class, 'index']);
 
 
 

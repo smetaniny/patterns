@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\PHP8\P389Facade;
 
+use Illuminate\Http\UploadedFile;
+use Intervention\Image\Facades\Image;
+
 /**
  * Паттерн Facade - это структурный шаблон проектирования, который предоставляет унифицированный интерфейс для группы
  * интерфейсов в подсистеме. Фасад (Facade) позволяет упростить взаимодействие с комплексными системами, предоставляя
@@ -38,8 +41,6 @@ class ProgramP389Facade
 {
     public function index()
     {
-        // Метод index, который будет вызываться при обращении к этому контроллеру
-
         // Создаем экземпляр класса ProductFacade, передавая путь к файлу "facade.txt"
         $facade = new ProductFacade(base_path("App/Http/Controllers/PHP8/P389Facade/facade.txt"));
 

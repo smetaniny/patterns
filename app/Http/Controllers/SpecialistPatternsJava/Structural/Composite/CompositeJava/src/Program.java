@@ -1,5 +1,9 @@
 import widgets.*;
 
+/**
+* Шаблон используют если нужно дерево
+*
+*/
 public class Program {
 
     public static void main(String[] args) {

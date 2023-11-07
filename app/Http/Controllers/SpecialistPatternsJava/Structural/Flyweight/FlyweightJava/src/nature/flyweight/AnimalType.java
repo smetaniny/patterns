@@ -1,5 +1,7 @@
 package nature.flyweight;
 
 public enum AnimalType {
-	butterfly, ladybug, snail
+    butterfly,   // Тип: бабочка
+    ladybug,     // Тип: божья коровка
+    snail        // Тип: улитка
 }
