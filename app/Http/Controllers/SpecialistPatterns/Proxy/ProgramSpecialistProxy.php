@@ -10,7 +10,7 @@ namespace App\Http\Controllers\SpecialistPatterns\Proxy;
 class ProgramSpecialistProxy
 {
     /**
-     * В этом примере RealImage представляет реальное изображение, которое загружается при создании объекта. ProxyImage
+     * В этом примере RealImageProxy представляет реальное изображение, которое загружается при создании объекта. ProxyImageProxy
      * представляет заместитель, который загружает реальное изображение только при первом обращении к нему. При
      * последующих обращениях к тому же изображению, заместитель просто передает запрос реальному объекту, минуя
      * повторную загрузку.
@@ -19,8 +19,8 @@ class ProgramSpecialistProxy
     public function index()
     {
         // Пример использования паттерна "Заместитель"
-        $image1 = new ProxyImage("image1.jpg"); // Изображение еще не загружено
-        $image2 = new ProxyImage("image2.jpg"); // Изображение еще не загружено
+        $image1 = new ProxyImageProxy("image1.jpg"); // Изображение еще не загружено
+        $image2 = new ProxyImageProxy("image2.jpg"); // Изображение еще не загружено
 
         $image1->display(); // Загрузка и отображение изображения image1.jpg
         $image1->display(); // Отображение изображения image1.jpg (без повторной загрузки)

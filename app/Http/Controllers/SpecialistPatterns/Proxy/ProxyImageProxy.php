@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SpecialistPatterns\Proxy;
 
 // Заместитель (Proxy) для изображения
-class ProxyImage implements Image
+class ProxyImageProxy implements ImageProxy
 {
     private $realImage;
     private $filename;
@@ -16,7 +16,7 @@ class ProxyImage implements Image
     public function display()
     {
         if ($this->realImage == null) {
-            $this->realImage = new RealImage($this->filename);
+            $this->realImage = new RealImageProxy($this->filename);
         }
         $this->realImage->display();
     }

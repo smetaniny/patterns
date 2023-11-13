@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SpecialistPatterns\Proxy;
 
 // Реальный объект, представляющий изображение
-class RealImage implements Image
+class RealImageProxy implements ImageProxy
 {
     private $filename;
 

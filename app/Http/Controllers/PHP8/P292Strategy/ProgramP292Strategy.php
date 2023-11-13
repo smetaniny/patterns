@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\PHP8\P292Strategy;
 
+
+
 /**
  * Паттерн "Стратегия" (Strategy) - это поведенческий паттерн проектирования, который позволяет определить семейство
  * алгоритмов, инкапсулировать каждый из них и обеспечить их взаимозаменяемость. Этот паттерн позволяет клиентскому
@@ -41,6 +43,17 @@ class ProgramP292Strategy
 {
     public function index()
     {
+        try {
+            $img = Image::make('D:/file.jpg');
+            // Оптимизируем изображение.
+            $img->optimize();
+            $img->save();
+          dd($img->getSavePath());
+        } catch (FileNotFoundException | NotReadableException $e) {
+            dd($e);
+        }
+        dd($img);
+
         $lessons[] = new Seminar(4, new TimedCostStrategy(), "Цветы");
         $lessons[] = new Lecture(7, new FixedCostStrategy(), "Фамин Иван Иваныч");
         foreach ($lessons as $lesson) {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SpecialistPatterns\Proxy;
 
 // Интерфейс для объектов с изображением
-interface Image
+interface ImageProxy
 {
     public function display();
 }

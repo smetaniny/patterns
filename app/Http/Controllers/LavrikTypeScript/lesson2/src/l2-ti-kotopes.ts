@@ -33,7 +33,7 @@ let ibox: Array<C | D> = [];
 
 ibox.push({ a: 1, b: 2 });
 ibox.push({ b: 1, c: 2 });
-/* 
+/*
 type some = number | BigInt; */
 
 interface Cat {
