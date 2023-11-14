@@ -4,7 +4,7 @@ use App\Http\Controllers\DelegationFactorySolid\DelegationFactorySolidController
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
-use App\Http\Controllers\ParametricPolymorphism\ParametricPolymorphismController;
+use App\Http\Controllers\PolymorphismParametric\ParametricPolymorphismController;
 use App\Http\Controllers\PHP8\P244Abstract\ProgramP244Abstract;
 use App\Http\Controllers\PHP8\P292Strategy\ProgramP292Strategy;
 use App\Http\Controllers\PHP8\P299Notifier\ProgramP299Notifier;
@@ -59,6 +59,7 @@ Route::get('/solid_O', [ContactInfoStrategyController::class, 'index']);
 Route::get('/solid_D', [OrderController::class, 'placeOnlineOrder']);
 
 Route::get('/parametricPolymorphism', [ParametricPolymorphismController::class, 'index']);
+Route::get('/polymorphismStatic', [PolymorphismStaticController::class, 'index']);
 
 /**
  * PHP8

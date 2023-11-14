@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ParametricPolymorphism;
+namespace App\Http\Controllers\PolymorphismParametric;
 
 // Обобщенный класс с типовым параметром T
 // В PHP не поддерживается

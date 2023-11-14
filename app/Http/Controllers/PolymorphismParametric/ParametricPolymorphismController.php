@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ParametricPolymorphism;
+namespace App\Http\Controllers\PolymorphismParametric;
 
 class ParametricPolymorphismController
 {
