@@ -4,6 +4,7 @@ use App\Http\Controllers\DelegationFactorySolid\DelegationFactorySolidController
 use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
+use App\Http\Controllers\ParametricPolymorphism\ParametricPolymorphismController;
 use App\Http\Controllers\PHP8\P244Abstract\ProgramP244Abstract;
 use App\Http\Controllers\PHP8\P292Strategy\ProgramP292Strategy;
 use App\Http\Controllers\PHP8\P299Notifier\ProgramP299Notifier;
@@ -25,6 +26,7 @@ use App\Http\Controllers\PHP8\P436Command\ProgramP436Command;
 use App\Http\Controllers\PHP8\P443NullObject\ProgramP443NullObject;
 use App\Http\Controllers\PHP8\ParserInterpreter\ProgramParserInterpreter;
 use App\Http\Controllers\SOLID\D\Example2\OrderController;
+use App\Http\Controllers\SOLID\L2\SolidL2Controller;
 use App\Http\Controllers\SOLID\O\example2\ContactInfoStrategyController;
 use App\Http\Controllers\SpecialistPatterns\AbstractFactory\ProgramSpecialistAbstractFactory;
 use App\Http\Controllers\SpecialistPatterns\Adapter\AdapterClass\ProgramSpecialistAdapterClass;
@@ -37,11 +39,8 @@ use App\Http\Controllers\SpecialistPatterns\LR\LR1SP\ProgramLR1SP;
 use app\Http\Controllers\SpecialistPatterns\Prototype\ProgramSpecialistPrototype;
 use App\Http\Controllers\SpecialistPatterns\Singleton\ProgramSpecialistSingleton;
 use Illuminate\Support\Facades\Route;
-use PlatinaKostroma\ImageProcessor\Contracts\ImageProcessorInterface;
 
-Route::get('/', function (ImageProcessorInterface $imageProcessor) {
-    $imageProcessor->sanitizeFileName();
-});
+
 // Делегирование
 Route::get('/delegationController', [DelegationController::class, 'renderOutput']);
 // Паттерн проектирования
@@ -55,8 +54,11 @@ Route::get('/job', function () {
     App\Jobs\SendMessage::dispatch("TEST");
     return view('welcome');
 });
-Route::get('/slid_O', [ContactInfoStrategyController::class, 'index']);
-Route::get('/slid_D', [OrderController::class, 'placeOnlineOrder']);
+Route::get('/solid_L2', [SolidL2Controller::class, 'index']);
+Route::get('/solid_O', [ContactInfoStrategyController::class, 'index']);
+Route::get('/solid_D', [OrderController::class, 'placeOnlineOrder']);
+
+Route::get('/parametricPolymorphism', [ParametricPolymorphismController::class, 'index']);
 
 /**
  * PHP8
@@ -97,7 +99,7 @@ Route::get('/specialistPatterns/adapterClass', [ProgramSpecialistAdapterClass::c
 Route::get('/specialistPatterns/adapterObject', [ProgramSpecialistAdapterObject::class, 'index']);
 Route::get('/specialistPatterns/bridge', [ProgramSpecialistBridge::class, 'index']);
 Route::get('/specialistPatterns/flyweight', [ProgramSpecialistFlyweight::class, 'index']);
-Route::get('/specialistPatterns/proxy', [ProgramSpecialistProxy::class, 'index']);
+//Route::get('/specialistPatterns/proxy', [ProgramSpecialistProxy::class, 'index']);
 
 
 

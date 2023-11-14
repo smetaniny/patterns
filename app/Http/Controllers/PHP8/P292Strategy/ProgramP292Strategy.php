@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\PHP8\P292Strategy;
 
-
+use Smetaniny\LaravelImage\Facades\SMImage;
 
 /**
  * Паттерн "Стратегия" (Strategy) - это поведенческий паттерн проектирования, который позволяет определить семейство
@@ -43,16 +43,16 @@ class ProgramP292Strategy
 {
     public function index()
     {
-        try {
-            $img = Image::make('D:/file.jpg');
-            // Оптимизируем изображение.
-            $img->optimize();
-            $img->save();
-          dd($img->getSavePath());
-        } catch (FileNotFoundException | NotReadableException $e) {
-            dd($e);
-        }
-        dd($img);
+//        $img = SMImage::make('D:/file.jpg')
+//            ->optimize()
+//            ->save();
+        // Создание объекта изображения на основе данных, предоставленных UploadedFile.
+        $path = SMImage::make('D:/file.jpg')
+            ->resize(500, 400)
+            ->save()
+            ->getSavePath();
+
+        dd($path);
 
         $lessons[] = new Seminar(4, new TimedCostStrategy(), "Цветы");
         $lessons[] = new Lecture(7, new FixedCostStrategy(), "Фамин Иван Иваныч");

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b234350a661458240ef4a123fc485631",
+    "content-hash": "669feb93fe304feb2b96d765b65dd165",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3908,6 +3908,69 @@
                 }
             ],
             "time": "2023-11-08T05:53:05+00:00"
+        },
+        {
+            "name": "smetaniny/sm-laravel-image",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smetaniny/sm-laravel-image.git",
+                "reference": "4d4599aeb53d47aa8c98a857eb27ab24a8528911"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smetaniny/sm-laravel-image/zipball/4d4599aeb53d47aa8c98a857eb27ab24a8528911",
+                "reference": "4d4599aeb53d47aa8c98a857eb27ab24a8528911",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~9"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~7",
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.1-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Smetaniny\\LaravelImage\\LaravelImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Smetaniny\\LaravelImage\\Facades\\ImageFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Smetaniny\\LaravelImage\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Smetanin Sergey",
+                    "email": "sm.sergey.v@yandex.ru",
+                    "homepage": "https://smetaniny.ru/"
+                }
+            ],
+            "description": ":Обработка изображений laravel",
+            "homepage": "https://github.com/smetaniny/sm-laravel-image",
+            "keywords": [
+                "LaravelImage",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/smetaniny/sm-laravel-image/issues",
+                "source": "https://github.com/smetaniny/sm-laravel-image/tree/1.5.0"
+            },
+            "time": "2023-11-14T05:37:22+00:00"
         },
         {
             "name": "symfony/console",
