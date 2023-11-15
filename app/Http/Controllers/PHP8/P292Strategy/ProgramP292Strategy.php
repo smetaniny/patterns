@@ -43,16 +43,20 @@ class ProgramP292Strategy
 {
     public function index()
     {
-//        $img = SMImage::make('D:/file.jpg')
-//            ->optimize()
-//            ->save();
         // Создание объекта изображения на основе данных, предоставленных UploadedFile.
-        $path = SMImage::make('D:/file.jpg')
-            ->resize(500, 400)
+        $path1 = SMImage::make('D:/file.jpg')
+            ->crop(500, 500, 25, 50)
+            ->optimize()
             ->save()
             ->getSavePath();
 
-        dd($path);
+        $path2 = SMImage::make('https://gas-kvas.com/grafic/uploads/posts/2023-09/1695875615_gas-kvas-com-p-kartinki-khaski-18.jpg')
+            ->crop(500, 500, 25, 50)
+            ->optimize()
+            ->save()
+            ->getSavePath();
+
+        dd($path1, $path2);
 
         $lessons[] = new Seminar(4, new TimedCostStrategy(), "Цветы");
         $lessons[] = new Lecture(7, new FixedCostStrategy(), "Фамин Иван Иваныч");

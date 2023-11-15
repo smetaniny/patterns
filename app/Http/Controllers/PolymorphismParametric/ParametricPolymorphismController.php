@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\PolymorphismParametric;
 
+/**
+ * Параметрический полиморфизм
+ */
 class ParametricPolymorphismController
 {
     /**

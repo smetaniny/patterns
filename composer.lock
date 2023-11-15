@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "669feb93fe304feb2b96d765b65dd165",
+    "content-hash": "7281fa8086c29c899504cdd962611bfa",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3911,16 +3911,16 @@
         },
         {
             "name": "smetaniny/sm-laravel-image",
-            "version": "1.5.0",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smetaniny/sm-laravel-image.git",
-                "reference": "4d4599aeb53d47aa8c98a857eb27ab24a8528911"
+                "reference": "56f81ed141cfa0154b7b7257141d27359e35f4e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smetaniny/sm-laravel-image/zipball/4d4599aeb53d47aa8c98a857eb27ab24a8528911",
-                "reference": "4d4599aeb53d47aa8c98a857eb27ab24a8528911",
+                "url": "https://api.github.com/repos/smetaniny/sm-laravel-image/zipball/56f81ed141cfa0154b7b7257141d27359e35f4e1",
+                "reference": "56f81ed141cfa0154b7b7257141d27359e35f4e1",
                 "shasum": ""
             },
             "require": {
@@ -3968,9 +3968,9 @@
             ],
             "support": {
                 "issues": "https://github.com/smetaniny/sm-laravel-image/issues",
-                "source": "https://github.com/smetaniny/sm-laravel-image/tree/1.5.0"
+                "source": "https://github.com/smetaniny/sm-laravel-image/tree/1.0.0"
             },
-            "time": "2023-11-14T05:37:22+00:00"
+            "time": "2023-11-15T05:29:04+00:00"
         },
         {
             "name": "symfony/console",
@@ -9245,5 +9245,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
