@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Laravel\Nova\NovaCoreServiceProvider;
 use Smetaniny\LaravelImage\LaravelImageServiceProvider;
+use Smetaniny\SmLaravelAdmin\SmLaravelAdminServiceProvider;
 
 return [
 
@@ -197,6 +199,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ContactInfoServiceProvider::class,
         App\Providers\OrderServiceProvider::class,
+        SmLaravelAdminServiceProvider::class,
 
     ],
 
