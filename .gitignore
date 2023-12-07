@@ -3,9 +3,12 @@
 /public/hot
 /public/storage
 /storage/*.key
-# Игнорировать все из директории vendor, кроме vendor/laravel/nova
+# Игнорировать все из директории vendor
 /vendor/*
-!/vendor/laravel/nova
+
+# За исключением нужного пакета
+!/vendor/laravel/nova/
+
 
 .env
 .env.backup
