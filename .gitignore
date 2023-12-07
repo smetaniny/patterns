@@ -3,7 +3,10 @@
 /public/hot
 /public/storage
 /storage/*.key
-/vendor
+# Игнорировать все из директории vendor, кроме vendor/laravel/nova
+/vendor/*
+!/vendor/laravel/nova
+
 .env
 .env.backup
 .phpunit.result.cache

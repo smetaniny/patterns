@@ -196,10 +196,12 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ContactInfoServiceProvider::class,
         App\Providers\OrderServiceProvider::class,
         SmLaravelAdminServiceProvider::class,
+        Laravel\Nova\NovaCoreServiceProvider::class,
 
     ],
 
@@ -216,6 +218,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Nova' => Laravel\Nova\Nova::class,
     ])->toArray(),
 
 ];
