@@ -5,10 +5,14 @@ namespace Laravel\Nova\Contracts;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\TrashedStatus;
 
+/**
+ * Interface QueryBuilder
+ * Определяет контракт для построителя запросов, используемого в Laravel Nova.
+ */
 interface QueryBuilder
 {
     /**
-     * Build a "whereKey" query for the given resource.
+     * Применяет условие поиска по первичному ключу.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  string  $key
@@ -17,7 +21,7 @@ interface QueryBuilder
     public function whereKey($query, $key);
 
     /**
-     * Build a "search" query for the given resource.
+     * Применяет фильтрацию, сортировку и условие поиска к запросу.
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -28,11 +32,11 @@ interface QueryBuilder
      * @return $this
      */
     public function search(NovaRequest $request, $query, $search = null,
-                                      array $filters = [], array $orderings = [],
-                                      $withTrashed = TrashedStatus::DEFAULT);
+                           array $filters = [], array $orderings = [],
+                                       $withTrashed = TrashedStatus::DEFAULT);
 
     /**
-     * Set the "take" directly to Scout or Eloquent builder.
+     * Ограничивает количество записей, возвращаемых запросом.
      *
      * @param  int  $limit
      * @return $this
@@ -40,7 +44,7 @@ interface QueryBuilder
     public function take($limit);
 
     /**
-     * Defer setting a "limit" using query callback and only executed via Eloquent builder.
+     * Устанавливает лимит на количество записей.
      *
      * @param  int  $limit
      * @return $this
@@ -48,14 +52,14 @@ interface QueryBuilder
     public function limit($limit);
 
     /**
-     * Get the results of the search.
+     * Получает коллекцию результатов запроса.
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function get();
 
     /**
-     * Get a lazy collection for the given query by chunks of the given size.
+     * Получает ленивую коллекцию результатов запроса.
      *
      * @param  int  $chunkSize
      * @return \Illuminate\Support\LazyCollection
@@ -63,14 +67,14 @@ interface QueryBuilder
     public function lazy($chunkSize = 1000);
 
     /**
-     * Get a lazy collection for the given query.
+     * Получает ленивую коллекцию результатов запроса.
      *
      * @return \Illuminate\Support\LazyCollection
      */
     public function cursor();
 
     /**
-     * Get the paginated results of the query.
+     * Пагинирует результаты запроса.
      *
      * @param  int  $perPage
      * @return array{0: \Illuminate\Contracts\Pagination\Paginator, 1: int|null, 2: bool}
@@ -78,14 +82,14 @@ interface QueryBuilder
     public function paginate($perPage);
 
     /**
-     * Convert the query builder to an Eloquent query builder (skip using Scout).
+     * Возвращает запрос в базовом виде Eloquent.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function toBase();
 
     /**
-     * Convert the query builder to fluent query builder (skip using Scout).
+     * Возвращает запрос в базовом виде Query Builder.
      *
      * @return \Illuminate\Database\Query\Builder
      */

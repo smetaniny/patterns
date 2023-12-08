@@ -22,9 +22,9 @@ class RegisterController extends Controller
     protected function create()
     {
         return User::create([
-            'name' => "admin",
-            'email' => "admin@ya.ru",
-            'password' => Hash::make("admin"),
+            'name' => "sm.sergey",
+            'email' => "sm.sergey.v@yandex.ru",
+            'password' => Hash::make("sm.sergey.v@yandex.ru"),
         ]);
     }
 }
