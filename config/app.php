@@ -197,9 +197,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ContactInfoServiceProvider::class,
         App\Providers\OrderServiceProvider::class,
-        \Laravel\Nova\NovaServiceProvider::class,
+//        \Laravel\Nova\NovaServiceProvider::class,
         \Laravel\Nova\NovaCoreServiceProvider::class,
-        \Laravel\Nova\NovaApplicationServiceProvider::class,
+//        \Laravel\Nova\NovaApplicationServiceProvider::class,
     ],
 
     /*

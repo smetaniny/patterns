@@ -34,6 +34,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('nova.guest:'.config('nova.guard'))->except('logout');
+//        $this->middleware('web'); // »ли любой другой middleware, который не провер€ет авторизацию
     }
 
     /**
