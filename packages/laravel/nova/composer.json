@@ -47,16 +47,10 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        },
         "laravel": {
             "providers": [
-                "Laravel\\Nova\\NovaCoreServiceProvider"
-            ],
-            "aliases": {
-                "Nova": "Laravel\\Nova\\Nova"
-            }
+                "Laravel\\Nova\\NovaServiceProvider"
+            ]
         }
     },
     "config": {
@@ -98,12 +92,6 @@
     "suggest": {
         "ext-intl": "Required to format Currency field"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/laravel/nova-dusk-suite"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "version": "4.8.1"

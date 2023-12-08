@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "327a1937dca6f68a4fd0feda5a7ae108",
+    "content-hash": "f0f766680c58395fbe7004603c64cfaf",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1695,6 +1695,63 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2023-10-03T13:02:30+00:00"
+        },
+        {
+            "name": "laravel/nova",
+            "version": "dev-dev",
+            "dist": {
+                "type": "path",
+                "url": "D:/OSPanel/domains/patterns/packages/laravel/nova",
+                "reference": "d8e62ab737cc14826b82a5df842c11236eb2a2ca"
+            },
+            "require": {
+                "illuminate/support": "~9"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~7",
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Nova\\NovaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Nova": "Laravel\\Nova\\Facades\\Nova"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Nova\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Laravel\\Nova\\Tests\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Author Name",
+                    "email": "author@email.com",
+                    "homepage": "http://author.com"
+                }
+            ],
+            "description": ":package_description",
+            "homepage": "https://github.com/laravel/nova",
+            "keywords": [
+                "Laravel",
+                "Nova"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
         },
         {
             "name": "laravel/sanctum",
@@ -9484,8 +9541,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "laravel/nova": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
