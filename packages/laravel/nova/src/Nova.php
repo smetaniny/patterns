@@ -22,150 +22,154 @@ use Symfony\Component\Finder\Finder;
 
 class Nova
 {
-    use AuthorizesRequests;
-    use Concerns\HandlesRoutes;
-    use Concerns\InteractsWithActionEvent;
-    use Concerns\InteractsWithEvents;
+    use AuthorizesRequests;  // Используется для предоставления базовых методов авторизации.
+
+    use Concerns\HandlesRoutes;  // Возможно, содержит методы для обработки маршрутов.
+
+    use Concerns\InteractsWithActionEvent;  // Предположительно, обеспечивает взаимодействие с событиями, связанными с действиями.
+
+    use Concerns\InteractsWithEvents;  // Содержит методы для взаимодействия с событиями.
 
     /**
      * The registered dashboard names.
      *
      * @var array<int, \Laravel\Nova\Dashboard>
      */
-    public static $dashboards = [];
+    public static $dashboards = [];  // Зарегистрированные имена панелей инструментов.
 
     /**
      * The registered resource names.
      *
      * @var array<int, class-string<\Laravel\Nova\Resource>>
      */
-    public static $resources = [];
+    public static $resources = [];  // Зарегистрированные имена ресурсов.
 
     /**
      * An index of resource names keyed by the model name.
      *
      * @var array<class-string<\Illuminate\Database\Eloquent\Model>, class-string<\Laravel\Nova\Resource>>
      */
-    public static $resourcesByModel = [];
+    public static $resourcesByModel = [];  // Индекс имен ресурсов, сгруппированных по имени модели.
 
     /**
      * The callback used to create new users via the CLI.
      *
      * @var (\Closure(string, string, string):\Illuminate\Database\Eloquent\Model)|null
      */
-    public static $createUserCallback;
+    public static $createUserCallback;  // Функция обратного вызова для создания новых пользователей через CLI.
 
     /**
      * The callback used to gather new user information via the CLI.
      *
      * @var (\Closure(\Illuminate\Console\Command):array)|null
      */
-    public static $createUserCommandCallback;
+    public static $createUserCommandCallback;  // Функция обратного вызова для сбора информации о новом пользователе через CLI.
 
     /**
      * The callable that resolves the user's timezone.
      *
      * @var (\Closure(\Illuminate\Http\Request):?string)|null
      */
-    public static $userTimezoneCallback;
+    public static $userTimezoneCallback;  // Функция обратного вызова для определения временной зоны пользователя.
 
     /**
      * All of the registered Nova tools.
      *
      * @var array<int, \Laravel\Nova\Tool>
      */
-    public static $tools = [];
+    public static $tools = [];  // Зарегистрированные инструменты Nova.
 
     /**
      * All of the registered Nova tool scripts.
      *
      * @var array<int, \Laravel\Nova\Script>
      */
-    public static $scripts = [];
+    public static $scripts = [];  // Скрипты для всех зарегистрированных инструментов Nova.
 
     /**
      * All of the registered Nova tool CSS.
      *
      * @var array<int, \Laravel\Nova\Style>
      */
-    public static $styles = [];
+    public static $styles = [];  // Стили для всех зарегистрированных инструментов Nova.
 
     /**
      * The variables that should be made available on the Nova JavaScript object.
      *
      * @var array<string, mixed>
      */
-    public static $jsonVariables = [];
+    public static $jsonVariables = [];  // Переменные, которые должны быть доступны в объекте Nova JavaScript.
 
     /**
      * The callback used to report Nova's exceptions.
      *
      * @var (\Closure(\Throwable):void)|(callable(\Throwable):void)|null
      */
-    public static $reportCallback;
+    public static $reportCallback;  // Функция обратного вызова для обработки исключений Nova.
 
     /**
      * Indicates if Nova should register its migrations.
      *
      * @var bool
      */
-    public static $runsMigrations = true;
+    public static $runsMigrations = true;  // Указывает, следует ли регистрировать миграции Nova.
 
     /**
      * The translations that should be made available on the Nova JavaScript object.
      *
      * @var array<string, string>
      */
-    public static $translations = [];
+    public static $translations = [];  // Переводы, которые должны быть доступны в объекте Nova JavaScript.
 
     /**
      * The callback used to sort Nova resources in the sidebar.
      *
      * @var (\Closure(string):mixed)|null
      */
-    public static $sortCallback;
+    public static $sortCallback;  // Функция обратного вызова для сортировки ресурсов Nova в боковой панели.
 
     /**
      * The debounce amount to use when using global search.
      *
      * @var float
      */
-    public static $debounce = 0.5;
+    public static $debounce = 0.5;  // Время задержки при использовании глобального поиска.
 
     /**
      * The callback used to create Nova's main menu.
      *
      * @var (\Closure(\Illuminate\Http\Request, \Laravel\Nova\Menu\Menu):\Laravel\Nova\Menu\Menu|array)|null
      */
-    public static $mainMenuCallback;
+    public static $mainMenuCallback;  // Функция обратного вызова для создания основного меню Nova.
 
     /**
      * The callback used to create Nova's user menu.
      *
      * @var (\Closure(\Illuminate\Http\Request, \Laravel\Nova\Menu\Menu):\Laravel\Nova\Menu\Menu|array)|null
      */
-    public static $userMenuCallback;
+    public static $userMenuCallback;  // Функция обратного вызова для создания меню пользователя Nova.
 
     /**
      * The callback used to resolve Nova's footer.
      *
      * @var (\Closure(\Illuminate\Http\Request):string)|null
      */
-    public static $footerCallback;
+    public static $footerCallback;  // Функция обратного вызова для разрешения подвала Nova.
 
     /**
      * The initial path Nova should route to when visiting the base.
      *
      * @var string
      */
-    public static $initialPath = '/dashboards/main';
+    public static $initialPath = '/dashboards/main';  // Начальный путь, по которому Nova должна перенаправлять при посещении базового пути.
 
     /**
      * Indicates if Nova is being used to authenticate users.
      *
      * @var bool
      */
-    public static $withAuthentication = false;
+    public static $withAuthentication = false;  // Указывает, используется ли Nova для аутентификации пользователей.
+
 
     /**
      * Indicates if Nova is being used to reset passwords.

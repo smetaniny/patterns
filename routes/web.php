@@ -44,8 +44,18 @@ use App\Http\Controllers\SpecialistPatterns\LR\LR1\ProgramLR1;
 use App\Http\Controllers\SpecialistPatterns\LR\LR1SP\ProgramLR1SP;
 use app\Http\Controllers\SpecialistPatterns\Prototype\ProgramSpecialistPrototype;
 use App\Http\Controllers\SpecialistPatterns\Singleton\ProgramSpecialistSingleton;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
+
+Route::get('/cache_clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('clear-compiled');
+    return "All caches cleared!";
+});
 
 // Машинное обучение
 Route::get('/tinker', [ProgramTinkerController::class, 'index']);
