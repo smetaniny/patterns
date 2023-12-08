@@ -41,22 +41,37 @@ use Smetaniny\LaravelImage\Facades\SMImage;
  */
 class ProgramP292Strategy
 {
+    /**
+     * @throws \ImagickException
+     */
     public function index()
     {
+//        $img = SMImage::make('D:/file.jpg')
+//            ->optimize()
+//            ->save();
         // Создание объекта изображения на основе данных, предоставленных UploadedFile.
-        $path1 = SMImage::make('D:/file.jpg')
-            ->crop(500, 500, 25, 50)
-            ->optimize()
-            ->save()
-            ->getSavePath();
+        $image = SMImage::make("D:/file.jpg");
+        $image->resize(500, null);
+        $image->crop(300, 200, 50, 50);
+        $image->encode('jpg', 80);
+        $image->mirror('horizontal');
+        $image->blur(5);
+        $image->brightness(20);
+        $image->contrast(-10);
+        $image->grayscale();
+        $image->sharpen(5);
+        $text = 'Пример текста';
+        $font = public_path('/Montserrat-Black.ttf');
+        $image->textOverlay($text, 300, 300, $font, 44, '#FF0000');
+        $watermarkPath = public_path('/watermark.png');
+        $image->watermark($watermarkPath, 50, 100, 90);
+        $image->backup();
+        $image->reset();
+        $response = $image->response();
+        $stream = $image->stream();
+        $image->save();
 
-        $path2 = SMImage::make('https://gas-kvas.com/grafic/uploads/posts/2023-09/1695875615_gas-kvas-com-p-kartinki-khaski-18.jpg')
-            ->crop(500, 500, 25, 50)
-            ->optimize()
-            ->save()
-            ->getSavePath();
-
-        dd($path1, $path2);
+        dd($image->getSavePath(), $response, $stream );
 
         $lessons[] = new Seminar(4, new TimedCostStrategy(), "Цветы");
         $lessons[] = new Lecture(7, new FixedCostStrategy(), "Фамин Иван Иваныч");

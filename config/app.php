@@ -197,9 +197,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ContactInfoServiceProvider::class,
         App\Providers\OrderServiceProvider::class,
-        Smetaniny\SmLaravelAdmin\SmLaravelAdminServiceProvider::class,
-        Laravel\Nova\NovaApplicationServiceProvider::class,
-        Laravel\Nova\NovaServiceProvider::class,
         Laravel\Nova\NovaCoreServiceProvider::class,
 
     ],
