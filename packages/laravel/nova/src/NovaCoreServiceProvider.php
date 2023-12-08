@@ -34,30 +34,43 @@ class NovaCoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Вызываем событие boot для Nova и передаем класс BootNova для обработки
         Nova::booted(BootNova::class);
 
+        // Если приложение запущено в консольном режиме
         if ($this->app->runningInConsole()) {
+            // Регистрируем сервис-провайдер NovaServiceProvider
             $this->app->register(NovaServiceProvider::class);
         }
 
+        // Если конфигурация не кэширована, сливаем конфигурацию Nova из файла nova.php
         if (! $this->app->configurationIsCached()) {
             $this->mergeConfigFrom(__DIR__.'/../config/nova.php', 'nova');
         }
 
+        // Регистрируем middleware для группы маршрутов 'nova' и 'nova:api' с указанными middleware'ами
         Route::middlewareGroup('nova', config('nova.middleware', []));
         Route::middlewareGroup('nova:api', config('nova.api_middleware', []));
 
+        // Регистрируем middleware ServeNova для обработки запросов к Nova
         $this->app->make(HttpKernel::class)
-                    ->pushMiddleware(ServeNova::class);
+            ->pushMiddleware(ServeNova::class);
 
+        // После успешного разрешения NovaRequest (после обработки запроса)
         $this->app->afterResolving(NovaRequest::class, function ($request, $app) {
+            // Если NovaRequest не зарегистрирован в контейнере, регистрируем его
             if (! $app->bound(NovaRequest::class)) {
                 $app->instance(NovaRequest::class, $request);
             }
         });
 
+        // Регистрируем события Nova, подключаемые в методе registerEvents()
         $this->registerEvents();
+
+        // Регистрируем ресурсы Nova, подключаемые в методе registerResources()
         $this->registerResources();
+
+        // Регистрируем JSON-переменные Nova, подключаемые в методе registerJsonVariables()
         $this->registerJsonVariables();
     }
 
@@ -68,12 +81,15 @@ class NovaCoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Если константа NOVA_PATH не определена, определяем ее
         if (! defined('NOVA_PATH')) {
             define('NOVA_PATH', realpath(__DIR__.'/../'));
         }
 
+        // Регистрируем синглтон-экземпляр SessionImpersonator для интерфейса ImpersonatesUsers
         $this->app->singleton(ImpersonatesUsers::class, SessionImpersonator::class);
 
+        // Регистрируем привязку Builder к интерфейсу QueryBuilder
         $this->app->bind(QueryBuilder::class, function ($app, $parameters) {
             return new Builder(...$parameters);
         });
@@ -86,23 +102,29 @@ class NovaCoreServiceProvider extends ServiceProvider
      */
     protected function registerEvents()
     {
+        // Определяем события Nova, слушатели которых зарегистрированы в данном методе
         tap($this->app['events'], function ($event) {
+            // Обработчик для события Attempting (попытка аутентификации)
             $event->listen(Attempting::class, function () {
                 app(ImpersonatesUsers::class)->flushImpersonationData(request());
             });
 
+            // Обработчик для события Logout (выход из системы)
             $event->listen(Logout::class, function () {
                 app(ImpersonatesUsers::class)->flushImpersonationData(request());
             });
 
+            // Обработчик для события RequestReceived (получение запроса)
             $event->listen(RequestReceived::class, function ($event) {
+                // Сбрасываем состояние Nova и очищаем кэш
                 Nova::flushState();
-                // @phpstan-ignore-next-line
                 Cache::getInstance()->flush();
 
+                // Забываем экземпляр ImpersonatesUsers
                 $event->sandbox->forgetInstance(ImpersonatesUsers::class);
             });
 
+            // Обработчик для события RequestHandled (обработка запроса завершена)
             $event->listen(RequestHandled::class, function ($event) {
                 Container::getInstance()->forgetInstance(NovaRequest::class);
             });
@@ -116,13 +138,16 @@ class NovaCoreServiceProvider extends ServiceProvider
      */
     protected function registerResources()
     {
+        // Регистрируем пути к представлениям и переводам Nova
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova');
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'nova');
 
+        // Если Nova запускает миграции, регистрируем их
         if (Nova::runsMigrations()) {
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
 
+        // Регистрируем маршруты Nova, подключаемые в методе registerRoutes()
         $this->registerRoutes();
     }
 
@@ -133,7 +158,9 @@ class NovaCoreServiceProvider extends ServiceProvider
      */
     protected function registerRoutes()
     {
+        // Группируем маршруты Nova с указанными настройками
         Route::group($this->routeConfiguration(), function () {
+            // Подключаем маршруты API Nova из файла api.php
             $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         });
     }
@@ -145,6 +172,7 @@ class NovaCoreServiceProvider extends ServiceProvider
      */
     protected function routeConfiguration()
     {
+        // Возвращаем конфигурацию маршрутов Nova
         return [
             'domain' => config('nova.domain', null),
             'as' => 'nova.api.',
@@ -160,12 +188,12 @@ class NovaCoreServiceProvider extends ServiceProvider
      */
     protected function registerJsonVariables()
     {
+        // Обработчик события Nova::serving, который предоставляет переменные в JavaScript
         Nova::serving(function (ServingNova $event) {
-            // Load the default Nova translations.
-            Nova::translations(
-                lang_path('vendor/nova/'.app()->getLocale().'.json')
-            );
+            // Загружаем стандартные переводы Nova
+            Nova::translations(lang_path('vendor/nova/'.app()->getLocale().'.json'));
 
+            // Предоставляем переменные в JavaScript
             Nova::provideToScript([
                 'appName' => Nova::name() ?? config('app.name', 'Laravel Nova'),
                 'timezone' => config('app.timezone', 'UTC'),

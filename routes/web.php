@@ -48,6 +48,9 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 
+Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm']);
+
+
 Route::get('/cache_clear', function () {
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
@@ -141,8 +144,6 @@ Route::get('/packages/{filename}', function ($filename) {
 
     $path = "http://patterns/packages/test.jpg";
     $headers = get_headers($path);
-    dd($headers, File::exists($path));
-dd(file_exists($path));
     if (!file_exists($path)) {
         abort(404);
     }
