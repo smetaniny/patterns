@@ -5,20 +5,15 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\BelongsTo;
 
-class Articles extends Resource
+class ArticlesCategory extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Articles::class;
+    public static $model = \App\Models\ArticlesCategories::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -46,22 +41,6 @@ class Articles extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            Text::make('Title'),
-            Text::make('URL'),
-            Textarea::make('Description'),
-            Text::make('H1'),
-            Text::make('Image Preview', 'imgPreview'),
-
-            Textarea::make('Body'),
-            Textarea::make('Body HTML', 'bodyHtml'),
-
-            DateTime::make('Published Start'),
-            DateTime::make('Published End'),
-
-            Boolean::make('Status'),
-
-//            BelongsTo::make('Category', 'category', ArticlesCategory::class),
         ];
     }
 
