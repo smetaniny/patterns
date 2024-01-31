@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ac9f56a3b6152148abdcb892085d0cf",
+    "content-hash": "4049853888a0e25ec3415ac4940f1e54",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -5474,16 +5474,16 @@
         },
         {
             "name": "smetaniny/sm-laravel-admin",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smetaniny/sm-laravel-admin.git",
-                "reference": "4a06a3aa619d16eb85436cb58cbdae7564b2cea8"
+                "reference": "52d8df4b5d56b7174f829a430220f4a3d6e36c98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smetaniny/sm-laravel-admin/zipball/4a06a3aa619d16eb85436cb58cbdae7564b2cea8",
-                "reference": "4a06a3aa619d16eb85436cb58cbdae7564b2cea8",
+                "url": "https://api.github.com/repos/smetaniny/sm-laravel-admin/zipball/52d8df4b5d56b7174f829a430220f4a3d6e36c98",
+                "reference": "52d8df4b5d56b7174f829a430220f4a3d6e36c98",
                 "shasum": ""
             },
             "require": {
@@ -5528,9 +5528,9 @@
             ],
             "support": {
                 "issues": "https://github.com/smetaniny/sm-laravel-admin/issues",
-                "source": "https://github.com/smetaniny/sm-laravel-admin/tree/1.2.0"
+                "source": "https://github.com/smetaniny/sm-laravel-admin/tree/1.3.0"
             },
-            "time": "2023-12-04T05:08:17+00:00"
+            "time": "2023-12-11T04:02:16+00:00"
         },
         {
             "name": "smetaniny/sm-laravel-image",

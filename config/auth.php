@@ -48,6 +48,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin_users',
+        ],
     ],
 
     /*
@@ -78,10 +83,9 @@ return [
         //     'table' => 'users',
         // ],
 
-
         'admin_users' => [
             'driver' => 'eloquent',
-            'model' => UserAdmin::class,
+            'model' => \Smetaniny\SmLaravelAdmin\Models\UserAdmin::class,
         ],
     ],
 
