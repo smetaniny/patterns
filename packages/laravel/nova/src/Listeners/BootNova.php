@@ -7,10 +7,12 @@ use Laravel\Nova\NovaServiceProvider;
 use Laravel\Nova\Tools\Dashboard;
 use Laravel\Nova\Tools\ResourceManager;
 
+/**
+ *
+ */
 class BootNova
 {
     /**
-     * Handle the event.
      *
      * @param  mixed  $event
      * @return void
@@ -26,7 +28,6 @@ class BootNova
     }
 
     /**
-     * Boot the standard Nova resources.
      *
      * @return void
      */
@@ -38,7 +39,6 @@ class BootNova
     }
 
     /**
-     * Boot the standard Nova tools.
      *
      * @return void
      */

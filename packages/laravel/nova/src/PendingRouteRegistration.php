@@ -112,14 +112,19 @@ class PendingRouteRegistration
     }
 
     /**
-     * Handle the object's destruction and register the router route.
+     * Метод __destruct
+     *
+     * Этот метод является деструктором класса и вызывается при уничтожении объекта.
+     * В данном случае, если регистрация еще не выполнена, он вызывает метод register().
      *
      * @return void
      */
     public function __destruct()
     {
+        // Проверка, была ли регистрация выполнена. Если нет, вызывается метод register().
         if (! $this->registered) {
             $this->register();
         }
     }
+
 }

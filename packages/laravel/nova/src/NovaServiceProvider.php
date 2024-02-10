@@ -18,14 +18,15 @@ class NovaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            $this->registerPublishing();
-        }
-
-        $this->registerResources();
-        $this->registerCarbonMacros();
-        $this->registerCollectionMacros();
-        $this->registerRelationsMacros();
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
+//        if ($this->app->runningInConsole()) {
+//            $this->registerPublishing();
+//        }
+//
+//        $this->registerResources();
+//        $this->registerCarbonMacros();
+//        $this->registerCollectionMacros();
+//        $this->registerRelationsMacros();
     }
 
     /**

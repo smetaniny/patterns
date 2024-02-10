@@ -268,16 +268,21 @@ class Nova
     }
 
     /**
-     * Register the Nova routes.
+     * Метод routes
+     *
+     * Этот метод регистрирует маршруты Laravel Nova и возвращает объект PendingRouteRegistration.
      *
      * @return \Laravel\Nova\PendingRouteRegistration
      */
     public static function routes()
     {
+        // Регистрация промежуточного слоя для гостей Nova.
         Route::aliasMiddleware('nova.guest', RedirectIfAuthenticated::class);
 
+        // Возвращение объекта PendingRouteRegistration для дальнейшей конфигурации маршрутов.
         return new PendingRouteRegistration();
     }
+
 
     /**
      * Enable Nova's authentication functionality.

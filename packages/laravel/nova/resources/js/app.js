@@ -445,6 +445,7 @@ class Nova {
       }
 
       Inertia.visit(path.url, options || {})
+      Inertia.visit(path.url, options || {})
     }
   }
 
