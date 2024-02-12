@@ -6,7 +6,7 @@
     <p class="text-lg leading-normal">
       {{
         __(
-          "We're lost in space. The page you were trying to view does not exist."
+          "Я 404 ))"
         )
       }}
     </p>

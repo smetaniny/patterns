@@ -35,37 +35,37 @@ class NovaCoreServiceProvider extends ServiceProvider
     public function boot()
     {
         // Вызываем событие boot для Nova и передаем класс BootNova для обработки
-        Nova::booted(BootNova::class);
+//        Nova::booted(BootNova::class);
 
         // Если приложение запущено в консольном режиме
-        if ($this->app->runningInConsole()) {
-            // Регистрируем сервис-провайдер NovaServiceProvider
-            $this->app->register(NovaServiceProvider::class);
-        }
+//        if ($this->app->runningInConsole()) {
+//            // Регистрируем сервис-провайдер NovaServiceProvider
+//            $this->app->register(NovaServiceProvider::class);
+//        }
 
         // Если конфигурация не кэширована, сливаем конфигурацию Nova из файла nova.php
-        if (! $this->app->configurationIsCached()) {
-            $this->mergeConfigFrom(__DIR__.'/../config/nova.php', 'nova');
-        }
+//        if (! $this->app->configurationIsCached()) {
+//            $this->mergeConfigFrom(__DIR__.'/../config/nova.php', 'nova');
+//        }
 
-        // Регистрируем middleware для группы маршрутов 'nova' и 'nova:api' с указанными middleware'ами
+//        // Регистрируем middleware для группы маршрутов 'nova' и 'nova:api' с указанными middleware'ами
         Route::middlewareGroup('nova', config('nova.middleware', []));
         Route::middlewareGroup('nova:api', config('nova.api_middleware', []));
 
         // Регистрируем middleware ServeNova для обработки запросов к Nova
-        $this->app->make(HttpKernel::class)
-            ->pushMiddleware(ServeNova::class);
+//        $this->app->make(HttpKernel::class)
+//            ->pushMiddleware(ServeNova::class);
 
         // После успешного разрешения NovaRequest (после обработки запроса)
-        $this->app->afterResolving(NovaRequest::class, function ($request, $app) {
-            // Если NovaRequest не зарегистрирован в контейнере, регистрируем его
-            if (! $app->bound(NovaRequest::class)) {
-                $app->instance(NovaRequest::class, $request);
-            }
-        });
+//        $this->app->afterResolving(NovaRequest::class, function ($request, $app) {
+//            // Если NovaRequest не зарегистрирован в контейнере, регистрируем его
+//            if (! $app->bound(NovaRequest::class)) {
+//                $app->instance(NovaRequest::class, $request);
+//            }
+//        });
 
         // Регистрируем события Nova, подключаемые в методе registerEvents()
-        $this->registerEvents();
+//        $this->registerEvents();
 
         // Регистрируем ресурсы Nova, подключаемые в методе registerResources()
         $this->registerResources();
@@ -82,8 +82,8 @@ class NovaCoreServiceProvider extends ServiceProvider
     public function register()
     {
         // Если константа NOVA_PATH не определена, определяем ее
-        if (! defined('NOVA_PATH')) {
-            define('NOVA_PATH', realpath(__DIR__.'/../'));
+        if (!defined('NOVA_PATH')) {
+            define('NOVA_PATH', realpath(__DIR__ . '/../'));
         }
 
         // Регистрируем синглтон-экземпляр SessionImpersonator для интерфейса ImpersonatesUsers
@@ -139,13 +139,13 @@ class NovaCoreServiceProvider extends ServiceProvider
     protected function registerResources()
     {
         // Регистрируем пути к представлениям и переводам Nova
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova');
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'nova');
-
-        // Если Nova запускает миграции, регистрируем их
-        if (Nova::runsMigrations()) {
-            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        }
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nova');
+//        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'nova');
+//
+//        // Если Nova запускает миграции, регистрируем их
+//        if (Nova::runsMigrations()) {
+//            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+//        }
 
         // Регистрируем маршруты Nova, подключаемые в методе registerRoutes()
         $this->registerRoutes();
@@ -161,7 +161,7 @@ class NovaCoreServiceProvider extends ServiceProvider
         // Группируем маршруты Nova с указанными настройками
         Route::group($this->routeConfiguration(), function () {
             // Подключаем маршруты API Nova из файла api.php
-            $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         });
     }
 
@@ -191,7 +191,7 @@ class NovaCoreServiceProvider extends ServiceProvider
         // Обработчик события Nova::serving, который предоставляет переменные в JavaScript
         Nova::serving(function (ServingNova $event) {
             // Загружаем стандартные переводы Nova
-            Nova::translations(lang_path('vendor/nova/'.app()->getLocale().'.json'));
+            Nova::translations(lang_path('vendor/nova/' . app()->getLocale() . '.json'));
 
             // Предоставляем переменные в JavaScript
             Nova::provideToScript([

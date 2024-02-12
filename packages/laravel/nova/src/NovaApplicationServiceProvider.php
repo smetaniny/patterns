@@ -7,42 +7,59 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Exceptions\NovaExceptionHandler;
-
+/**
+ * Класс NovaApplicationServiceProvider
+ *
+ * Этот класс представляет собой поставщика сервисов Laravel Nova для настройки и инициализации различных компонентов.
+ */
 class NovaApplicationServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Инициализация сервиса.
      *
      * @return void
      */
     public function boot()
     {
+        // Настройка политик доступа (gate).
         $this->gate();
+
+        // Настройка маршрутов Nova.
         $this->routes();
 
+        // Обработка события ServingNova.
         Nova::serving(function (ServingNova $event) {
+            // Настройка авторизации Nova.
             $this->authorization();
+
+            // Регистрация обработчика исключений Nova.
             $this->registerExceptionHandler();
+
+            // Регистрация ресурсов Nova.
             $this->resources();
+
+            // Регистрация панелей управления Nova.
             Nova::dashboards($this->dashboards());
+
+            // Регистрация инструментов Nova.
             Nova::tools($this->tools());
         });
     }
 
     /**
-     * Register the Nova routes.
+     * Настройка маршрутов Nova.
      *
      * @return void
      */
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes();
     }
 
     /**
-     * Configure the Nova authorization services.
+     * Настройка авторизации Nova.
      *
      * @return void
      */
@@ -50,14 +67,12 @@ class NovaApplicationServiceProvider extends ServiceProvider
     {
         Nova::auth(function ($request) {
             return app()->environment('local') ||
-                   Gate::check('viewNova', [Nova::user($request)]);
+                Gate::check('viewNova', [Nova::user($request)]);
         });
     }
 
     /**
-     * Register the Nova gate.
-     *
-     * This gate determines who can access Nova in non-local environments.
+     * Настройка политик доступа (gate).
      *
      * @return void
      */
@@ -65,13 +80,13 @@ class NovaApplicationServiceProvider extends ServiceProvider
     {
         Gate::define('viewNova', function ($user) {
             return in_array($user->email, [
-                //
+                // Список адресов электронной почты с доступом к Nova.
             ]);
         });
     }
 
     /**
-     * Get the cards that should be displayed on the Nova dashboard.
+     * Возвращает массив панелей управления Nova.
      *
      * @return array
      */
@@ -81,7 +96,7 @@ class NovaApplicationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get the tools that should be listed in the Nova sidebar.
+     * Возвращает массив инструментов Nova.
      *
      * @return array
      */
@@ -91,7 +106,7 @@ class NovaApplicationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register Nova's custom exception handler.
+     * Регистрация обработчика исключений Nova.
      *
      * @return void
      */
@@ -101,7 +116,7 @@ class NovaApplicationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the application's Nova resources.
+     * Регистрация ресурсов Nova.
      *
      * @return void
      */
@@ -111,12 +126,12 @@ class NovaApplicationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register any application services.
+     * Регистрация сервиса.
      *
      * @return void
      */
     public function register()
     {
-        //
+        // Метод оставлен пустым, поскольку регистрация сервисов не требуется в данном случае.
     }
 }

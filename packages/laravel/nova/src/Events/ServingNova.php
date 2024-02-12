@@ -5,19 +5,25 @@ namespace Laravel\Nova\Events;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Http\Request;
 
+/**
+ * Класс ServingNova
+ *
+ * Этот класс представляет объект события, которое используется для уведомления о событии
+ * обслуживания запроса в Laravel Nova.
+ */
 class ServingNova
 {
     use Dispatchable;
 
     /**
-     * The request instance.
+     * Объект запроса.
      *
      * @var \Illuminate\Http\Request
      */
     public $request;
 
     /**
-     * Create a new event instance.
+     * Создание нового экземпляра события ServingNova.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return void
@@ -27,3 +33,4 @@ class ServingNova
         $this->request = $request;
     }
 }
+
