@@ -1,26 +1,22 @@
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full font-sans antialiased">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta name="theme-color" content="#fff"> <!-- Устанавливает цвет темы для браузера -->
-        <meta charset="utf-8"> <!-- Устанавливает кодировку документа -->
-        <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Устанавливает токен CSRF для безопасности форм -->
-        <meta name="viewport" content="width=device-width" />
-        <!-- Задает параметры просмотра на мобильных устройствах -->
-        <meta name="locale" content="{{ str_replace('_', '-', app()->getLocale()) }}" />
-        <!-- Устанавливает локаль приложения -->
-        {{--        <link rel="stylesheet" href="{{ mix('app.css', 'vendor/nova') }}">--}}
-        {{--        <script src="{{ mix('manifest.js', 'packages/smetaniny/sm-laravel-admin/public/manifest.js') }}" defer></script>--}}
-        {{--        <script src="{{ mix('vendor.js', 'vendor/smetaniny/sm-laravel-admin') }}" defer></script>--}}
-        {{--        <script src="{{ mix('app.js', 'vendor/smetaniny/sm-laravel-admin') }}" defer></script>--}}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{{--        <link rel="stylesheet" href="http://smpackages/packages/smetaniny/sm-laravel-admin/public/css/app.css">--}}
-        <script src="packages/smetaniny/sm-laravel-admin/public/manifest.js" defer></script>
-        <script src="packages/smetaniny/sm-laravel-admin/public/vendor.js" defer></script>
-        <script src="packages/smetaniny/sm-laravel-admin/public/app.js" defer></script>
+        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        <!-- Scripts -->
+        @routes
+        @viteReactRefresh
+        @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
+        @inertiaHead
     </head>
-    <body>
+    <body class="font-sans antialiased">
         @inertia
-        <div id="app">ssss</div>
     </body>
 </html>
-
-
