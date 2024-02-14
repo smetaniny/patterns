@@ -8,21 +8,21 @@ use App\Http\Controllers\Controller;
 
 class TradingBotController extends Controller
 {
-//    private $accessToken = "CAEQwqW7ARoYututz/AooiR0JUgQiLMVDNj9WWOOfNay";
-    private $accessToken = "CAEQxKW7ARoYrij8j7RgG9H/cQFJ1EOfoA5aUrUGm2n2";
+    private $accessToken = "CAEQwqW7ARoYututz/AooiR0JUgQiLMVDNj9WWOOfNay";
+//    private $accessToken = "CAEQxKW7ARoYrij8j7RgG9H/cQFJ1EOfoA5aUrUGm2n2";
 
     public function executeBot()
     {
-        $symbol = "AAPL"; // Пример символа акции (Apple)
-        $timeframe = "D1"; // Дневной таймфрейм
+        $symbol = "AAPL"; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (Apple)
+        $timeframe = "D1"; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         $candles = $this->getDayCandles($symbol, $timeframe);
 
         if ($candles) {
             $action = $this->analyzeCandles($candles);
             $this->placeOrder($action, $symbol);
-            return response()->json(["message" => "Бот успешно выполнен"], 200);
+            return response()->json(["message" => "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"], 200);
         } else {
-            return response()->json(["error" => "Не удалось получить данные свечей"], 500);
+            return response()->json(["error" => "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"], 500);
         }
     }
 
@@ -30,13 +30,13 @@ class TradingBotController extends Controller
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $this->accessToken
-        ])->get("https://trade-api.finam.ru/public/api/v1/day-candles?symbol=$symbol&timeframe=$timeframe");
+        ])->get("https://trade-api.finam.ru/api/v1/access-tokens/check");
 
-        // Проверка успешности выполнения запроса
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if ($response->successful()) {
             return $response->json();
         } else {
-            // Вывод информации об ошибке в случае неудачного запроса
+            // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             dd($response->status(), $response->body());
             return null;
         }
@@ -45,9 +45,9 @@ class TradingBotController extends Controller
     private function analyzeCandles($candles)
     {
         if ($candles) {
-            $lastCandle = end($candles); // Берем последнюю свечу
-            $openPrice = $lastCandle['o']; // Цена открытия
-            $closePrice = $lastCandle['c']; // Цена закрытия
+            $lastCandle = end($candles); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+            $openPrice = $lastCandle['o']; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            $closePrice = $lastCandle['c']; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if ($closePrice > $openPrice) {
                 return "buy";
             } elseif ($closePrice < $openPrice) {
@@ -62,9 +62,9 @@ class TradingBotController extends Controller
 
     private function placeOrder($action, $symbol)
     {
-        // Здесь должен быть код для создания заявки, используя API Finam
-        // В данном примере просто выводим сообщение
-        \Log::info("Выполняем действие '$action' для инструмента '$symbol'");
+        // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ API Finam
+        // пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        \Log::info("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '$action' пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '$symbol'");
     }
 }
 
