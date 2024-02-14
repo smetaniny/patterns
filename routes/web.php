@@ -47,6 +47,7 @@ use App\Http\Controllers\SpecialistPatterns\Singleton\ProgramSpecialistSingleton
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
+use Inertia\Inertia;
 
 Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm']);
 
@@ -164,4 +165,7 @@ Route::get('/packages/{filename}', function ($filename) {
 Route::get('/execute-bot', [\App\Http\Controllers\Finam\TradingBotController::class, 'executeBot']);
 
 
+Route::get('/', function () {
+    return Inertia::render('Welcome');
+})->name('welcome');
 
