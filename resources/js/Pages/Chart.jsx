@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -9,8 +9,8 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js'
-import { Chart } from 'react-chartjs-2'
-
+import { Line } from 'react-chartjs-2';
+import 'chartjs-plugin-streaming';
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -21,82 +21,72 @@ ChartJS.register(
     Legend
 )
 
-const MyChart = () => {
-    const candles = [
-        {
-            date: "2022-05-25",
-            open: {
-                num: 12412,
-                scale: 2
-            },
-            close: {
-                num: 12415,
-                scale: 2
-            },
-            high: {
-                num: 1255,
-                scale: 1
-            },
-            low: {
-                num: 1205,
-                scale: 1
-            },
-            volume: 53466830
-        },
-        {
-            date: "2022-05-26",
-            open: {
-                num: 12481,
-                scale: 2
-            },
-            close: {
-                num: 123,
-                scale: 0
-            },
-            high: {
-                num: 12599,
-                scale: 2
-            },
-            low: {
-                num: 122,
-                scale: 0
-            },
-            volume: 51897210
-        }
-    ];
-
-    // Создаем массив меток и данных из массива свечей
-    const labels = candles.map(candle => candle.date);
-    const datasetData = candles.map(candle => candle.close.num);
-
-    const data = {
-        labels: labels,
-        datasets: [
-            {
-                label: 'Close Price',
-                data: datasetData,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+class RealtimeChart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            chartData: {
+                datasets: [{
+                    label: 'Dataset 1',
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    lineTension: 0,
+                    borderDash: [8, 4],
+                    data: []
+                }, {
+                    label: 'Dataset 2',
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    data: []
+                }]
             }
-        ]
+        };
+    }
+
+    componentDidMount() {
+        this.addRandomData();
+    }
+
+    addRandomData = () => {
+        setInterval(() => {
+            const { chartData } = this.state;
+            chartData.datasets.forEach(dataset => {
+                dataset.data.push({
+                    x: Date.now(),
+                    y: Math.random()
+                });
+            });
+            this.setState({ chartData });
+        }, 2000);
     };
 
-    const options = {
-        scales: {
-            x: {
-                type: 'category'
-            }
-        }
-    };
+    render() {
+        return (
+            <div className="chart-container">
+                <Line
+                    data={this.state.chartData}
+                    options={{
+                        scales: {
+                            xAxes: [{
+                                type: 'realtime',
+                                realtime: {
+                                    delay: 2000,
+                                    onRefresh: chart => {
+                                        chart.data.datasets.forEach(dataset => {
+                                            dataset.data.push({
+                                                x: Date.now(),
+                                                y: Math.random()
+                                            });
+                                        });
+                                    }
+                                }
+                            }]
+                        }
+                    }}
+                />
+            </div>
+        );
+    }
+}
 
-    return (
-        <Chart
-            type="line"
-            data={data}
-            options={options}
-        />
-    );
-};
-
-export default MyChart;
+export default RealtimeChart;
