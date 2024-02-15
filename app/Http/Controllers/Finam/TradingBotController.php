@@ -15,23 +15,21 @@ class TradingBotController extends Controller
     {
         $symbol = "SBER"; // Символ акции (Apple)
         $timeframe = "D1"; // Временной интервал
-        $candles = $this->getDayCandles($symbol, $timeframe);
+        $intervalFrom = "2022-05-25";
+        $intervalTo = "2023-05-25";
+        $intervalCount = 100;
+        // Обработка данных
+        $candles = $this->getDayCandles($symbol, $timeframe, $intervalFrom, $intervalTo, $intervalCount);
 
-        if ($candles) {
-            dd($candles['data']['candles'][0]);
-                $action = $this->analyzeCandles($candles);
-            $this->placeOrder($action, $symbol);
-            return response()->json(["message" => "Сделка успешно выполнена"], 200);
-        } else {
-            return response()->json(["error" => "Не удалось получить данные свечей"], 500);
-        }
+        return response()->json($candles);
     }
 
-    private function getDayCandles($symbol, $timeframe)
+    private function getDayCandles($symbol, $timeframe, $intervalFrom, $intervalTo, $intervalCount)
     {
         $response = Http::withHeaders([
             'X-Api-Key' => $this->accessToken
-        ])->get("https://trade-api.finam.ru/public/api/v1/day-candles?SecurityBoard=TQBR&SecurityCode=SBER&TimeFrame=D1&Interval.From=2022-05-25&Interval.To=2023-05-25&Interval.Count=100");
+        ])->get("https://trade-api.finam.ru/public/api/v1/day-candles?SecurityBoard=TQBR&SecurityCode=$symbol&TimeFrame=$timeframe&Interval.From=$intervalFrom&Interval.To=$intervalTo&Interval.Count=$intervalCount");
+
 
         // Проверка успешного получения данных свечей
         if ($response->successful()) {
@@ -41,30 +39,5 @@ class TradingBotController extends Controller
             dd($response->status(), $response->body());
             return null;
         }
-    }
-
-    private function analyzeCandles($candles)
-    {
-        if ($candles) {
-            $lastCandle = end($candles); // Получение последней свечи
-            $openPrice = $lastCandle['o']; // Цена открытия
-            $closePrice = $lastCandle['c']; // Цена закрытия
-            if ($closePrice > $openPrice) {
-                return "buy";
-            } elseif ($closePrice < $openPrice) {
-                return "sell";
-            } else {
-                return "hold";
-            }
-        } else {
-            return "no_data";
-        }
-    }
-
-    private function placeOrder($action, $symbol)
-    {
-        // Выполнение сделки или отправка заказа через API Finam
-        // И регистрация действия в логе приложения
-        Log::info("Выполнение сделки '$action' для актива '$symbol'");
     }
 }
