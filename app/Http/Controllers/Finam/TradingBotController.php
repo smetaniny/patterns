@@ -21,6 +21,12 @@ class TradingBotController extends Controller
         // Обработка данных
         $candles = $this->getDayCandles($symbol, $timeframe, $intervalFrom, $intervalTo, $intervalCount);
 
+        // Рассчитываем скользящее среднее для закрытых цен за 10 дней
+//        $movingAverage = $this->calculateMovingAverage($candles, 10);
+        $calculateEMA10 = $this->calculateEMA($candles, 10);
+        $calculateEMA40 = $this->calculateEMA($candles, 40);
+       dd( $this->findCrossOvers($calculateEMA10, $calculateEMA40));
+
         return response()->json($candles);
     }
 
@@ -29,7 +35,6 @@ class TradingBotController extends Controller
         $response = Http::withHeaders([
             'X-Api-Key' => $this->accessToken
         ])->get("https://trade-api.finam.ru/public/api/v1/day-candles?SecurityBoard=TQBR&SecurityCode=$symbol&TimeFrame=$timeframe&Interval.From=$intervalFrom&Interval.To=$intervalTo&Interval.Count=$intervalCount");
-
 
         // Проверка успешного получения данных свечей
         if ($response->successful()) {
@@ -40,4 +45,77 @@ class TradingBotController extends Controller
             return null;
         }
     }
+
+    private function calculateMovingAverage($candles, $period)
+    {
+        // Извлекаем закрытые цены из массива свечей
+        $closePrices = array_column($candles['data']['candles'], 'close', 'date');
+        $movingAverage = [];
+
+        // Получаем ключи (даты) и значения (цены) закрытых цен
+        $dates = array_keys($closePrices);
+        $prices = array_values($closePrices);
+
+        // Вычисляем скользящее среднее для каждой точки данных
+        for ($i = $period - 1; $i < count($prices); $i++) {
+            $sum = 0;
+            for ($j = $i; $j > $i - $period; $j--) {
+                $sum += $prices[$j]['num'];
+            }
+            $movingAverage[$dates[$i]] = $sum / $period;
+        }
+
+        dd($movingAverage);
+
+        return $movingAverage;
+    }
+
+    private function calculateEMA($candles, $period)
+    {
+        $closePrices = [];
+        foreach ($candles['data']['candles'] as $candle) {
+            $closePrices[$candle['date']] = $candle['close']['num'];
+        }
+        $ema = [];
+
+        // Находим первую доступную дату и устанавливаем ее значение цены закрытия в качестве начального значения EMA
+        $firstDate = array_key_first($closePrices);
+        $ema[$firstDate] = $closePrices[$firstDate];
+
+        // Рассчет коэффициента сглаживания
+        $alpha = 2 / ($period + 1);
+
+        // Вычисление EMA для каждого последующего дня
+        $dates = array_keys($closePrices);
+        for ($i = 1; $i < count($dates); $i++) {
+            $currentDate = $dates[$i];
+            $ema[$currentDate] = ($closePrices[$currentDate] - $ema[$dates[$i - 1]]) * $alpha + $ema[$dates[$i - 1]];
+        }
+
+        return $ema;
+    }
+
+    private function findCrossOvers($ema10, $ema40)
+    {
+        // Получаем список дат
+        $dates = array_keys($ema10);
+
+        // Инициализируем массив для хранения сигналов пересечения
+        $crossOvers = [];
+
+        // Проходимся по каждой дате
+        foreach ($dates as $date) {
+            // Проверяем пересечение EMA 10 и EMA 40 для текущей даты
+            if ($ema10[$date] > $ema40[$date]) {
+                // EMA 10 пересекла EMA 40 снизу вверх
+                $crossOvers[$date] = 'EMA10 crossed above EMA40';
+            } elseif ($ema10[$date] < $ema40[$date] ) {
+                // EMA 10 пересекла EMA 40 сверху вниз
+                $crossOvers[$date] = 'EMA10 crossed below EMA40';
+            }
+        }
+
+        return $crossOvers;
+    }
+
 }
