@@ -162,7 +162,7 @@ Route::get('/packages/{filename}', function ($filename) {
 /**
  * Finam
  */
-Route::get('/execute-bot', [\App\Http\Controllers\Finam\TradingBotController::class, 'executeBot']);
+Route::get('/bot', [\App\Http\Controllers\Finam\TradingBotController::class, 'executeBot']);
 
 
 Route::get('/', function () {

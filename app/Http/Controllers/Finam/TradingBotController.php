@@ -10,16 +10,18 @@ use Illuminate\Support\Facades\Log;
 class TradingBotController extends Controller
 {
     private $accessToken = "CAEQwqW7ARoYututz/AooiR0JUgQiLMVDNj9WWOOfNay";
+//    private $accessToken = "CAEQwqW7ARoYututz/AooiR0JUgQiLMVDNj9WWOOfNay";
 
     public function executeBot()
     {
-        $symbol = "SBER"; // Символ акции (Apple)
+        $securityBoard = "FUT"; // Символ акции (Apple)
+        $symbol = "SVH4"; // Символ акции (Apple)
         $timeframe = "D1"; // Временной интервал
-        $intervalFrom = "2022-05-25";
-        $intervalTo = "2023-05-25";
+        $intervalFrom = "2024-01-15";
+        $intervalTo = "2024-02-16";
         $intervalCount = 100;
         // Обработка данных
-        $candles = $this->getDayCandles($symbol, $timeframe, $intervalFrom, $intervalTo, $intervalCount);
+        $candles = $this->getDayCandles($symbol, $timeframe, $intervalFrom, $intervalTo, $intervalCount, $securityBoard);
 
         // Рассчитываем скользящее среднее для закрытых цен за 10 дней
 //        $movingAverage = $this->calculateMovingAverage($candles, 10);
@@ -30,12 +32,15 @@ class TradingBotController extends Controller
         return response()->json($candles);
     }
 
-    private function getDayCandles($symbol, $timeframe, $intervalFrom, $intervalTo, $intervalCount)
+    private function getDayCandles($symbol, $timeframe, $intervalFrom, $intervalTo, $intervalCount, $securityBoard)
     {
         $response = Http::withHeaders([
             'X-Api-Key' => $this->accessToken
-        ])->get("https://trade-api.finam.ru/public/api/v1/day-candles?SecurityBoard=TQBR&SecurityCode=$symbol&TimeFrame=$timeframe&Interval.From=$intervalFrom&Interval.To=$intervalTo&Interval.Count=$intervalCount");
-
+        ])->get("https://trade-api.finam.ru/public/api/v1/day-candles?SecurityBoard=$securityBoard&SecurityCode=$symbol&TimeFrame=$timeframe&Interval.From=$intervalFrom&Interval.To=$intervalTo&Interval.Count=$intervalCount");
+dd($response->json());
+//        $response = Http::withHeaders([
+//            'X-Api-Key' => $this->accessToken
+//        ])->get("https://trade-api.finam.ru/public/api/v1/securities");
         // Проверка успешного получения данных свечей
         if ($response->successful()) {
             return $response->json();
@@ -74,6 +79,7 @@ class TradingBotController extends Controller
     {
         $closePrices = [];
         foreach ($candles['data']['candles'] as $candle) {
+            dd($candle);
             $closePrices[$candle['date']] = $candle['close']['num'];
         }
         $ema = [];
@@ -89,18 +95,20 @@ class TradingBotController extends Controller
         $dates = array_keys($closePrices);
         for ($i = 1; $i < count($dates); $i++) {
             $currentDate = $dates[$i];
+            // Рассчитываем EMA используя предыдущее значение EMA и текущую цену
             $ema[$currentDate] = ($closePrices[$currentDate] - $ema[$dates[$i - 1]]) * $alpha + $ema[$dates[$i - 1]];
         }
 
+        dd($ema);
         return $ema;
     }
 
     private function findCrossOvers($ema10, $ema40)
     {
-        // Получаем список дат
-        $dates = array_keys($ema10);
+        // Получаем список дат, которые есть в обоих массивах
+        $dates = array_intersect(array_keys($ema10), array_keys($ema40));
 
-        // Инициализируем массив для хранения сигналов пересечения
+        // Инициализируем массив для хранения дат пересечений
         $crossOvers = [];
 
         // Проходимся по каждой дате
@@ -108,14 +116,16 @@ class TradingBotController extends Controller
             // Проверяем пересечение EMA 10 и EMA 40 для текущей даты
             if ($ema10[$date] > $ema40[$date]) {
                 // EMA 10 пересекла EMA 40 снизу вверх
-                $crossOvers[$date] = 'EMA10 crossed above EMA40';
-            } elseif ($ema10[$date] < $ema40[$date] ) {
+                $crossOvers[$date] = 'EMA 10 пересекла EMA 40 снизу вверх';
+            } elseif ($ema10[$date] < $ema40[$date]) {
                 // EMA 10 пересекла EMA 40 сверху вниз
-                $crossOvers[$date] = 'EMA10 crossed below EMA40';
+                $crossOvers[$date] = 'EMA 10 пересекла EMA 40 сверху вниз';
             }
         }
 
         return $crossOvers;
     }
+
+
 
 }
