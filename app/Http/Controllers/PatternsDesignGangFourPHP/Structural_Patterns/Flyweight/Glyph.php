@@ -7,24 +7,14 @@ namespace App\Http\Controllers\PatternsDesignGangFourPHP\Structural_Patterns\Fly
  * Он определяет общие операции над глифами, такие как отрисовка, установка и получение шрифта, а также навигация по
  * глифам. Класс содержит виртуальные методы, которые подлежат реализации в производных классах.
  */
+
 class Glyph
 {
-    // Конструктор
-    protected function __construct()
-    {
-        echo "Glyph::Glyph()" . PHP_EOL;
-    }
-
-    // Деструктор
-    public function __destruct()
-    {
-        echo "Glyph::~Glyph()" . PHP_EOL;
-    }
 
     // Метод для отрисовки глифа
     public function draw($window, $context): void
     {
-        echo "Glyph::Draw(Window*, GlyphContext&)" . PHP_EOL;
+       Draw::render(new Window(), new GlyphContext());
     }
 
     // Методы для работы со шрифтом
@@ -73,3 +63,5 @@ class Glyph
         echo "void Glyph::Remove(GlyphContext&)" . PHP_EOL;
     }
 }
+
+
