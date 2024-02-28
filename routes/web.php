@@ -5,6 +5,7 @@ use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
 use App\Http\Controllers\MO\ProgramTinkerController;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Iterator\MainIterator;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Observer\MainObserver;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\ObserverPlatina\MainObserverPlatina;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\Main;
@@ -183,3 +184,6 @@ Route::get('/patternsDesignGangFour/strategy', [MainStrategy::class, 'index']);
 // Уведомления наблюдателей (клиентов) о новых поступлениях в магазине
 Route::get('/patternsDesignGangFour/observerPlatina', [MainObserverPlatina::class, 'index']);
 Route::get('/patternsDesignGangFour/observer', [MainObserver::class, 'index']);
+
+//
+Route::get('/patternsDesignGangFour/iterator', [MainIterator::class, 'index']);
