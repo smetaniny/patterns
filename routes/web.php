@@ -176,8 +176,10 @@ Route::get('/', function () {
 /**
  * PatternsDesignGangFour
  */
-Route::get('/patternsDesignGangFour/strategy', [MainStrategy::class, 'index']);
+// Создания карточек товаров с различными способами отображения
 Route::get('/patternsDesignGangFour/strategyPlatina', [MainStrategyPlatina::class, 'index']);
+Route::get('/patternsDesignGangFour/strategy', [MainStrategy::class, 'index']);
 
-Route::get('/patternsDesignGangFour/observer', [MainObserver::class, 'index']);
+// Уведомления наблюдателей (клиентов) о новых поступлениях в магазине
 Route::get('/patternsDesignGangFour/observerPlatina', [MainObserverPlatina::class, 'index']);
+Route::get('/patternsDesignGangFour/observer', [MainObserver::class, 'index']);
