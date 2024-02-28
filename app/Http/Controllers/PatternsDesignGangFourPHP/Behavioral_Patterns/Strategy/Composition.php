@@ -7,61 +7,58 @@ namespace App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Str
  */
 class Composition
 {
-    /**
-     * @var Compositor Ссылка на объект композитора.
-     */
-    private $compositor;
-
-    /**
-     * @var Component[] Массив компонентов.
-     */
-    private $components;
-
-    /**
-     * @var int Количество компонентов.
-     */
-    private $componentCount;
-
-    /**
-     * @var int Ширина линии композиции.
-     */
-    private $lineWidth;
-
-    /**
-     * @var int[] Позиции разрывов линий в компонентах.
-     */
-    private $lineBreaks;
-
-    /**
-     * @var int Количество линий.
-     */
-    private $lineCount;
+    // Композитор
+    protected Compositor $compositor;
+    // Ширина линии
+    protected int $lineWidth = 0; // Инициализируем значение ширины линии
+    // Список компонентов
+    protected array $components = [];
 
     /**
      * Конструктор класса Composition.
      *
-     * @param Compositor $compositor Ссылка на объект композитора.
+     * @param Compositor $compositor
      */
     public function __construct(Compositor $compositor)
     {
+        // Устанавливаем композитор
         $this->compositor = $compositor;
     }
 
     /**
-     * Метод для ремонта композиции.
+     * Метод для добавления компонентов.
+     *
+     * @param $component
+     */
+    public function addComponent($component)
+    {
+        // Добавляем компонент в список
+        $this->components[] = $component;
+    }
+
+    /**
+     * Метод для восстановления композиции.
      */
     public function repair()
     {
-        // Подготовка массивов с желаемыми размерами компонентов
-        // ...
+        // Подготавливаем массивы с размерами компонентов
+        $natural = [];
+        // Подготавливаем массивы с коэффициентами удлинения компонентов
+        $stretchability = [];
+        // Подготавливаем массивы с коэффициентами сжатия компонентов
+        $shrinkability = [];
+        // Получаем количество компонентов
+        $componentCount = count($this->components);
+        // Подготавливаем массив для хранения местоположения разрывов
+        $breaks = [];
 
-        // Определение местоположения разрывов:
+        // Определяем местоположение переносов строк
         $breakCount = $this->compositor->compose(
             $natural, $stretchability, $shrinkability,
             $componentCount, $this->lineWidth, $breaks
         );
 
-        // Расположение компонентов в соответствии с разрывами
-        // ...
+        // Выводим количество разрывов
+        echo "Количество разрывов: $breakCount<br />";
     }
 }

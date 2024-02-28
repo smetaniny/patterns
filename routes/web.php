@@ -5,6 +5,9 @@ use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
 use App\Http\Controllers\MO\ProgramTinkerController;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\Main;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\Strategy;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\StrategyPlatina\MainPlatina;
 use App\Http\Controllers\Polymorphism\AdHocPolymorphism\ProgramAdHocPolymorphismController;
 use App\Http\Controllers\Polymorphism\CompileTimePolymorphism\ProgramCompileTimePolymorphismController;
 use App\Http\Controllers\Polymorphism\InterfacePolymorphism\ProgramInterfacePolymorphismController;
@@ -88,7 +91,6 @@ Route::get('/compileTimePolymorphism', [ProgramCompileTimePolymorphismController
 Route::get('/AdHocPolymorphism', [ProgramAdHocPolymorphismController::class, 'index']);
 Route::get('/interfacePolymorphism', [ProgramInterfacePolymorphismController::class, 'index']);
 
-
 /**
  * PHP8
  */
@@ -157,10 +159,8 @@ Route::get('/packages/{filename}', function ($filename) {
     return $response;
 })->where('filename', '.*');
 
-
-
 /**
- * Finam
+ * Final
  */
 Route::get('/bot', [\App\Http\Controllers\Finam\TradingBotController::class, 'executeBot']);
 
@@ -169,3 +169,8 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('welcome');
 
+/**
+ * PatternsDesignGangFour
+ */
+Route::get('/patternsDesignGangFour/strategy', [Main::class, 'index']);
+Route::get('/patternsDesignGangFour/strategyPlatina', [MainPlatina::class, 'index']);
