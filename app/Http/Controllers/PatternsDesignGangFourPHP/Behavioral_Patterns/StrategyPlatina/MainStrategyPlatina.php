@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\StrategyPlatina;
 
 /**
- * Главный класс, представляющий точку входа в пример.
+ * Этот пример представляет собой использование паттерна стратегии (Strategy) в контексте создания карточек товаров с
+ * различными способами отображения.
  */
-class MainPlatina
+class MainStrategyPlatina
 {
-    /**
-     * Этот метод представляет собой точку входа для данного примера.
-     */
     function index()
     {
         // Создаем карточку товара с простым отрисовщиком

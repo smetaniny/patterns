@@ -5,9 +5,13 @@ use App\Http\Controllers\DesignPatterns\Fundamental\DelegationController;
 use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
 use App\Http\Controllers\MO\ProgramTinkerController;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Observer\MainObserver;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\ObserverPlatina\MainObserverPlatina;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\Main;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\MainStrategy;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\Strategy;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\StrategyPlatina\MainPlatina;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\StrategyPlatina\MainStrategyPlatina;
 use App\Http\Controllers\Polymorphism\AdHocPolymorphism\ProgramAdHocPolymorphismController;
 use App\Http\Controllers\Polymorphism\CompileTimePolymorphism\ProgramCompileTimePolymorphismController;
 use App\Http\Controllers\Polymorphism\InterfacePolymorphism\ProgramInterfacePolymorphismController;
@@ -172,5 +176,8 @@ Route::get('/', function () {
 /**
  * PatternsDesignGangFour
  */
-Route::get('/patternsDesignGangFour/strategy', [Main::class, 'index']);
-Route::get('/patternsDesignGangFour/strategyPlatina', [MainPlatina::class, 'index']);
+Route::get('/patternsDesignGangFour/strategy', [MainStrategy::class, 'index']);
+Route::get('/patternsDesignGangFour/strategyPlatina', [MainStrategyPlatina::class, 'index']);
+
+Route::get('/patternsDesignGangFour/observer', [MainObserver::class, 'index']);
+Route::get('/patternsDesignGangFour/observerPlatina', [MainObserverPlatina::class, 'index']);

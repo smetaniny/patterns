@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy;
 
-class Main
+class MainStrategy
 {
     /**
      * Этот метод представляет собой точку входа для данного примера.
