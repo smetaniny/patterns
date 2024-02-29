@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\SearchableProducts;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @method static where(string $string, int $int)
  * @method static whereIn(string $string, string[] $array)
+ * @method static leftJoin(string $string, string $string1, string $string2, string $string3)
  */
 class Products extends Model
 {
-    use SearchableProducts;
 
     // Указываем таблицу с которой будем работать
     protected $table = 'products';
@@ -75,7 +74,7 @@ class Products extends Model
         'collection',
         'ordersort',
         'garnitur',
-        'related',
+        'stockAlias',
         'status',
         'grup',
         'description',

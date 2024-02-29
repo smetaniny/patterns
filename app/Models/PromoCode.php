@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\JsonDatabase;
 use Illuminate\Database\Eloquent\Model;
 
 class PromoCode extends Model
@@ -11,6 +12,10 @@ class PromoCode extends Model
 
     //Указываем уникальное поле таблицы
     protected $primaryKey = 'id';
+
+    protected $casts = [
+        'article_filter' => JsonDatabase::class,
+    ];
 
     //Есть автоинкремент
     public $incrementing = true;
@@ -35,6 +40,8 @@ class PromoCode extends Model
         'metal_add_remove',
         'action_add_remove',
         'collection_add_remove',
+        'article_add_remove',
+        'article_filter',
         'created_at',
         'updated_at'
     ];

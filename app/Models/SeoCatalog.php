@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\JsonDatabase;
 use App\Traits\SearchableCatalog;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,19 +13,23 @@ class SeoCatalog extends Model
 {
     use SearchableCatalog;
 
-    //Указываем таблицу с которой будем работать
+    // Указываем таблицу с которой будем работать
     protected $table = 'seo_catalog';
 
-    //Указываем уникальное поле таблицы
+    // Указываем уникальное поле таблицы
     protected $primaryKey = 'id';
 
-    //Есть автоинкремент
+    protected $casts = [
+        'search_phrase' => JsonDatabase::class,
+    ];
+
+    // Есть автоинкремент
     public $incrementing = true;
 
-    //Автоматом писать дату добавления и обновления
+    // Автоматом писать дату добавления и обновления
     public $timestamps = true;
 
-    //Разрешенные поля для работы
+    // Разрешенные поля для работы
     protected $fillable = [
         'id',
         'url',
@@ -37,6 +42,7 @@ class SeoCatalog extends Model
         'updated_at',
         'canonical',
         'robots',
-        'isSiteMap'
+        'is_site_map',
+        'search_phrase',
     ];
 }

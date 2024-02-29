@@ -21,7 +21,7 @@ class CreateProductsDataTable extends Migration
             $table->id();
 
             $table->string('razmer')->comment('Размер')->nullable();
-            $table->decimal('ves', 10, 2)->comment('Вес')->nullable();
+            $table->decimal('ves', 10)->comment('Вес')->nullable();
             $table->integer('price')->comment('Цена')->nullable();
             $table->text('insert')->comment('Описание')->nullable();
             $table->integer('kol')->comment('Количество')->nullable();

@@ -27,6 +27,6 @@ class SeoDeclinationFilter extends Model
         'filter_valueAlias',
         'catalog',
         'detailed',
-        'filter_item_check'
+        'parent'
     ];
 }

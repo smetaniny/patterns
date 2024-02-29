@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-
             $table->string('guid')->comment('Уникальный идентификатор 1C')->unique();
             $table->string('article')->comment('Артикул')->nullable();
             $table->string('articleNotDash')->comment('Артикул без -')->nullable();
@@ -58,16 +57,16 @@ class CreateProductsTable extends Migration
             $table->text('imgModel')->comment('Модель')->nullable();
             $table->text('imgBasic')->comment('Основная')->nullable();
             $table->integer('price')->comment('Цена')->nullable();
-            $table->decimal('weight', 10, 2)->comment('Вес')->nullable();
+            $table->decimal('weight', 10)->comment('Вес')->nullable();
             $table->integer('ordersort')->comment('Сортировка')->nullable();
             $table->string('garnitur')->comment('Гарнитур')->nullable();
-            $table->text('related')->comment('УИД-ам артикул из гарнитура')->nullable();
+            $table->text('stockAlias')->comment('УИДы магазинов')->nullable();
             $table->integer('status')->comment('Скрыть/показать')->nullable();
             $table->integer('grup')->comment('Ценовая группа')->nullable();
             $table->string('action')->comment('Коды акционных групп')->nullable();
             $table->integer('hit')->comment('Хит')->nullable();
             $table->integer('new')->comment('Новинка')->nullable();
-            $table->decimal('productWidth', 5, 2)->comment('Ширина артикула')->nullable();
+            $table->decimal('productWidth', 5)->comment('Ширина артикула')->nullable();
             $table->integer('card_discount')->comment('Скидка товара')->nullable();
             $table->integer('card_price')->comment('Цена со скидкой')->nullable();
             $table->string('card_date_end')->comment('Дата окончания акции с текстом')->nullable();
@@ -85,7 +84,8 @@ class CreateProductsTable extends Migration
             $table->integer('saved_price')->comment('Сохраненная цена')->nullable();
             $table->string('model')->comment('Модель артикула')->nullable();
             $table->integer('kol')->comment('Количество')->default(0);
-
+            $table->string('weaving')->comment('Вид плетения')->nullable();
+            $table->string('weavingAlias')->comment('Вид плетения транслит')->nullable();
             $table->timestamps();
         });
 

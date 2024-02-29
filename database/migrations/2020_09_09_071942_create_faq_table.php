@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateFaqTable extends Migration
 {
 
-    protected $tableName = 'faq';
+    protected $tableName = 'faqs';
 
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateFaqTable extends Migration
      */
     public function up()
     {
-        $faqTableName = 'faq';
+        $faqTableName = 'faqs';
         $usersTableName = 'users';
 
         Schema::create($faqTableName, function (Blueprint $table) use ($faqTableName, $usersTableName) {
@@ -48,7 +48,7 @@ class CreateFaqTable extends Migration
      */
     public function down()
     {
-        $faqTableName = 'faq';
+        $faqTableName = 'faqs';
         if (DB::getDriverName() !== 'sqlite') {
             Schema::table($faqTableName, function (Blueprint $table) use ($faqTableName) {
                 $table->dropForeign("{$faqTableName}_users_id_foreign");

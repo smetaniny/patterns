@@ -1,6 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Iterator;
+namespace App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\IteratorPlatina;
+
+use App\Models\Basket;
+use App\Models\Products;
+use App\Models\ProductsData;
 
 /**
  * Паттерн Итератор предоставляет способ последовательного доступа к элементам составного объекта
@@ -13,23 +17,25 @@ namespace App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Ite
  * затем создается объект, отвечающий за печать определенного количества сотрудников,
  * и происходит итерация по списку сотрудников с помощью этого объекта.
  */
-class MainIterator
+class MainIteratorPlatina
 {
     public function index()
     {
-        // Создание списка сотрудников и добавление в него элементов
-        $employeeList = new EmployeeList();
-        $employeeList->add(new Employee("John", 1));
-        $employeeList->add(new Employee("Alice", 2));
-        $employeeList->add(new Employee("Bob", 3));
+        // Создание экземпляра действия скидки с коэффициентом 0.1 (10% скидка)
+        $actions = [new DiscountAction(0.1)];
 
-        // Создание итератора
-        $it = new ListIterator($employeeList);
 
-        // Пример использования итератора
-        for ($it->first(); !$it->isDone(); $it->next()) {
-            $employee = $it->currentItem();
-            echo "Name: " . $employee->getName() . ", ID: " . $employee->getId() . "\n";
-        }
+        // Создание экземпляра корзины покупок
+        $cart = new ShoppingCart();
+
+        // Получение выбранных элементов из корзины
+        $selectedItems = $cart->getSelectedItems();
+
+        // Получение с учетом скидки элементов из корзины
+        $discountedItems = $cart->getDiscountedItems($actions);
+
+        // Вывод результатов на экран (в данном случае используется dd, вероятно, для удобства отладки)
+        dd($selectedItems, $discountedItems);
     }
 }
+

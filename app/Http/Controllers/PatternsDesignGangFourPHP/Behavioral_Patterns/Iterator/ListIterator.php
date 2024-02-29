@@ -2,41 +2,31 @@
 
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Iterator;
 
-
-class ListIterator implements Iterator
-{
+class ListIterator implements Iterator {
     private $list;
     private $current;
 
-    public function __construct($aList)
-    {
+    public function __construct(AbstractList $aList) {
         $this->list = $aList;
         $this->current = 0;
     }
 
-    public function first()
-    {
+    public function first() {
         $this->current = 0;
     }
 
-    public function next()
-    {
+    public function next() {
         $this->current++;
     }
 
-    public function isDone()
-    {
+    public function isDone(): bool {
         return $this->current >= $this->list->count();
     }
 
-    public function currentItem()
-    {
+    public function currentItem() {
         if ($this->isDone()) {
-            // Возможно, нужно обработать исключение IteratorOutOfBounds;
-            // но здесь я просто возвращаю null в случае выхода за пределы списка
             return null;
         }
-        return $this->list->getItem($this->current);
+        return $this->list->get($this->current);
     }
-
 }

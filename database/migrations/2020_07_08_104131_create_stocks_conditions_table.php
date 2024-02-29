@@ -27,8 +27,8 @@ class CreateStocksConditionsTable extends Migration
             $table->integer('action_group_id')->comment('ID группы акции')->nullable();
             $table->integer('card_discount_group_id')->comment('ID дисконтной карты')->nullable();
             $table->integer('payment_group_id')->comment('ID группы оплаты')->default(0);
-            $table->bigInteger('stocks_id')->unsigned()->comment('Связь с таблицей stocks');
-            $table->foreign('stocks_id')->references('id')->on('stocks');
+            $table->bigInteger('stocks_id')->unsigned()->comment('Связь с таблицей sales');
+            $table->foreign('stocks_id')->references('id')->on('sales');
 
             $table->timestamps();
         });

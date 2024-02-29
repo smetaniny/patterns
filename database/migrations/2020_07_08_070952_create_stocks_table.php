@@ -13,7 +13,7 @@ class CreateStocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
 
             //Основа
@@ -65,6 +65,6 @@ class CreateStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('sales');
     }
 }

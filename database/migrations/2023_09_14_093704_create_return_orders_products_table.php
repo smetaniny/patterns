@@ -25,10 +25,10 @@ return new class extends Migration
             $table->string('sum')->comment('Сумма без скидок')->nullable();
             $table->string('discount')->comment('Процент скидки')->nullable();
             $table->string('discount_sum')->comment('Сумма скидки')->nullable();
-            $table->decimal('total', 10, 2)->comment('Сумма изделия')->nullable();
+            $table->decimal('total', 10)->comment('Сумма изделия')->nullable();
             $table->integer('cancel')->comment('Отмена заказа')->default(0);
-            $table->decimal('bonus_add', 10, 2)->comment('Сумма начисленных бонусов')->default(0);
-            $table->decimal('bonus_subtract', 10, 2)->comment('Сумма списанных бонусов')->default(0);
+            $table->decimal('bonus_add', 10)->comment('Сумма начисленных бонусов')->default(0);
+            $table->decimal('bonus_subtract', 10)->comment('Сумма списанных бонусов')->default(0);
             $table->timestamps();
 
             //Столбец, связанный с таблицей возврат товаров

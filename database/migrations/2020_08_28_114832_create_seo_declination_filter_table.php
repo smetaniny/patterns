@@ -24,7 +24,7 @@ class CreateSeoDeclinationFilterTable extends Migration
             $table->string('catalog')->comment('Для каталога')->nullable();
             $table->string('detailed')->comment('Для деталки')->nullable();
 
-            $table->integer('filter_item_check')->comment('Правили в админке')->nullable();
+            $table->string('parent')->comment('Владелец фильтра')->nullable();
 
             $table->timestamps();
         });

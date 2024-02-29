@@ -20,8 +20,8 @@ class CreateDiscountCardsTable extends Migration
         Schema::create($discountCardsTable, function (Blueprint $table) use ($usersTable, $discountCardsTable, $discountCardTypesTable) {
             $table->id();
 
-            $table->decimal('sum_accumulation', 10, 2)->comment('Сумма накоплений')->default(0);
-            $table->decimal('sum_bonus', 10, 2)->comment('Сумма бонусов')->default(0);
+            $table->decimal('sum_accumulation', 10)->comment('Сумма накоплений')->default(0);
+            $table->decimal('sum_bonus', 10)->comment('Сумма бонусов')->default(0);
             $table->bigInteger('users_id')->unsigned()->comment('Связь с таблицей users');
             $table->bigInteger('discount_card_types_id')->unsigned()->comment('Связь с таблицей discount_card_types')->default(1);
             $table->timestamps();

@@ -21,7 +21,7 @@ class CreateBonusOperationFuturesTable extends Migration
         Schema::create($bonusOperationFuturesTable, function (Blueprint $table) use ($bonusOperationFuturesTable, $ordersTable, $discountCardsTable, $bonusOperationTypesTable) {
             $table->id();
             $table->string('vid_operation')->comment('Вид транзакции')->nullable();
-            $table->decimal('sum_bonus', 10, 2)->comment('Сумма')->default(0);
+            $table->decimal('sum_bonus', 10)->comment('Сумма')->default(0);
             $table->integer('status')->comment('Статус обмена')->default(0);
             $table->bigInteger('order_id')->unsigned()->comment('Связь с таблицей orders')->nullable();
             $table->bigInteger('discount_cards_id')->unsigned()->comment('Связь с таблицей discount_cards');

@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static rightJoin(string $string, string $string1, string $string2, string $string3)
+ */
 class ProductsData extends Model
 {
     //Указываем таблицу с которой будем работать

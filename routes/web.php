@@ -6,6 +6,7 @@ use App\Http\Controllers\DesignPatterns\Fundamental\DesignPatternsController;
 use App\Http\Controllers\DesignPatterns\Fundamental\EventChannelController;
 use App\Http\Controllers\MO\ProgramTinkerController;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Iterator\MainIterator;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\IteratorPlatina\MainIteratorPlatina;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Observer\MainObserver;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\ObserverPlatina\MainObserverPlatina;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\Main;
@@ -186,4 +187,5 @@ Route::get('/patternsDesignGangFour/observerPlatina', [MainObserverPlatina::clas
 Route::get('/patternsDesignGangFour/observer', [MainObserver::class, 'index']);
 
 //
+Route::get('/patternsDesignGangFour/iteratorPlatina', [MainIteratorPlatina::class, 'index']);
 Route::get('/patternsDesignGangFour/iterator', [MainIterator::class, 'index']);

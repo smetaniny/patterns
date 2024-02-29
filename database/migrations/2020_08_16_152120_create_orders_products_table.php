@@ -33,8 +33,8 @@ class CreateOrdersProductsTable extends Migration
             $table->string('action_id')->comment('ID акции')->nullable();
             $table->string('condition_id')->comment('ID условия акции')->nullable();
             $table->integer('cancel')->comment('Отмена заказа')->default(0);
-            $table->decimal('bonus_add', 10, 2)->comment('Сумма начисленных бонусов')->default(0);
-            $table->decimal('bonus_subtract', 10, 2)->comment('Сумма списанных бонусов')->default(0);
+            $table->decimal('bonus_add', 10)->comment('Сумма начисленных бонусов')->default(0);
+            $table->decimal('bonus_subtract', 10)->comment('Сумма списанных бонусов')->default(0);
 
             $table->timestamps();
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Iterator;
 
-abstract class AbstractList
-{
-    abstract public function createIterator(): Iterator;
+interface AbstractList {
+    public function count();
+    public function get($index);
 }

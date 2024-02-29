@@ -26,9 +26,9 @@ class CreateOrdersInfoStatusesTable extends Migration
             [
                 ['name' => 'Новый'],
                 ['name' => 'В обработке'],
-                ['name' => 'Согласован'],
                 ['name' => 'Ожидает отправки'],
                 ['name' => 'Отправлен'],
+                ['name' => 'Ожидает получения'],
                 ['name' => 'Получен'],
                 ['name' => 'Отменен'],
                 ['name' => 'Завершен'],

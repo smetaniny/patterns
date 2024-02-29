@@ -14,7 +14,7 @@ class CreateFaqMessagesTable extends Migration
     public function up()
     {
         $faqMessagesTableName = 'faq_messages';
-        $faqTableName = 'faq';
+        $faqTableName = 'faqs';
         $usersTableName = 'users';
 
         Schema::create($faqMessagesTableName, function (Blueprint $table) use ($faqMessagesTableName, $faqTableName, $usersTableName) {
@@ -22,7 +22,7 @@ class CreateFaqMessagesTable extends Migration
 
             $table->text('message')->comment('Сообщение')->nullable();
 
-            $table->bigInteger('faq_id')->unsigned()->comment('Связь с таблицей faq')->nullable();
+            $table->bigInteger('faq_id')->unsigned()->comment('Связь с таблицей faqs')->nullable();
             $table->bigInteger('users_id')->unsigned()->comment('Связь с таблицей users')->nullable();
 
             $table->timestamps();

@@ -21,9 +21,9 @@ return new class extends Migration {
             $table->id();
             $table->string('number')->comment('')->nullable();
             $table->integer('type')->comment('Вид сертификата')->default(3);
-            $table->decimal('total', 10, 2)->comment('Сумма сертификата')->nullable();
+            $table->decimal('total', 10)->comment('Сумма сертификата')->nullable();
             $table->integer('status')->comment('Статус сертификата')->default(0);
-            $table->decimal('balance', 10, 2)->comment('Остаток суммы на сертификате')->nullable();
+            $table->decimal('balance', 10)->comment('Остаток суммы на сертификате')->nullable();
             $table->date('date_start')->comment('Дата начала действия сертификата')->nullable();
             $table->date('date_end')->comment('Дата окончания действия сертификата')->nullable();
             $table->string('template')->comment('Шаблон сертификата')->default("0");

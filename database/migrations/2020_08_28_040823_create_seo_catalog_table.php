@@ -15,7 +15,6 @@ class CreateSeoCatalogTable extends Migration
     {
         Schema::create('seo_catalog', function (Blueprint $table) {
             $table->id();
-
             $table->string('url')->comment('Адресс страницы')->nullable();
             $table->text('title')->comment('Заголовок страницы')->nullable();
             $table->text('description')->comment('Описание страницы')->nullable();
@@ -24,8 +23,8 @@ class CreateSeoCatalogTable extends Migration
             $table->integer('show')->comment('Ручное заполнение SEO')->default(0);
             $table->string('canonical')->comment('canonical для url')->nullable();
             $table->string('robots')->comment('robots для url')->nullable();
-            $table->integer('isSiteMap')->comment('Добавить/исключить из SiteMap')->default(0);
-
+            $table->integer('is_site_map')->comment('Добавить/исключить из SiteMap')->default(0);
+            $table->json('search_phrase')->comment('Ключевые фразы для поиска')->nullable();
             $table->timestamps();
         });
     }

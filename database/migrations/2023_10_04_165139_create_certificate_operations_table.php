@@ -22,7 +22,7 @@ return new class extends Migration {
         Schema::create($this->certificateOperationsTable, function (Blueprint $table) {
             $table->id();
             $table->string('vid_operation')->comment('Вид транзакции')->nullable();
-            $table->decimal('sum_cert', 10, 2)->comment('Остаток суммы на сертификате')->nullable();
+            $table->decimal('sum_cert', 10)->comment('Остаток суммы на сертификате')->nullable();
             $table->integer('status')->comment('Статус транзакции')->default(0);
             $table->foreignIdFor(Order::class)->comment('Связь с таблицей orders')->constrained()->onUpdate('cascade')->onDelete('restrict');
             $table->foreignIdFor(Certificate::class)->comment('Связь с таблицей certificate')->constrained()->onUpdate('cascade')->onDelete('cascade');

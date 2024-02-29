@@ -19,7 +19,7 @@ class CreateBonusOperationsTable extends Migration
         Schema::create($bonusOperationsTable, function (Blueprint $table) use ($bonusOperationsTable, $discountCardsTable) {
             $table->string('operation_name')->comment('Название транзакции')->nullable();
             $table->string('vid_operation')->comment('Вид транзакции')->nullable();
-            $table->decimal('sum_bonus', 10, 2)->comment('Сумма')->default(0);
+            $table->decimal('sum_bonus', 10)->comment('Сумма')->default(0);
             $table->date('date')->comment('Дата')->nullable();
             $table->bigInteger('discount_cards_id')->unsigned()->comment('Связь с таблицей discount_cards');
             $table->timestamps();
