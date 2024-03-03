@@ -14,6 +14,9 @@ use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\Strategy\Strategy;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\StrategyPlatina\MainPlatina;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Behavioral_Patterns\StrategyPlatina\MainStrategyPlatina;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory\MainAbstractFactory;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Builder\MainBuilder1;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Builder\MainBuilder2;
 use App\Http\Controllers\Polymorphism\AdHocPolymorphism\ProgramAdHocPolymorphismController;
 use App\Http\Controllers\Polymorphism\CompileTimePolymorphism\ProgramCompileTimePolymorphismController;
 use App\Http\Controllers\Polymorphism\InterfacePolymorphism\ProgramInterfacePolymorphismController;
@@ -174,7 +177,6 @@ Route::get('/bot', [\App\Http\Controllers\Finam\TradingBotController::class, 'ex
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('welcome');
-
 /**
  * PatternsDesignGangFour
  */
@@ -189,3 +191,10 @@ Route::get('/patternsDesignGangFour/observer', [MainObserver::class, 'index']);
 // Паттерн Итератор предоставляет способ последовательного доступа к элементам
 Route::get('/patternsDesignGangFour/iteratorPlatina', [MainIteratorPlatina::class, 'index']);
 Route::get('/patternsDesignGangFour/iterator', [MainIterator::class, 'index']);
+
+//
+Route::get('/patternsDesignGangFour/abstractFactory', [MainAbstractFactory::class, 'index']);
+
+//
+Route::get('/patternsDesignGangFour/builder1', [MainBuilder1::class, 'index']);
+Route::get('/patternsDesignGangFour/builder2', [MainBuilder2::class, 'index']);

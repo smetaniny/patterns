@@ -40,7 +40,6 @@ class TradingBotController extends Controller
         ]);
     }
 
-
     private function getDayCandles($symbol, $timeframe, $intervalFrom, $intervalTo, $intervalCount, $securityBoard)
     {
         $response = Http::withHeaders([
