@@ -90,26 +90,14 @@ class ShoppingCart {
             for ($i = 0; $i < $count; $i++) {
                 foreach ($actions as $action) {
                     // Применяем акцию в зависимости от типа
-                    if ($action instanceof OnlinePaymentDiscountAction) {
-                        if ($this->user->hasOnlinePaymentDiscount()) {
-                            $action->apply($item);
-                        }
-                    } elseif ($action instanceof CreditPaymentDiscountAction) {
-                        if ($this->user->hasCreditPaymentDiscount()) {
-                            $action->apply($item);
-                        }
-                    } elseif ($action instanceof GiftAction) {
-                        if ($this->user->eligibleForGift()) {
-                            $action->apply($item);
-                        }
-                    }
+                    $action->apply($item);
                     // Добавьте другие типы акций по аналогии
                 }
                 // Создание клонов продукта с учетом скидки
                 $discountedItems[] = clone $item;
             }
-        }
 
+        }
         // Возвращение массива с учетом скидки товаров
         return $discountedItems;
     }

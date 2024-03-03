@@ -12,30 +12,11 @@ use App\Models\StockCondition;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 
-/**
- * Класс, представляющий действие скидки
- */
-class DiscountAction implements Action {
-    // Приватное свойство для хранения коэффициента скидки
-    private $discountRate;
-
-    /**
-     * Конструктор класса
-     *
-     */
-    public function __construct($discountRate) {
-        // Присвоение переданного коэффициента скидки свойству
-        $this->discountRate = $discountRate;
-    }
-
-    /**
-     * Применение скидки к продукту
-     *
-     * @param ProductsData $productsData Продукт, к которому применяется скидка
-     */
-    public function apply(ProductsData $productsData) {
+class DiscountAction implements Action
+{
+    public function apply(ProductsData $productsData)
+    {
         //Переменные для акции два по цене одного
         $saleOneCount = 0;
         $saleOneSum = 0;
@@ -50,9 +31,17 @@ class DiscountAction implements Action {
         $discount_card_types_id = 1;
         $user = User::findOrFail(9525);
         $paymentMethod = 'online';
-        $deliveryIsFitting = '0';
+        $deliveryIsFitting = '1';
         $flagBonusesPromoCod = 'bonuses';
         $input = [];
+        $productsData->action_id = null;
+        $productsData->condition_id = null;
+        $productsData->card_discount = null;
+        $productsData->card_price = null;
+        $productsData->stocksName = null;
+        $productsData->stocksConditionName = null;
+        $productsData->notPromoCode = false;
+
 
         if ($user !== null) {
             //Получаем днюху юзера в этом году
@@ -76,31 +65,6 @@ class DiscountAction implements Action {
             $payment_group_id = 0;
         }
 
-
-        //Вытаскиваем товары с count больше 1 и объединяем в тот же объект
-        foreach ($productsData as $item) {
-            if ($item->count > 1) {
-                for ($i = 1; $i < $item->count; $i++) {
-                    $productsData->prepend($item);
-                }
-            }
-            $item->sortOld = $item->product_data_id;
-        }
-
-        //Пробегаемся и делаем массив, а потом назад колекцию с объектом, что бы обмануть ларавель
-        $productsData = collect($productsData->sortBy('price')->values()->toArray())->map(function ($item, $key) {
-            $item = (object) $item;
-            //обнуляем информацию по скидкам
-            $item->action_id = null;
-            $item->condition_id = null;
-            $item->card_discount = null;
-            $item->card_price = null;
-//            $item->date_end_stock = null;
-            $item->stocksName = null;
-            $item->stocksConditionName = null;
-            $item->notPromoCode = false;
-            return $item;
-        });
 
         //Расчет не на чек
         $stockConditionsNoCheks = StockCondition::leftJoin('stocks', 'stocks_conditions.stocks_id', '=', 'stocks.id')->where([
@@ -494,46 +458,44 @@ class DiscountAction implements Action {
 
             $resSubtract = [];
             $resAdd = [];
-            // Если нашли типы операции
-            foreach ($productsData as $k => $v) {
-                // Массив акционных групп у товаров
-                $productActionGroup = explode(',', $v->action);
-                // От какой суммы рассчитываем
-                $price = $v->card_price !== null ? $v->card_price : $v->price;
-                // Начисление
-                if (!$bonusOperationRulesAdd->isEmpty()) {
-                    $sumPercent = 0;
-                    foreach ($bonusOperationRulesAdd as $v_rules) {
-                        if ($v_rules->discount_card_types_id === null || $v_rules->discount_card_types_id === $discount_card_types_id) {
-                            if ($v_rules->action_group_id === 0 || in_array($v_rules->action_group_id, $productActionGroup)) {
-                                $sumPercent = $sumPercent < $v_rules->sum_percent ? $v_rules->sum_percent : $sumPercent;
-                            }
+
+            // Массив акционных групп у товаров
+            $productActionGroup = explode(',', $productsData->action);
+            // От какой суммы рассчитываем
+            $price = $productsData->card_price !== null ? $productsData->card_price : $productsData->price;
+            // Начисление
+            if (!$bonusOperationRulesAdd->isEmpty()) {
+                $sumPercent = 0;
+                foreach ($bonusOperationRulesAdd as $v_rules) {
+                    if ($v_rules->discount_card_types_id === null || $v_rules->discount_card_types_id === $discount_card_types_id) {
+                        if ($v_rules->action_group_id === 0 || in_array($v_rules->action_group_id, $productActionGroup)) {
+                            $sumPercent = $sumPercent < $v_rules->sum_percent ? $v_rules->sum_percent : $sumPercent;
                         }
-                    }
-                    // Максимально возможная сумма начисления
-                    $v->bonusesAdd = round(($price * $sumPercent) / 100);
-                    if ($v->bonusesAdd !== 0) {
-                        array_push($resAdd, $v->bonusesAdd);
                     }
                 }
+                // Максимально возможная сумма начисления
+                $productsData->bonusesAdd = round(($price * $sumPercent) / 100);
+                if ($productsData->bonusesAdd !== 0) {
+                    array_push($resAdd, $productsData->bonusesAdd);
+                }
+            }
 
-                // Списание
-                if ($flagBonusesPromoCod === 'bonuses') { // Если флаг на бонусах
-                    if (!$bonusOperationRulesSubtract->isEmpty()) {
-                        $sumPercentSubtract = 100;
-                        foreach ($bonusOperationRulesSubtract as $v_rules) {
-                            if ($v_rules->discount_card_types_id === null || $v_rules->discount_card_types_id === $discount_card_types_id) {
-                                if ($v_rules->action_group_id === 0 || in_array($v_rules->action_group_id, $productActionGroup)) {
-                                    $sumPercentSubtract = $sumPercentSubtract > $v_rules->sum_percent ? $v_rules->sum_percent : $sumPercentSubtract;
-                                }
+            // Списание
+            if ($flagBonusesPromoCod === 'bonuses') { // Если флаг на бонусах
+                if (!$bonusOperationRulesSubtract->isEmpty()) {
+                    $sumPercentSubtract = 100;
+                    foreach ($bonusOperationRulesSubtract as $v_rules) {
+                        if ($v_rules->discount_card_types_id === null || $v_rules->discount_card_types_id === $discount_card_types_id) {
+                            if ($v_rules->action_group_id === 0 || in_array($v_rules->action_group_id, $productActionGroup)) {
+                                $sumPercentSubtract = $sumPercentSubtract > $v_rules->sum_percent ? $v_rules->sum_percent : $sumPercentSubtract;
                             }
                         }
-                        $sumPercentSubtract = $sumPercentSubtract === 100 ? 0 : $sumPercentSubtract;
-                        // Максимально возможная сумма списания
-                        $v->maxSumSubtract = round(($price * $sumPercentSubtract) / 100);
-                        if ($v->maxSumSubtract != 0) {
-                            array_push($resSubtract, $v->maxSumSubtract);
-                        }
+                    }
+                    $sumPercentSubtract = $sumPercentSubtract === 100 ? 0 : $sumPercentSubtract;
+                    // Максимально возможная сумма списания
+                    $productsData->maxSumSubtract = round(($price * $sumPercentSubtract) / 100);
+                    if ($productsData->maxSumSubtract != 0) {
+                        array_push($resSubtract, $productsData->maxSumSubtract);
                     }
                 }
             }
@@ -543,109 +505,37 @@ class DiscountAction implements Action {
 
             $sumBonus = min($bonusesBalance, $productsData->maximumSubtractBonuses);
         }
-        // END Расчет начисления бонусов
 
+        // END Расчет начисления бонусов
         $countProductsData = $productsData->count();
         $newBonusesSubtract = collect([]);
-        $productsDataAll = $productsData->map(function ($el, $key) use ($sumBonus, $productsData, $newBonusesSubtract, $countProductsData) {
-            $res = [];
+        $productsDataAll = [];
 
-            $res['id'] = $el->product_data_id;
-            $res['guid'] = $el->guid;
-            $res['count'] = $el->count;
-            $res['insert'] = $el->insert;
-            $res['kol'] = $el->kol;
-            $res['price'] = $el->price;
-            $res['product_data_shop'] = $el->product_data_shop;
-            $res['product_id'] = $el->product_id;
-            $res['razmer'] = $el->razmer;
-            $res['ves'] = $el->ves;
-            $res['created_at'] = $el->created_at;
-            $res['updated_at'] = $el->updated_at;
-
-            // Бонусы, начисление
-            $res['bonusesAdd'] = isset($el->bonusesAdd) ? $el->bonusesAdd : 0;
-            // Бонусы, списание
-            $res['currentBonusSubtractPercent'] = isset($el->maxSumSubtract) && $productsData->maximumSubtractBonuses != 0 ? $el->maxSumSubtract * 100 / $productsData->maximumSubtractBonuses : 0;
-            if ($key + 1 === $countProductsData) {
-                $res['bonusesSubtract'] = $sumBonus - $newBonusesSubtract->sum();
-            } else {
-                $res['bonusesSubtract'] = round($sumBonus * $res['currentBonusSubtractPercent'] / 100);
-                $newBonusesSubtract->prepend($res['bonusesSubtract']);
-            }
-
-            $res['action_id'] = isset($el->action_id) ? $el->action_id : null;
-            $res['condition_id'] = isset($el->condition_id) ? $el->condition_id : null;
-            $res['card_discount'] = $el->card_discount;
-            $res['card_price'] = isset($el->card_discount) ? $el->card_price : $el->price;
-//            $res['date_end_stock'] = $el->date_end_stock;
-            $res['stocksName'] = $el->stocksName;
-            $res['notPromoCode'] = $el->notPromoCode;
-
-            return $res;
-        })->reject(function ($name) {
-            return empty($name);
-        });
-
-        $guidControl = collect([]);
-        $productsDataEnd = $productsData->map(function ($el) use ($guidControl, $productsDataAll) {
-            if ($guidControl->search($el->guid) === false) {
-                $guidControl->prepend($el->guid);
-
-                $dataRes = $productsDataAll->map(function ($data) use ($el) {
-                    if ($data['guid'] === $el->guid) {
-                        return $data;
-                    }
-                })->reject(function ($name) {
-                    return empty($name);
-                })->values();
-
-                $priceDataResOld = $dataRes->map(function ($el) {
-                    return $el['price'];
-                })->reject(function ($name) {
-                    return empty($name);
-                })->reduce(function ($carry, $item) {
-                    return $carry + $item;
-                });
+        $productsDataAll['id'] = $productsData->product_data_id;
+        $productsDataAll['guid'] = $productsData->guid;
+        $productsDataAll['count'] = $productsData->count;
+        $productsDataAll['insert'] = $productsData->insert;
+        $productsDataAll['kol'] = $productsData->kol;
+        $productsDataAll['price'] = $productsData->price;
+        $productsDataAll['product_data_shop'] = $productsData->product_data_shop;
+        $productsDataAll['product_id'] = $productsData->product_id;
+        $productsDataAll['razmer'] = $productsData->razmer;
+        $productsDataAll['ves'] = $productsData->ves;
+        $productsDataAll['created_at'] = $productsData->created_at;
+        $productsDataAll['updated_at'] = $productsData->updated_at;
+        // Бонусы, начисление
+        $productsDataAll['bonusesAdd'] = isset($productsData->bonusesAdd) ? $productsData->bonusesAdd : 0;
+        // Бонусы, списание
+        $productsDataAll['currentBonusSubtractPercent'] = isset($el->maxSumSubtract) && $productsData->maximumSubtractBonuses != 0 ? $el->maxSumSubtract * 100 / $productsData->maximumSubtractBonuses : 0;
+        $productsDataAll['bonusesSubtract'] = $sumBonus - $newBonusesSubtract->sum();
+        $productsDataAll['action_id'] = isset($productsData->action_id) ? $productsData->action_id : null;
+        $productsDataAll['condition_id'] = isset($productsData->condition_id) ? $productsData->condition_id : null;
+        $productsDataAll['card_discount'] = $productsData->card_discount;
+        $productsDataAll['card_price'] = isset($productsData->card_discount) ? $productsData->card_price : $productsData->price;
+        $productsDataAll['stocksName'] = $productsData->stocksName;
+        $productsDataAll['notPromoCode'] = $productsData->notPromoCode;
 
 
-                $priceDataCurrent = $dataRes->map(function ($el) {
-                    return $el['card_price'];
-                })->reject(function ($name) {
-                    return empty($name);
-                })->reduce(function ($carry, $item) {
-                    return $carry + $item;
-                });
-
-                $countControl = collect([]);
-                $dataResEnd = $dataRes->map(function ($elResData) use ($countControl) {
-                    if ($countControl->search($elResData['id']) === false) {
-                        $countControl->prepend($elResData['id']);
-                        return $elResData;
-                    }
-                })->reject(function ($name) {
-                    return empty($name);
-                })->values();
-
-                $el->product_data = $dataResEnd;
-                $el->product_data_new = $dataRes;
-                $el->priceDataResOld = $priceDataResOld;
-                $el->priceDataCurrent = $priceDataCurrent;
-                return $el;
-            }
-        })->reject(function ($name) {
-            return empty($name);
-        });
-
-        $productsDataEnd = $productsDataEnd->sortByDesc('created_at_basket')->values();
-
-        $this->saleHelp['finalSumOld'] = $productsDataEnd->reduce(function ($carry, $item) {
-            return $carry + $item->priceDataResOld;
-        });
-        $this->saleHelp['finalSum'] = $productsDataEnd->reduce(function ($carry, $item) {
-            return $carry + $item->priceDataCurrent;
-        });
-        $this->saleHelp['basketCount'] = $this->basketCountCalculation($productsDataEnd);
 
         // Дополнительная информация по бонусам
         // Общая максимальная сумма начисления
@@ -656,35 +546,7 @@ class DiscountAction implements Action {
         // Бонусный баланс пользователя
         $this->bonuses['bonusesBalance'] = $bonusesBalance;
 
-        // Расчет промокода, если флаг на промокоде
-        if ($flagBonusesPromoCod === 'promoCode' && Arr::exists($input, 'promoCod') && $input['promoCod'] !== null) {
-            $input['finalSum'] = $this->saleHelp['finalSum'];
-            $responsePromoCode = $this->promoCodeBasket($input, $productsDataEnd);
-            $this->promoCode['promo_id'] = $responsePromoCode['data']['promo_id'];
-            $this->promoCode['promo_sum'] = $responsePromoCode['data']['promo_sum'];
-            $this->promoCode['promo_type'] = $responsePromoCode['data']['promo_type'];
-            $this->promoCode['status'] = $responsePromoCode['status'];
-            $this->promoCode['message'] = $responsePromoCode['message'];
-        }
 
-        // Возвращаем актуальные данные по сертификатам
-        foreach ($input['certificateData'] as $item) {
-            $certificate = Certificate::where([
-                ['status', 1],
-                ['number', $item['number']],
-                ['balance', '>', 0]
-            ])->first();
-
-            if ($certificate !== null) {
-                $this->certificateData[] = [
-                    'id' => $certificate->id,
-                    'number' => $certificate->number,
-                    'balance' => (integer) $certificate->balance,
-                    'writeSum' => 0,
-                ];
-            }
-        }
-
-        return $productsDataEnd;
+        return $productsData;
     }
 }

@@ -6,18 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static rightJoin(string $string, string $string1, string $string2, string $string3)
+ * @property mixed|null action_id
+ * @property mixed|null condition_id
+ * @property mixed|null card_discount
+ * @property mixed|null card_price
+ * @property mixed|null stocksName
+ * @property mixed|null stocksConditionName
+ * @property false|mixed notPromoCode
  */
 class ProductsData extends Model
 {
     //Указываем таблицу с которой будем работать
     protected $table = 'products_data';
-
     //Указываем уникальное поле таблицы
     protected $primaryKey = 'id';
-
     //Есть автоинкремент
     public $incrementing = true;
-
     //Автоматом писать дату добавления и обновления
     public $timestamps = true;
 
@@ -35,12 +39,14 @@ class ProductsData extends Model
     ];
 
     //Связываем таблицу products_data с products — один к одному
-    public function product() {
+    public function product()
+    {
         return $this->hasOne('App\Models\Products');
     }
 
     //Связываем таблицу product_data c product_data_shops — один ко многим
-    public function productDataShop() {
+    public function productDataShop()
+    {
         return $this->hasmany('App\Models\ProductsDataShops', 'product_data_id', 'id');
     }
 }

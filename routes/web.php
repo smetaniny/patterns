@@ -186,6 +186,6 @@ Route::get('/patternsDesignGangFour/strategy', [MainStrategy::class, 'index']);
 Route::get('/patternsDesignGangFour/observerPlatina', [MainObserverPlatina::class, 'index']);
 Route::get('/patternsDesignGangFour/observer', [MainObserver::class, 'index']);
 
-//
+// Паттерн Итератор предоставляет способ последовательного доступа к элементам
 Route::get('/patternsDesignGangFour/iteratorPlatina', [MainIteratorPlatina::class, 'index']);
 Route::get('/patternsDesignGangFour/iterator', [MainIterator::class, 'index']);
