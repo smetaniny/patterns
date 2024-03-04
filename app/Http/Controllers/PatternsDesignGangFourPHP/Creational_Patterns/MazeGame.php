@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory;
+namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
 use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Builder\Direction;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Builder\MazeBuilder;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\MazeFactory;
 
 class MazeGame
 {
@@ -28,7 +30,6 @@ class MazeGame
         $r2->setSide(Direction::EAST, $this->makeWall());
         $r2->setSide(Direction::SOUTH, $this->makeWall());
         $r2->setSide(Direction::WEST, $theDoor);
-
         return $aMaze;
     }
 

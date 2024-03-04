@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
 
-use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory\Room;
 
 class EnchantedMazeFactory extends MazeFactory
 {

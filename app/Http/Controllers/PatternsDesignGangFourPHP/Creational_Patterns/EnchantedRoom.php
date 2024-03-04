@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
-use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory\Room;
-
 class EnchantedRoom extends Room
 {
     private $spell;
@@ -14,5 +12,3 @@ class EnchantedRoom extends Room
         $this->spell = $spell;
     }
 }
-
-?>

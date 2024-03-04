@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abs
 
 use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\BombedMazeFactory;
 use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\EnchantedMazeFactory;
+use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\MazeGame;
 
 class MainAbstractFactory
 {
@@ -26,5 +27,4 @@ class MainAbstractFactory
         // Возвращаем ноль, чтобы показать успешное завершение программы
         return 0;
     }
-
 }

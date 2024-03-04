@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
-use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory\Room;
-use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory\Wall;
-
 class MazeFactory
 {
     private static $instance = null;
 
-    protected function __construct()
+    public function __construct()
     {
         echo "MazeFactory::MazeFactory()" . PHP_EOL;
     }

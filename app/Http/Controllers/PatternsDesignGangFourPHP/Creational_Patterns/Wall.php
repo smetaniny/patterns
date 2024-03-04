@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory;
+namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
-class Wall
+class Wall extends \App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\MapSite
 {
     public function __construct()
     {

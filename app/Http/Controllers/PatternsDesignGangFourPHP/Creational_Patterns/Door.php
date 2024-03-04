@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory;
+namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
-class Door
+class Door extends \App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\MapSite
 {
     protected $room1;
     protected $room2;

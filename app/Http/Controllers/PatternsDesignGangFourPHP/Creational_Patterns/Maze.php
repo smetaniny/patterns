@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory;
+namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
 
 use SplObjectStorage;

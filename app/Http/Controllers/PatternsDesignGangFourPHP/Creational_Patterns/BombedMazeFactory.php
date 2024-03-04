@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
-
-
-use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory\Wall;
-
-class BombedMazeFactory implements MazeFactory
+class BombedMazeFactory extends MazeFactory
 {
     public function makeWall(): Wall
     {
@@ -18,5 +14,3 @@ class BombedMazeFactory implements MazeFactory
         return new RoomWithABomb($n);
     }
 }
-
-?>

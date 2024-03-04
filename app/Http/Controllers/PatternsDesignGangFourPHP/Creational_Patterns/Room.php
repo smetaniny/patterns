@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory;
-
-use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\MapSite;
+namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns;
 
 class Room
 {

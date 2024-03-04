@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Builder;
 
-use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\Abstract_Factory\MazeGame;
+
+use App\Http\Controllers\PatternsDesignGangFourPHP\Creational_Patterns\MazeGame;
 
 class MainBuilder1
 {
@@ -15,7 +16,5 @@ class MainBuilder1
         $maze = $builder->getMaze();
 
         echo $maze . PHP_EOL;
-
     }
-
 }
