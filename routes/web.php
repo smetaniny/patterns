@@ -71,6 +71,7 @@ Route::get('/cache_clear', function () {
     Artisan::call('view:clear');
     Artisan::call('clear-compiled');
     return "All caches cleared!";
+
 });
 
 // Машинное обучение
@@ -177,6 +178,7 @@ Route::get('/bot', [\App\Http\Controllers\Finam\TradingBotController::class, 'ex
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('welcome');
+
 /**
  * PatternsDesignGangFour
  */
