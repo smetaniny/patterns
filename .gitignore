@@ -1,4 +1,27 @@
+<<<<<<< HEAD
 /node_modules
 /vendor
+=======
+/bootstrap/ssr
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+# Игнорировать все из директории vendor
+/vendor/*
+
+# За исключением нужного пакета
+!/vendor/laravel/nova/
+
+
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+>>>>>>> dev
 /.idea
 /.vscode

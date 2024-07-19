@@ -1,0 +1,1 @@
+!function(){"use strict";let e={units:[{health:10,armor:2,weapon:new class{constructor(e,a,r){this.range=e,this.damage=a,this.arrows=r}}(10,20,30),shield:null},{health:10,armor:2,weapon:{range:1,damage:8,wear:0},shield:null},{health:10,armor:2,weapon:{range:1,damage:8,wear:0},shield:{resistance:2,size:5}}]};console.log(e)}();
