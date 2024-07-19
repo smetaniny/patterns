@@ -1,0 +1,3 @@
+[submodule "packages/platina/image"]
+	path = packages/platina/image
+	url = git@github.com:platina-jewelry/image.git
